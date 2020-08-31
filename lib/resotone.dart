@@ -1,3 +1,5 @@
+library resotone;
+
 // Resonance
 
 export 'src/resonance_audio.dart';
