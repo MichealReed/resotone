@@ -66,7 +66,7 @@ class FOARenderer {
   GainNode output;
   GainNode _bypass;
   FOARouter _foaRouter;
-  FOARotator _foaRotator;
+  FOARotator foaRotator;
   FOAConvolver _foaConvolver;
 
   FOARenderer(AudioContext context, Map<String, dynamic> config) {
@@ -78,7 +78,7 @@ class FOARenderer {
     };
 
     if (config != null) {
-      if (config['channelMap']) {
+      if (config.containsKey('channelMap')) {
         if (config['channelMap'] is List && config['channelMap'].length == 4) {
           _config['channelMap'] = config['channelMap'];
         } else {
@@ -88,7 +88,7 @@ class FOARenderer {
         }
       }
 
-      if (config['hrirPathList']) {
+      if (config.containsKey('hrirPathList')) {
         if (config['hrirPathList'] && config['hrirPathList'].length == 2) {
           _config['pathList'] = config['hrirPathList'];
         } else {
@@ -99,7 +99,7 @@ class FOARenderer {
         }
       }
 
-      if (config['renderingMode']) {
+      if (config.containsKey('renderingMode')) {
         if (RenderingMode.values.contains(config['renderingMode'])) {
           _config['renderingMode'] = config['renderingMode'];
         } else {
@@ -125,12 +125,12 @@ class FOARenderer {
     output = _context.createGain();
     _bypass = _context.createGain();
     _foaRouter = new FOARouter(_context, _config['channelMap']);
-    _foaRotator = new FOARotator(_context);
+    foaRotator = new FOARotator(_context);
     _foaConvolver = new FOAConvolver(_context);
     input.connectNode(_foaRouter.input);
     input.connectNode(_bypass);
-    _foaRouter.output.connectNode(_foaRotator.input);
-    _foaRotator.output.connectNode(_foaConvolver.input);
+    _foaRouter.output.connectNode(foaRotator.input);
+    foaRotator.output.connectNode(_foaConvolver.input);
     _foaConvolver.output.connectNode(output);
 
     input.channelCount = 4;
@@ -144,22 +144,21 @@ class FOARenderer {
  * @param {function} resolve - Resolution handler.
  * @param {function} reject - Rejection handler.
  */
-  void _initializeCallback(resolve, reject) {
-    final bufferList = _config['pathList']
+  Future<dynamic> _initializeCallback({Function resolve, Function reject}) {
+    final bufferList = _config.containsKey('pathList')
         ? new BufferList(_context, _config['pathList'],
             options: {'dataType': 'url'})
         : new BufferList(_context, OmnitoneFOAHrirBase64);
-    bufferList.load().then(
-        (hrirBufferList) {
+        print("bufferList done");
+    return bufferList.load(resolve: (hrirBufferList) {
           _foaConvolver.setHRIRBufferList(hrirBufferList);
           setRenderingMode(_config['renderingMode']);
           _isRendererReady = true;
           print('FOARenderer: HRIRs loaded successfully. Ready.');
-          resolve();
-        }.call(this), onError: () {
+          return hrirBufferList;
+        }, reject: () {
       const errorMessage = 'FOARenderer: HRIR loading/decoding failed.';
-      reject(errorMessage);
-      print(errorMessage);
+      return reject(errorMessage);
     });
   }
 
@@ -167,12 +166,11 @@ class FOARenderer {
  * Initializes and loads the resource for the renderer.
  * @return {Promise}
  */
-  Future initialize() {
+  Future initialize() async{
     print('FOARenderer: Initializing... (mode: ' +
-        _config['renderingMode'] +
+        _config['renderingMode'].toString() +
         ')');
-
-    return new Future(_initializeCallback.call);
+    return await _initializeCallback();
   }
 
 /**
@@ -204,7 +202,7 @@ class FOARenderer {
       return;
     }
 
-    _foaRotator.setRotationMatrix3(rotationMatrix3);
+    foaRotator.setRotationMatrix3(rotationMatrix3);
   }
 
 /**
@@ -216,7 +214,7 @@ class FOARenderer {
       return;
     }
 
-    _foaRotator.setRotationMatrix4(rotationMatrix4);
+    foaRotator.setRotationMatrix4(rotationMatrix4);
   }
 
 /**
@@ -233,7 +231,7 @@ class FOARenderer {
     // Extract the inner array elements and inverse. (The actual view rotation is
     // the opposite of the camera movement.)
     OmniUtils.invertMatrix4(_tempMatrix4, cameraMatrix.elements);
-    _foaRotator.setRotationMatrix4(_tempMatrix4);
+    foaRotator.setRotationMatrix4(_tempMatrix4);
   }
 
 /**

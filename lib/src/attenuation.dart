@@ -63,16 +63,16 @@ class Attenuation {
   Attenuation(context, options) {
     // Use defaults for null arguments.
     if (options == null) {
-      options = {};
+      options = new Map<String, dynamic>();
     }
-    if (options.minDistance == null) {
-      options.minDistance = ResoUtils.DEFAULT_MIN_DISTANCE;
+    if (options['minDistance'] == null) {
+      options['minDistance'] = ResoUtils.DEFAULT_MIN_DISTANCE;
     }
-    if (options.maxDistance == null) {
-      options.maxDistance = ResoUtils.DEFAULT_MAX_DISTANCE;
+    if (options['maxDistance'] == null) {
+      options['maxDistance'] = ResoUtils.DEFAULT_MAX_DISTANCE;
     }
-    if (options.rolloff == null) {
-      options.rolloff = ResoUtils.DEFAULT_ATTENUATION_ROLLOFF;
+    if (options['rolloff'] == null) {
+      options['rolloff'] = ResoUtils.DEFAULT_ATTENUATION_ROLLOFF;
     }
 
     // Assign values.

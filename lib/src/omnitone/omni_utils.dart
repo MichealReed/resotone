@@ -231,14 +231,15 @@ class OmniUtils {
  * @param {string} base64String - Base64-encdoed string.
  * @return {ArrayByuffer} Converted ArrayBuffer object.
  */
-  static ByteBuffer getArrayBufferFromBase64String(base64String) {
+  static ByteBuffer getArrayBufferFromBase64String(String base64String) {
     String binaryString = window.atob(base64String);
     Uint8List byteArray = new Uint8List(binaryString.length);
-    num index;
-    byteArray.forEach((value) {
+    num index = 0;
+    for(num i = 0; i < binaryString.length; i++)
+    {
       byteArray[index] = binaryString.codeUnitAt(index);
       index += 1;
-    });
+    }
     return byteArray.buffer;
   }
 }

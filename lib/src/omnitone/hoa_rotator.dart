@@ -32,7 +32,12 @@ num setCenteredElement(
     List<List<GainNode>> matrix, num l, num i, num j, num gainValue) {
   final index = (j + l) * (2 * l + 1) + (i + l);
   // Row-wise indexing.
+  if(gainValue.isFinite)
+  {
   matrix[l - 1][index].gain.value = gainValue;
+  }else{
+      matrix[l - 1][index].gain.value = 1;
+  }
 }
 
 /**
@@ -287,13 +292,13 @@ class HOARotator {
       // Uses row-major indexing.
       rows = (2 * i + 1);
 
-      _gainNodeMatrix[i - 1] = [];
+      _gainNodeMatrix.add(new List<GainNode>());
       for (num j = 0; j < rows; j++) {
         inputIndex = orderOffset + j;
         for (num k = 0; k < rows; k++) {
           outputIndex = orderOffset + k;
           matrixIndex = j * rows + k;
-          _gainNodeMatrix[i - 1][matrixIndex] = _context.createGain();
+          _gainNodeMatrix[i - 1].add(_context.createGain());
           _splitter.connectNode(
               _gainNodeMatrix[i - 1][matrixIndex], inputIndex);
           _gainNodeMatrix[i - 1][matrixIndex]

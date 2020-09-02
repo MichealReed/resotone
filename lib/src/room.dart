@@ -18,13 +18,14 @@ import 'reso_utils.dart';
  */
 Map<String, dynamic> _getCoefficientsFromMaterials(
     Map<String, dynamic> materials) {
+      print(materials);
   // Initialize coefficients to use defaults.
-  Map<String, dynamic> coefficients = Map<String, num>();
+  Map<String, dynamic> coefficients = Map<String, dynamic>();
 
   ResoUtils.DEFAULT_ROOM_MATERIALS.forEach((property, value) {
     if (ResoUtils.DEFAULT_ROOM_MATERIALS.containsKey(property)) {
       coefficients[property] = ResoUtils.ROOM_MATERIAL_COEFFICIENTS[
-          ResoUtils.DEFAULT_ROOM_MATERIALS[property]];
+          property];
     }
   });
 
@@ -35,9 +36,10 @@ Map<String, dynamic> _getCoefficientsFromMaterials(
 
   // Assign coefficients using provided materials.
   ResoUtils.DEFAULT_ROOM_MATERIALS.forEach((property, value) {
+    print("$property : $value" );
     if (ResoUtils.DEFAULT_ROOM_MATERIALS.containsKey(property) &&
         materials.containsKey(property)) {
-      if (ResoUtils.ROOM_MATERIAL_COEFFICIENTS
+      if (!ResoUtils.ROOM_MATERIAL_COEFFICIENTS
           .containsValue(materials[property])) {
         coefficients[property] =
             ResoUtils.ROOM_MATERIAL_COEFFICIENTS[materials[property]];
@@ -156,7 +158,8 @@ List<num> _getDurationsFromProperties(Map<String, dynamic> dimensions,
  */
 Map<String, dynamic> _computeReflectionCoefficients(
     Map<String, dynamic> absorptionCoefficients) {
-  Map<String, dynamic> reflectionCoefficients = Map<String, dynamic>();
+      print(absorptionCoefficients);
+  Map<String, dynamic> reflectionCoefficients = new Map<String, dynamic>();
   ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.forEach((property, value) {
     if (ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.containsKey(property)) {
       // Compute average absorption coefficient (per wall).
@@ -246,10 +249,14 @@ class Room {
     options['dimensions'] = _sanitizeDimensions(options['dimensions']);
     Map<String, dynamic> absorptionCoefficients =
         _getCoefficientsFromMaterials(options['materials']);
+        print("absorption complete");
     Map<String, dynamic> reflectionCoefficients =
         _computeReflectionCoefficients(absorptionCoefficients);
+                print("reflections complete");
+
     List<num> durations = _getDurationsFromProperties(
         options['dimensions'], absorptionCoefficients, options['speedOfSound']);
+        print("dimension complete");
 
     // Construct submodules for early and late reflections.
     earlyReflections = new EarlyReflections(context, {

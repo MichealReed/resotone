@@ -43,9 +43,9 @@ class BufferList {
 
   BufferList(BaseAudioContext context, List<String> bufferData,
       {Map<String, dynamic> options}) {
-    this._context = OmniUtils.isAudioContext(context) ? context : null;
+    _context = OmniUtils.isAudioContext(context) ? context : null;
 
-    this._options = {
+    _options = {
       "dataType": BufferDataType['BASE64'],
       "verbose": false,
     };
@@ -53,21 +53,21 @@ class BufferList {
     if (options != null) {
       if (options['dataType'] &&
           OmniUtils.isDefinedENUMEntry(BufferDataType, options['dataType'])) {
-        this._options['dataType'] = options['dataType'];
+        _options['dataType'] = options['dataType'];
       }
       if (options['verbose']) {
-        this._options['verbose'] = options['verbose'];
+        _options['verbose'] = options['verbose'];
       }
     }
 
-    this._bufferList = new List<AudioBuffer>();
-    this._bufferData = this._options['dataType'] == BufferDataType['BASE64']
+    _bufferList = new List<AudioBuffer>();
+    _bufferData = _options['dataType'] == BufferDataType['BASE64']
         ? bufferData
         : bufferData.elementAt(0);
-    this._numberOfTasks = this._bufferData.length;
+    _numberOfTasks = _bufferData.length;
 
-    this._resolveHandler = null;
-    this._rejectHandler = () {};
+    _resolveHandler = null;
+    _rejectHandler = () {};
   }
 
 /**
@@ -75,8 +75,8 @@ class BufferList {
  * @return {Promise<AudioBuffer[]>} The promise resolves with an array of
  * AudioBuffer.
  */
-  Future<List<AudioBuffer>> load() {
-    return new Future<List<AudioBuffer>>(_promiseGenerator(load));
+  Future<List<AudioBuffer>> load({Function resolve, Function reject}) {
+    return _promiseGenerator(resolve: resolve, reject: reject);
   }
 
 /**
@@ -85,7 +85,7 @@ class BufferList {
  * @param {function} resolve Promise resolver.
  * @param {function} reject Promise reject.
  */
-  _promiseGenerator(Function resolve, {Function reject}) {
+  _promiseGenerator({Function resolve, Function reject}) {
     if (resolve is! Function) {
       print('BufferList: Invalid Promise resolver.');
     } else {
@@ -93,13 +93,13 @@ class BufferList {
     }
 
     if (reject is Function) {
-      this._rejectHandler = reject;
+      _rejectHandler = reject;
     }
 
-    for (num i = 0; i < this._bufferData.length; ++i) {
-      this._options['dataType'] == BufferDataType['BASE64']
-          ? this._launchAsyncLoadTask(i)
-          : this._launchAsyncLoadTaskXHR(i);
+    for (num i = 0; i < _bufferData.length; ++i) {
+      _options['dataType'] != null && _options['dataType'] == BufferDataType['BASE64']
+          ? _launchAsyncLoadTask(i)
+          : _launchAsyncLoadTaskXHR(i);
     }
   }
 
@@ -109,9 +109,10 @@ class BufferList {
  * @param {Number} taskId Task ID number from the ordered list |bufferData|.
  */
   void _launchAsyncLoadTask(num taskId) {
-    this._context.decodeAudioData(
-        OmniUtils.getArrayBufferFromBase64String(this._bufferData[taskId]),
-        (AudioBuffer audioBuffer) {
+    _context.decodeAudioData(
+        OmniUtils.getArrayBufferFromBase64String(_bufferData[taskId]),
+        (audioBuffer) {
+          print(audioBuffer);
       _updateProgress(taskId, audioBuffer);
     }, (errorMessage) {
       _updateProgress(taskId, null);
@@ -130,9 +131,9 @@ class BufferList {
  * @private
  * @param {Number} taskId Task ID number from the ordered list |bufferData|.
  */
-  void _launchAsyncLoadTaskXHR(taskId) {
+  void _launchAsyncLoadTaskXHR(num taskId) {
     final xhr = new HttpRequest();
-    xhr.open('GET', this._bufferData[taskId]);
+    xhr.open('GET', _bufferData[taskId]);
     xhr.responseType = 'arraybuffer';
 
     xhr.onLoad.listen((event) {
@@ -179,22 +180,24 @@ class BufferList {
  * @param {AudioBuffer} audioBuffer Decoded AudioBuffer object.
  */
   _updateProgress(taskId, audioBuffer) {
-    this._bufferList[taskId] = audioBuffer;
+    print(_bufferList);
+    print(audioBuffer);
+    _bufferList.add(audioBuffer);
 
-    if (this._options['verbose']) {
+    if (_options['verbose']) {
       final messageString = _options['dataType'] == BufferDataType['BASE64']
           ? 'ArrayBuffer(' + taskId + ') from Base64-encoded HRIR'
-          : '"' + this._bufferData[taskId] + '"';
+          : '"' + _bufferData[taskId] + '"';
       print('BufferList: ' + messageString + ' successfully loaded.');
     }
 
-    if (--this._numberOfTasks == 0) {
+    if (--_numberOfTasks == 0) {
       final messageString = _options['dataType'] == BufferDataType['BASE64']
-          ? this._bufferData.length.toString() +
+          ? _bufferData.length.toString() +
               ' AudioBuffers from Base64-encoded HRIRs'
-          : this._bufferData.length.toString() + ' files via XHR';
+          : _bufferData.length.toString() + ' files via XHR';
       print('BufferList: ' + messageString + ' loaded successfully.');
-      this._resolveHandler(this._bufferList);
+      _resolveHandler(_bufferList);
     }
   }
 }

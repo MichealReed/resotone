@@ -68,10 +68,10 @@ class HOARenderer {
   GainNode input;
   GainNode output;
   GainNode _bypass;
-  HOARotator _hoaRotator;
+  HOARotator hoaRotator;
   HOAConvolver _hoaConvolver;
 
-  HOARenderer(AudioContext context, config) {
+  HOARenderer(AudioContext context, Map<String, dynamic> config) {
     _context = OmniUtils.isAudioContext(context) ? context : null;
 
     _config = {
@@ -79,12 +79,12 @@ class HOARenderer {
       'renderingMode': RenderingMode.AMBISONIC,
     };
 
-    if (config && config.ambisonicOrder) {
-      if (SupportedAmbisonicOrder.contains(config.ambisonicOrder)) {
-        _config['ambisonicOrder'] = config.ambisonicOrder;
+    if (config != null && config.containsKey('ambisonicOrder')) {
+      if (SupportedAmbisonicOrder.contains(config['ambisonicOrder'])) {
+        _config['ambisonicOrder'] = config['ambisonicOrder'];
       } else {
         print('HOARenderer: Invalid ambisonic order. (got ' +
-            config.ambisonicOrder +
+            config['ambisonicOrder'] +
             ') Fallbacks to 3rd-order ambisonic.');
       }
     }
@@ -94,7 +94,9 @@ class HOARenderer {
     _config['numberOfStereoChannels'] =
         ((_config['numberOfChannels'] as num) / 2).ceil();
 
-    if (config && config['hrirPathList'] is List) {
+    if (config != null &&
+        config.containsKey('hrirPathList') &&
+        config['hrirPathList'] is List) {
       if (config['hrirPathList'] &&
           config['hrirPathList'].length == _config['numberOfStereoChannels']) {
         _config['pathList'] = config['hrirPathList'];
@@ -108,12 +110,12 @@ class HOARenderer {
       }
     }
 
-    if (config && config.renderingMode) {
+    if (config != null && config.containsKey('renderingMode')) {
       if ((RenderingMode.values).contains(config['renderingMode'])) {
-        _config['renderingMode'] = config.renderingMode;
+        _config['renderingMode'] = config['renderingMode'];
       } else {
         print('HOARenderer: Invalid rendering mode. (got ' +
-            config.renderingMode +
+            config['renderingMode'] +
             ') Fallbacks to "ambisonic".');
       }
     }
@@ -131,11 +133,11 @@ class HOARenderer {
     input = _context.createGain();
     output = _context.createGain();
     _bypass = _context.createGain();
-    _hoaRotator = new HOARotator(_context, _config['ambisonicOrder']);
+    hoaRotator = new HOARotator(_context, _config['ambisonicOrder']);
     _hoaConvolver = new HOAConvolver(_context, _config['ambisonicOrder']);
-    input.connectNode(_hoaRotator.input);
+    input.connectNode(hoaRotator.input);
     input.connectNode(_bypass);
-    _hoaRotator.output.connectNode(_hoaConvolver.input);
+    hoaRotator.output.connectNode(_hoaConvolver.input);
     _hoaConvolver.output.connectNode(output);
 
     input.channelCount = _config['numberOfChannels'];
@@ -149,9 +151,9 @@ class HOARenderer {
  * @param {function} resolve - Resolution handler.
  * @param {function} reject - Rejection handler.
  */
-  void _initializeCallback(resolve, reject) {
+  void _initializeCallback({Function resolve, Function reject}) {
     BufferList bufferList;
-    if (_config['pathList'] != null) {
+    if (_config.containsKey('pathList')) {
       bufferList = new BufferList(_context, _config['pathList'],
           options: {'dataType': 'url'});
     } else {
@@ -160,16 +162,13 @@ class HOARenderer {
           : new BufferList(_context, OmnitoneTOAHrirBase64);
     }
 
-    bufferList.load().then(
-        (hrirBufferList) {
-          _hoaConvolver.setHRIRBufferList(hrirBufferList);
-          setRenderingMode(_config['renderingMode']);
-          _isRendererReady = true;
-          print('FOARenderer: HRIRs loaded successfully. Ready.');
-          resolve();
-        }.call(this), onError: () {
+    bufferList.load(resolve: (hrirBufferList) {
+      _hoaConvolver.setHRIRBufferList(hrirBufferList);
+      setRenderingMode(_config['renderingMode']);
+      _isRendererReady = true;
+      print('FOARenderer: HRIRs loaded successfully. Ready.');
+    }, reject: () {
       const errorMessage = 'HOARenderer: HRIR loading/decoding failed.';
-      reject(errorMessage);
       print(errorMessage);
     });
   }
@@ -180,10 +179,10 @@ class HOARenderer {
  */
   Future initialize() {
     print('HOARenderer: Initializing... (mode: ' +
-        _config['renderingMode'] +
+        _config['renderingMode'].toString() +
         ')');
 
-    return new Future(_initializeCallback.call);
+    return new Future(_initializeCallback);
   }
 
 /**
@@ -195,7 +194,7 @@ class HOARenderer {
       return;
     }
 
-    _hoaRotator.setRotationMatrix3(rotationMatrix3);
+    hoaRotator.setRotationMatrix3(rotationMatrix3);
   }
 
 /**
@@ -207,7 +206,7 @@ class HOARenderer {
       return;
     }
 
-    _hoaRotator.setRotationMatrix4(rotationMatrix4);
+    hoaRotator.setRotationMatrix4(rotationMatrix4);
   }
 
 /**

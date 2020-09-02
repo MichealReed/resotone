@@ -80,10 +80,14 @@ class ResonanceAudio {
   GainNode ambisonicOutput;
   GainNode ambisonicInput;
 
-  ResonanceAudio(AudioContext _context, Map<String, dynamic> options) {
+  ResonanceAudio();
+
+  Future<void> init(AudioContext ctxt, {Map<String, dynamic> options}) async {
+    context = ctxt;
+
     // Use defaults for null arguments.
     if (options == null) {
-      options = {};
+      options = Map<String, dynamic>();
     }
     if (options['ambisonicOrder'] == null) {
       options['ambisonicOrder'] = ResoUtils.DEFAULT_AMBISONIC_ORDER;
@@ -110,13 +114,16 @@ class ResonanceAudio {
     // Create member submodules.
     ambisonicOrder = Encoder.validateAmbisonicOrder(options['ambisonicOrder']);
     _sources = new List<Source>();
-    room = new Room(context, {
+    print("create room");
+    room = new Room(ctxt, {
       'listenerPosition': options['listenerPosition'],
       'dimensions': options['dimensions'],
       'materials': options['materials'],
       'speedOfSound': options['speedOfSound'],
     });
-    listener = new Listener(context, {
+    print('create Listener');
+    listener = new Listener();
+    await listener.init(ctxt, {
       'ambisonicOrder': options['ambisonicOrder'],
       'position': options['listenerPosition'],
       'forward': options['listenerForward'],
@@ -124,7 +131,6 @@ class ResonanceAudio {
     });
 
     // Create auxillary audio nodes.
-    context = _context;
     output = context.createGain();
     ambisonicOutput = context.createGain();
     ambisonicInput = listener.input;
@@ -133,6 +139,7 @@ class ResonanceAudio {
     room.output.connectNode(listener.input);
     listener.output.connectNode(output);
     listener.ambisonicOutput.connectNode(ambisonicOutput);
+    return null;
   }
 
 /**
@@ -141,11 +148,11 @@ class ResonanceAudio {
  * Options for constructing a new Source.
  * @return {Source}
  */
-  Source createSource(Map<String, dynamic> options) {
+  Source createSource({Map<String, dynamic> options}) {
     // Create a source and push it to the internal sources array, returning
     // the object's reference to the user.
     Source source = new Source(this, options);
-    _sources[_sources.length] = source;
+    _sources.add(source);
     return source;
   }
 

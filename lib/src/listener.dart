@@ -69,7 +69,9 @@ class Listener {
   GainNode output;
   GainNode ambisonicOutput;
 
-  Listener(AudioContext context, Map<String, dynamic> options) {
+  Listener();
+
+  Future<void> init(AudioContext context, Map<String, dynamic> options) async {
     // Use defaults for undefined arguments.
     if (options == null) {
       options = new Map<String, dynamic>();
@@ -111,21 +113,21 @@ class Listener {
     output = context.createGain();
     ambisonicOutput = context.createGain();
 
-    // Initialize Omnitone (async) and connect to audio graph when complete.
-    _renderer.initialize().then(() {
-      // Connect pre-rotated soundfield to renderer.
-      input.connectNode(_renderer.input);
+    // Initialize Omnitone (async) and connectNode to audio graph when complete.
+    await _renderer.initialize();
 
-      // Connect rotated soundfield to ambisonic output.
-      if (_ambisonicOrder > 1) {
-        _renderer._hoaRotator.output.connect(ambisonicOutput);
-      } else {
-        _renderer._foaRotator.output.connect(ambisonicOutput);
-      }
+    // Connect pre-rotated soundfield to renderer.
+    input.connectNode(_renderer.input);
 
-      // Connect binaurally-rendered soundfield to binaural output.
-      _renderer.output.connect(output);
-    });
+    // Connect rotated soundfield to ambisonic output.
+    if (_ambisonicOrder > 1) {
+      _renderer.hoaRotator.output.connectNode(ambisonicOutput);
+    } else {
+      _renderer.foaRotator.output.connectNode(ambisonicOutput);
+    }
+
+    // Connect binaurally-rendered soundfield to binaural output.
+    _renderer.output.connectNode(output);
 
     // Set orientation and update rotation matrix accordingly.
     setOrientation(
@@ -135,6 +137,7 @@ class Listener {
         options['up'][0],
         options['up'][1],
         options['up'][2]);
+    return null;
   }
 
 /**

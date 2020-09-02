@@ -64,8 +64,8 @@ class EarlyReflections {
   Map<String, GainNode> _inverters;
   ChannelMergerNode _merger;
   List<num> _listenerPosition;
-  Map<String, num> halfDimensions;
-  Map<String, num> _coefficients;
+  Map<String, dynamic> halfDimensions;
+  Map<String, dynamic> _coefficients;
 
   EarlyReflections(AudioContext context, Map<String, dynamic> options) {
     if (options == null) {
@@ -175,7 +175,7 @@ class EarlyReflections {
     _listenerPosition = [x, y, z];
 
     // Determine distances to each wall.
-    Map<String, num> distances = {
+    Map<String, dynamic> distances = {
       'left': ResoUtils.DEFAULT_REFLECTION_MULTIPLIER *
               max(0, halfDimensions['width'] + x) +
           ResoUtils.DEFAULT_REFLECTION_MIN_DISTANCE,
@@ -223,7 +223,7 @@ class EarlyReflections {
  * DEFAULT_REFLECTION_COEFFICIENTS}.
  */
   void setRoomProperties(
-      Map<String, num> dimensions, Map<String, num> coefficients) {
+      Map<String, dynamic> dimensions, Map<String, dynamic> coefficients) {
     if (dimensions == null) {
       dimensions = ResoUtils.DEFAULT_ROOM_DIMENSIONS;
     }
@@ -233,7 +233,7 @@ class EarlyReflections {
     _coefficients = coefficients;
 
     // Sanitize dimensions and store half-dimensions.
-    halfDimensions = new Map<String, num>();
+    halfDimensions = new Map<String, dynamic>();
     halfDimensions['width'] = dimensions['width'] * 0.5;
     halfDimensions['height'] = dimensions['height'] * 0.5;
     halfDimensions['depth'] = dimensions['depth'] * 0.5;

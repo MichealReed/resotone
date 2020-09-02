@@ -118,7 +118,7 @@ class ResoUtils {
  * @type {Object}
  */
 
-  static Map<String, num> DEFAULT_REFLECTION_COEFFICIENTS = {
+  static Map<String, dynamic> DEFAULT_REFLECTION_COEFFICIENTS = {
     "left": 0,
     "right": 0,
     "front": 0,
@@ -137,7 +137,7 @@ class ResoUtils {
  * Default room dimensions (in meters).
  * @type {Object}
  */
-  static Map<String, num> DEFAULT_ROOM_DIMENSIONS = {
+  static Map<String, dynamic> DEFAULT_ROOM_DIMENSIONS = {
     "width": 0,
     "height": 0,
     "depth": 0,

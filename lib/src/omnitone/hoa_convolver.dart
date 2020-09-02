@@ -71,9 +71,9 @@ class HOAConvolver {
     _outputGain = _context.createGain();
 
     for (num i = 0; i < numberOfStereoChannels; ++i) {
-      _stereoMergers[i] = _context.createChannelMerger(2);
-      _convolvers[i] = _context.createConvolver();
-      _stereoSplitters[i] = _context.createChannelSplitter(2);
+      _stereoMergers.add(_context.createChannelMerger(2));
+      _convolvers.add(_context.createConvolver());
+      _stereoSplitters.add(_context.createChannelSplitter(2));
       _convolvers[i].normalize = false;
     }
 
