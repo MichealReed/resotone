@@ -2,8 +2,6 @@
 import 'dart:web_audio';
 
 /// Channel router for FOA stream.
-/// [context] - Associated AudioContext.
-/// [channelMap] - Routing destination array.
 class FOARouter {
   AudioContext _context;
   ChannelSplitterNode _splitter;
@@ -21,17 +19,19 @@ class FOARouter {
     'FUMA': [0, 3, 1, 2],
   };
 
+  // [context] - Associated AudioContext.
+  // [channelMap] - Routing destination array.
   FOARouter(AudioContext context, List<num> channelMap) {
-    this._context = context;
+    _context = context;
 
-    this._splitter = this._context.createChannelSplitter(4);
-    this._merger = this._context.createChannelMerger(4);
+    _splitter = _context.createChannelSplitter(4);
+    _merger = _context.createChannelMerger(4);
 
     // input/output proxy.
-    this.input = this._splitter;
-    this.output = this._merger;
+    input = _splitter;
+    output = _merger;
 
-    this.setChannelMap(channelMap != null ? channelMap : ChannelMap['DEFAULT']);
+    setChannelMap(channelMap != null ? channelMap : ChannelMap['DEFAULT']);
   }
 
   /// Sets channel map.
@@ -41,11 +41,11 @@ class FOARouter {
       return;
     }
 
-    this._channelMap = channelMap;
-    this._splitter.disconnect();
-    this._splitter.connectNode(this._merger, 0, this._channelMap[0]);
-    this._splitter.connectNode(this._merger, 1, this._channelMap[1]);
-    this._splitter.connectNode(this._merger, 2, this._channelMap[2]);
-    this._splitter.connectNode(this._merger, 3, this._channelMap[3]);
+    _channelMap = channelMap;
+    _splitter.disconnect();
+    _splitter.connectNode(_merger, 0, _channelMap[0]);
+    _splitter.connectNode(_merger, 1, _channelMap[1]);
+    _splitter.connectNode(_merger, 2, _channelMap[2]);
+    _splitter.connectNode(_merger, 3, _channelMap[3]);
   }
 }

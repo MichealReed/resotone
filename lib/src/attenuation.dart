@@ -2,19 +2,10 @@
 
 import 'dart:web_audio';
 
-// Internal dependencies.
+// Internal Dependencies.
 import 'reso_utils.dart';
 
 /// Distance-based attenuation filter.
-/// AudioContext - [context]
-
-/// [options]
-/// [options.minDistance] - Min. distance (in meters). Defaults to
-/// [ResoUtils.DEFAULT_MIN_DISTANCE DEFAULT_MIN_DISTANCE]
-/// [options.maxDistance] - Max. distance (in meters). Defaults to
-/// [ResoUtils.DEFAULT_MAX_DISTANCE DEFAULT_MAX_DISTANCE]}.
-/// [options.rolloff] Rolloff model to use, chosen from options in
-///
 class Attenuation {
   num minDistance;
   num maxDistance;
@@ -22,7 +13,15 @@ class Attenuation {
   GainNode input;
   GainNode output;
   String _rolloff;
-  Attenuation(context, options) {
+
+  // AudioContext - [context]
+  // [options]
+  // [options.minDistance] - Min. distance (in meters). Defaults to
+  // [ResoUtils.DEFAULT_MIN_DISTANCE DEFAULT_MIN_DISTANCE]
+  // [options.maxDistance] - Max. distance (in meters). Defaults to
+  // [ResoUtils.DEFAULT_MAX_DISTANCE DEFAULT_MAX_DISTANCE]}.
+  // [options.rolloff] Rolloff model to use, chosen from options in
+  Attenuation(AudioContext context, Map<String, dynamic> options) {
     // Use defaults for null arguments.
     if (options == null) {
       options = new Map<String, dynamic>();

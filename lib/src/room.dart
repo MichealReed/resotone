@@ -1,7 +1,7 @@
 /// @file Compnume room model with early and late reflections.
 /// @author Andrew Allen <bitllama@google.com>
 
-// Internal dependencies.
+// Internal Dependencies.
 import 'dart:math';
 import 'dart:web_audio';
 
@@ -168,29 +168,14 @@ Map<String, dynamic> _computeReflectionCoefficients(
   return reflectionCoefficients;
 }
 
-/// @class Room
 /// Model that manages early and late reflections using acoustic
 /// properties and listener position relative to a rectangular room.
-/// [context]
-/// [options]
-/// [options.listenerPosition]
-/// The listener's initial position (in meters), where origin is the center of
-/// the room. Defaults to [ResoUtils.DEFAULT_POSITION DEFAULT_POSITION].
-/// [options.dimensions] Room dimensions (in meters). Defaults to
-/// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
-/// [options.materials] Named acoustic materials per wall.
-/// Defaults to [ResoUtils.DEFAULT_ROOM_MATERIALS DEFAULT_ROOM_MATERIALS].
-/// [options.speedOfSound]
-/// (in meters/second). Defaults to
-/// [ResoUtils.DEFAULT_SPEED_OF_SOUND DEFAULT_SPEED_OF_SOUND].
-
 class Room {
   EarlyReflections earlyReflections;
   LateReflections lateReflections;
   num speedOfSound;
   ChannelMergerNode _merger;
   GainNode output;
-
   Room(AudioContext context, Map<String, dynamic> options) {
     // Use defaults for null arguments.
     if (options == null) {
@@ -245,11 +230,8 @@ class Room {
   }
 
   /// Set the room's dimensions and wall materials.
-  /// [dimensions] Room dimensions (in meters). Defaults to
-  /// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
-  /// [materials] Named acoustic materials per wall. Defaults to
-  /// [ResoUtils.DEFAULT_ROOM_MATERIALS DEFAULT_ROOM_MATERIALS].
-
+  /// [dimensions] Room dimensions (in meters).
+  /// [materials] Named acoustic materials per wall.
   void setProperties(
       Map<String, dynamic> dimensions, Map<String, dynamic> materials) {
     // Compute late response.
@@ -271,7 +253,6 @@ class Room {
   ///  [x]
   ///  [y]
   ///  [z]
-
   void setListenerPosition(num x, num y, num z) {
     earlyReflections.speedOfSound = speedOfSound;
     earlyReflections.setListenerPosition(x, y, z);
@@ -293,7 +274,6 @@ class Room {
   ///  [y]
   ///  [z]
   /// return Distance outside room (in meters). Returns 0 if inside room.
-
   num getDistanceOutsideRoom(num x, num y, num z) {
     num dx = max(
         0,

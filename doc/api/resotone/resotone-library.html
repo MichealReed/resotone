@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="resotone library API docs, for the Dart programming language.">
+  <title>resotone library - Dart API</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static-assets/github.css">
+  <link rel="stylesheet" href="../static-assets/styles.css">
+  <link rel="icon" href="../static-assets/favicon.png">
+
+</head>
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">resotone</a></li>
+    <li class="self-crumb">resotone library</li>
+  </ol>
+  <div class="self-name">resotone</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="../index.html">resotone</a></li>
+      <li class="self-crumb">resotone library</li>
+    </ol>
+    
+    <h5><span class="package-name">resotone</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="../resotone/resotone-library.html">resotone</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-library">resotone</span> library  </h1></div>
+
+    
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="Attenuation">
+          <span class="name "><a href="../resotone/Attenuation-class.html">Attenuation</a></span>         
+        </dt>
+        <dd>
+          Distance-based attenuation filter. 
+        </dd>
+        <dt id="BufferList">
+          <span class="name "><a href="../resotone/BufferList-class.html">BufferList</a></span>         
+        </dt>
+        <dd>
+          BufferList object mananges the async loading/decoding of multiple
+AudioBuffers from multiple URLs. 
+        </dd>
+        <dt id="Directivity">
+          <span class="name "><a href="../resotone/Directivity-class.html">Directivity</a></span>         
+        </dt>
+        <dd>
+          Directivity/occlusion filter. 
+        </dd>
+        <dt id="EarlyReflections">
+          <span class="name "><a href="../resotone/EarlyReflections-class.html">EarlyReflections</a></span>         
+        </dt>
+        <dd>
+          Ray-tracing-based early reflections model. 
+        </dd>
+        <dt id="Encoder">
+          <span class="name "><a href="../resotone/Encoder-class.html">Encoder</a></span>         
+        </dt>
+        <dd>
+          Spatially encodes input using weighted spherical harmonics. 
+        </dd>
+        <dt id="FOAConvolver">
+          <span class="name "><a href="../resotone/FOAConvolver-class.html">FOAConvolver</a></span>         
+        </dt>
+        <dd>
+          FOAConvolver. A collection of 2 stereo convolvers for 4-channel FOA stream. 
+        </dd>
+        <dt id="FOARenderer">
+          <span class="name "><a href="../resotone/FOARenderer-class.html">FOARenderer</a></span>         
+        </dt>
+        <dd>
+          Omnitone FOA renderer class. Uses the optimized convolution technique. 
+        </dd>
+        <dt id="FOARotator">
+          <span class="name "><a href="../resotone/FOARotator-class.html">FOARotator</a></span>         
+        </dt>
+        <dd>
+          First-order-ambisonic decoder based on gain node network. 
+        </dd>
+        <dt id="FOARouter">
+          <span class="name "><a href="../resotone/FOARouter-class.html">FOARouter</a></span>         
+        </dt>
+        <dd>
+          Channel router for FOA stream. 
+        </dd>
+        <dt id="HOAConvolver">
+          <span class="name "><a href="../resotone/HOAConvolver-class.html">HOAConvolver</a></span>         
+        </dt>
+        <dd>
+          A convolver network for N-channel HOA stream. 
+        </dd>
+        <dt id="HOARenderer">
+          <span class="name "><a href="../resotone/HOARenderer-class.html">HOARenderer</a></span>         
+        </dt>
+        <dd>
+          Omnitone HOA renderer class. Uses the optimized convolution technique. 
+        </dd>
+        <dt id="HOARotator">
+          <span class="name "><a href="../resotone/HOARotator-class.html">HOARotator</a></span>         
+        </dt>
+        <dd>
+          Higher-order-ambisonic decoder based on gain node network. We expect
+the order of the channels to conform to ACN ordering. Below are the helper
+methods to compute SH rotation using recursion. The code uses maths described
+in the following papers:
+1 - R. Green, "Spherical Harmonic Lighting: The Gritty Details", GDC 2003,
+<a href="http://www.research.scea.com/gdc2003/spherical-harmonic-lighting.pdf">http://www.research.scea.com/gdc2003/spherical-harmonic-lighting.pdf</a>
+ 2 - J. Ivanic and K. Ruedenberg, "Rotation Matrices for Real
+     Spherical Harmonics. Direct Determination by Recursion", J. Phys.
+     Chem., vol. 100, no. 15, pp. 6342-6347, 1996.
+     <a href="http://pubs.acs.org/doi/pdf/10.1021/jp953350u">http://pubs.acs.org/doi/pdf/10.1021/jp953350u</a>
+ 2b - Corrections to initial publication:
+      <a href="http://pubs.acs.org/doi/pdf/10.1021/jp9833350">http://pubs.acs.org/doi/pdf/10.1021/jp9833350</a> 
+        </dd>
+        <dt id="LateReflections">
+          <span class="name "><a href="../resotone/LateReflections-class.html">LateReflections</a></span>         
+        </dt>
+        <dd>
+          Late-reflections reverberation filter for Ambisonic content. 
+        </dd>
+        <dt id="Listener">
+          <span class="name "><a href="../resotone/Listener-class.html">Listener</a></span>         
+        </dt>
+        <dd>
+          Listener model to spatialize sources in an environment. 
+        </dd>
+        <dt id="Omnitone">
+          <span class="name "><a href="../resotone/Omnitone-class.html">Omnitone</a></span>         
+        </dt>
+        <dd>
+          Omnitone class. 
+        </dd>
+        <dt id="OmniUtils">
+          <span class="name "><a href="../resotone/OmniUtils-class.html">OmniUtils</a></span>         
+        </dt>
+        <dd>
+          Omnitone utility class for defaults and helper methods 
+        </dd>
+        <dt id="ResonanceAudio">
+          <span class="name "><a href="../resotone/ResonanceAudio-class.html">ResonanceAudio</a></span>         
+        </dt>
+        <dd>
+          Main class for managing sources, room, and listener models. 
+        </dd>
+        <dt id="ResoUtils">
+          <span class="name "><a href="../resotone/ResoUtils-class.html">ResoUtils</a></span>         
+        </dt>
+        <dd>
+          Resonance utility class for defaults and helper methods 
+        </dd>
+        <dt id="Room">
+          <span class="name "><a href="../resotone/Room-class.html">Room</a></span>         
+        </dt>
+        <dd>
+          Model that manages early and late reflections using acoustic
+properties and listener position relative to a rectangular room. 
+        </dd>
+        <dt id="Source">
+          <span class="name "><a href="../resotone/Source-class.html">Source</a></span>         
+        </dt>
+        <dd>
+          Source model to spatialize an audio buffer. 
+        </dd>
+      </dl>
+    </section>
+
+
+
+    <section class="summary offset-anchor" id="constants">
+      <h2>Constants</h2>
+
+      <dl class="properties">
+        <dt id="SupportedAmbisonicOrder" class="constant">
+          <span class="name "><a href="../resotone/SupportedAmbisonicOrder-constant.html">SupportedAmbisonicOrder</a></span>
+          <span class="signature">&#8594; const <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/int-class.html">int</a></span>&gt;</span></span>
+                  </dt>
+        <dd>
+           
+                  
+  <div>
+            <span class="signature"><code>const [2, 3]</code></span>
+          </div>
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="BufferDataType" class="property">
+          <span class="name"><a href="../resotone/BufferDataType.html">BufferDataType</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/String-class.html">String</a></span>&gt;</span></span>         
+        </dt>
+        <dd>
+          Buffer data Map. 
+                  <div class="features">read / write</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+
+      <dl class="callables">
+        <dt id="computeBandRotation" class="callable">
+          <span class="name"><a href="../resotone/computeBandRotation.html">computeBandRotation</a></span><span class="signature">(<wbr><span class="parameter" id="computeBandRotation-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span><wbr><span class="parameter" id="computeBandRotation-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span></span><wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Calculates the (2l+1) x (2l+1) rotation matrix for the band l.
+This uses the matrices computed for band 1 and band l-1 to compute the
+matrix for band l. |rotations| must contain the previously computed l-1
+rotation matrices.
+This implementation comes from p. 5 (6346), Table 1 and 2 in 2 taking
+into account the corrections from 2b.
+<code>matrix</code> - N matrices of gainNodes, each with where
+n=1,2,...,N.
+<code>l</code> 
+                  
+</dd>
+        <dt id="computeHOAMatrices" class="callable">
+          <span class="name"><a href="../resotone/computeHOAMatrices.html">computeHOAMatrices</a></span><span class="signature">(<wbr><span class="parameter" id="computeHOAMatrices-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span></span><wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Compute the HOA rotation matrix after setting the transform matrix.
+<code>matrix</code> - N matrices of gainNodes, each with (2n+1) x (2n+1)
+elements, where n=1,2,...,N. 
+                  
+</dd>
+        <dt id="computeUVWCoeff" class="callable">
+          <span class="name"><a href="../resotone/computeUVWCoeff.html">computeUVWCoeff</a></span><span class="signature">(<wbr><span class="parameter" id="computeUVWCoeff-param-m"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">m</span>, </span><wbr><span class="parameter" id="computeUVWCoeff-param-n"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">n</span>, </span><wbr><span class="parameter" id="computeUVWCoeff-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Calculates the coefficients applied to the U, V, and W functions. Because
+their equations share many common terms they are computed simultaneously.
+<code>m</code>
+<code>n</code>
+<code>l</code>
+returns 3 coefficients for U, V and W functions. 
+                  
+</dd>
+        <dt id="getCenteredElement" class="callable">
+          <span class="name"><a href="../resotone/getCenteredElement.html">getCenteredElement</a></span><span class="signature">(<wbr><span class="parameter" id="getCenteredElement-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span><wbr><span class="parameter" id="getCenteredElement-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span>, </span><wbr><span class="parameter" id="getCenteredElement-param-i"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">i</span>, </span><wbr><span class="parameter" id="getCenteredElement-param-j"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">j</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>
+          </span>
+                  </dt>
+        <dd>
+          This is a helper function to allow us to access a matrix array in the same
+manner, assuming it is a (2l+1) x (2l+1) matrix.
+<code>matrix</code> - N matrices of gainNodes, each with (2n+1) x (2n+1)
+elements, where n=1,2,...,N.
+<code>l</code>
+<code>i</code>
+<code>j</code> 
+                  
+</dd>
+        <dt id="getKroneckerDelta" class="callable">
+          <span class="name"><a href="../resotone/getKroneckerDelta.html">getKroneckerDelta</a></span><span class="signature">(<wbr><span class="parameter" id="getKroneckerDelta-param-i"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">i</span>, </span><wbr><span class="parameter" id="getKroneckerDelta-param-j"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">j</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Kronecker Delta function.
+<code>i</code>
+<code>j</code> 
+                  
+</dd>
+        <dt id="getP" class="callable">
+          <span class="name"><a href="../resotone/getP.html">getP</a></span><span class="signature">(<wbr><span class="parameter" id="getP-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span><wbr><span class="parameter" id="getP-param-i"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">i</span>, </span><wbr><span class="parameter" id="getP-param-a"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">a</span>, </span><wbr><span class="parameter" id="getP-param-b"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">b</span>, </span><wbr><span class="parameter" id="getP-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Helper function defined in 2 that is used by the functions U, V, W.
+This should not be called on its own, as U, V, and W (and their coefficients)
+select the appropriate matrix elements to access arguments |a| and |b|.
+<code>matrix</code> - N matrices of gainNodes, each with (2n+1) x (2n+1)
+elements, where n=1,2,...,N.
+<code>i</code>
+<code>a</code>
+<code>b</code>
+<code>l</code> 
+                  
+</dd>
+        <dt id="getU" class="callable">
+          <span class="name"><a href="../resotone/getU.html">getU</a></span><span class="signature">(<wbr><span class="parameter" id="getU-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span><wbr><span class="parameter" id="getU-param-m"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">m</span>, </span><wbr><span class="parameter" id="getU-param-n"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">n</span>, </span><wbr><span class="parameter" id="getU-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>
+          </span>
+                  </dt>
+        <dd>
+          The functions U, V, and W should only be called if the correspondingly
+named coefficient u, v, w from the function ComputeUVWCoeff() is non-zero.
+When the coefficient is 0, these would attempt to access matrix elements that
+are out of bounds. The vector of rotations, |r|, must have the |l - 1|
+previously compnumed band rotations. These functions are valid for |l &gt;= 2|.
+<code>matrix</code> - N matrices of gainNodes, each with (2n+1) x (2n+1)
+elements, where n=1,2,...,N.
+<code>m</code>
+<code>n</code>
+<code>l</code> 
+                  
+</dd>
+        <dt id="getV" class="callable">
+          <span class="name"><a href="../resotone/getV.html">getV</a></span><span class="signature">(<wbr><span class="parameter" id="getV-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span><wbr><span class="parameter" id="getV-param-m"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">m</span>, </span><wbr><span class="parameter" id="getV-param-n"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">n</span>, </span><wbr><span class="parameter" id="getV-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>
+          </span>
+                  </dt>
+        <dd>
+          The functions U, V, and W should only be called if the correspondingly
+named coefficient u, v, w from the function ComputeUVWCoeff() is non-zero.
+When the coefficient is 0, these would attempt to access matrix elements that
+are out of bounds. The vector of rotations, |r|, must have the |l - 1|
+previously compnumed band rotations. These functions are valid for |l &gt;= 2|.
+<code>matrix</code> - N matrices of gainNodes, each with (2n+1) x (2n+1)
+elements, where n=1,2,...,N.
+<code>m</code>
+<code>n</code>
+<code>l</code> 
+                  
+</dd>
+        <dt id="getW" class="callable">
+          <span class="name"><a href="../resotone/getW.html">getW</a></span><span class="signature">(<wbr><span class="parameter" id="getW-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span><wbr><span class="parameter" id="getW-param-m"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">m</span>, </span><wbr><span class="parameter" id="getW-param-n"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">n</span>, </span><wbr><span class="parameter" id="getW-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>
+          </span>
+                  </dt>
+        <dd>
+          The functions U, V, and W should only be called if the correspondingly
+named coefficient u, v, w from the function ComputeUVWCoeff() is non-zero.
+When the coefficient is 0, these would attempt to access matrix elements that
+are out of bounds. The vector of rotations, |r|, must have the |l - 1|
+previously compnumed band rotations. These functions are valid for |l &gt;= 2|.
+<code>matrix</code> N matrices of gainNodes, each with (2n+1) x (2n+1)
+elements, where n=1,2,...,N.
+<code>m</code>
+<code>n</code>
+<code>l</code> 
+                  
+</dd>
+        <dt id="setCenteredElement" class="callable">
+          <span class="name"><a href="../resotone/setCenteredElement.html">setCenteredElement</a></span><span class="signature">(<wbr><span class="parameter" id="setCenteredElement-param-matrix"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/GainNode-class.html">GainNode</a></span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">matrix</span>, </span><wbr><span class="parameter" id="setCenteredElement-param-l"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">l</span>, </span><wbr><span class="parameter" id="setCenteredElement-param-i"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">i</span>, </span><wbr><span class="parameter" id="setCenteredElement-param-j"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">j</span>, </span><wbr><span class="parameter" id="setCenteredElement-param-gainValue"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span> <span class="parameter-name">gainValue</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>
+          </span>
+                  </dt>
+        <dd>
+          A helper function to allow us to access a matrix array in the same
+manner, assuming it is a (2l+1)x(2l+1) matrix. 2 uses an odd convention of
+referring to the rows and columns using centered indices, so the middle row
+and column are (0, 0) and the upper left would have negative coordinates.
+<code>matrix</code> - N matrices of gainNodes, each with (2n+1) x (2n+1)
+elements, where n=1,2,...,N.
+<code>l</code>
+<code>i</code>
+<code>j</code>
+<code>gainValue</code> 
+                  
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+
+      <dl>
+        <dt id="RenderingMode">
+          <span class="name "><a href="../resotone/RenderingMode-class.html">RenderingMode</a></span>         
+        </dt>
+        <dd>
+          Rendering mode ENUM. 
+        </dd>
+      </dl>
+    </section>
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <h5>resotone library</h5>
+    <ol>
+      <li class="section-title"><a href="../resotone/resotone-library.html#classes">Classes</a></li>
+      <li><a href="../resotone/Attenuation-class.html">Attenuation</a></li>
+      <li><a href="../resotone/BufferList-class.html">BufferList</a></li>
+      <li><a href="../resotone/Directivity-class.html">Directivity</a></li>
+      <li><a href="../resotone/EarlyReflections-class.html">EarlyReflections</a></li>
+      <li><a href="../resotone/Encoder-class.html">Encoder</a></li>
+      <li><a href="../resotone/FOAConvolver-class.html">FOAConvolver</a></li>
+      <li><a href="../resotone/FOARenderer-class.html">FOARenderer</a></li>
+      <li><a href="../resotone/FOARotator-class.html">FOARotator</a></li>
+      <li><a href="../resotone/FOARouter-class.html">FOARouter</a></li>
+      <li><a href="../resotone/HOAConvolver-class.html">HOAConvolver</a></li>
+      <li><a href="../resotone/HOARenderer-class.html">HOARenderer</a></li>
+      <li><a href="../resotone/HOARotator-class.html">HOARotator</a></li>
+      <li><a href="../resotone/LateReflections-class.html">LateReflections</a></li>
+      <li><a href="../resotone/Listener-class.html">Listener</a></li>
+      <li><a href="../resotone/Omnitone-class.html">Omnitone</a></li>
+      <li><a href="../resotone/OmniUtils-class.html">OmniUtils</a></li>
+      <li><a href="../resotone/ResonanceAudio-class.html">ResonanceAudio</a></li>
+      <li><a href="../resotone/ResoUtils-class.html">ResoUtils</a></li>
+      <li><a href="../resotone/Room-class.html">Room</a></li>
+      <li><a href="../resotone/Source-class.html">Source</a></li>
+    
+    
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#constants">Constants</a></li>
+      <li><a href="../resotone/SupportedAmbisonicOrder-constant.html">SupportedAmbisonicOrder</a></li>
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#properties">Properties</a></li>
+      <li><a href="../resotone/BufferDataType.html">BufferDataType</a></li>
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#functions">Functions</a></li>
+      <li><a href="../resotone/computeBandRotation.html">computeBandRotation</a></li>
+      <li><a href="../resotone/computeHOAMatrices.html">computeHOAMatrices</a></li>
+      <li><a href="../resotone/computeUVWCoeff.html">computeUVWCoeff</a></li>
+      <li><a href="../resotone/getCenteredElement.html">getCenteredElement</a></li>
+      <li><a href="../resotone/getKroneckerDelta.html">getKroneckerDelta</a></li>
+      <li><a href="../resotone/getP.html">getP</a></li>
+      <li><a href="../resotone/getU.html">getU</a></li>
+      <li><a href="../resotone/getV.html">getV</a></li>
+      <li><a href="../resotone/getW.html">getW</a></li>
+      <li><a href="../resotone/setCenteredElement.html">setCenteredElement</a></li>
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#enums">Enums</a></li>
+      <li><a href="../resotone/RenderingMode-class.html">RenderingMode</a></li>
+    
+    
+    </ol>
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    resotone
+      0.0.2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../static-assets/typeahead.bundle.min.js"></script>
+<script src="../static-assets/highlight.pack.js"></script>
+<script src="../static-assets/URI.js"></script>
+<script src="../static-assets/script.js"></script>
+
+
+</body>
+
+</html>

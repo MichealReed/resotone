@@ -1,29 +1,23 @@
+// Core Dependencies
 import 'dart:math';
 import 'dart:web_audio';
 
-/// @file Late reverberation filter for Ambisonic content.
-/// @author Andrew Allen <bitllama@google.com>
-
-// Internal dependencies.
+// Internal Dependencies.
 import 'reso_utils.dart';
 
 /// Late-reflections reverberation filter for Ambisonic content.
-/// [context]
-/// [options]
-/// [options.durations]
-/// Multiband RT60 durations (in seconds) for each frequency band, listed as
-/// Defaults to [ResoUtils.DEFAULT_REVERB_DURATIONS].
-/// [options.predelay] Pre-delay (in milliseconds). Defaults to
-/// [ResoUtils.DEFAULT_REVERB_PREDELAY DEFAULT_REVERB_PREDELAY].
-/// [options.gain] Output gain (linear). Defaults to
-/// [ResoUtils.DEFAULT_REVERB_GAIN DEFAULT_REVERB_GAIN].
-/// [options.bandwidth] Bandwidth (in octaves) for each frequency
-/// band. Defaults to[ResoUtils.DEFAULT_REVERB_BANDWIDTH DEFAULT_REVERB_BANDWIDTH].
-/// [options.tailonset] Length (in milliseconds) of impulse
-/// response to apply a half-Hann window. Defaults to
-/// [ResoUtils.DEFAULT_REVERB_TAIL_ONSET DEFAULT_REVERB_TAIL_ONSET].
-
 class LateReflections {
+// Multiband RT60 durations (in seconds) for each frequency band, listed as
+// Defaults to [ResoUtils.DEFAULT_REVERB_DURATIONS].
+// [options.predelay] Pre-delay (in milliseconds). Defaults to
+// [ResoUtils.DEFAULT_REVERB_PREDELAY DEFAULT_REVERB_PREDELAY].
+// [options.gain] Output gain (linear). Defaults to
+// [ResoUtils.DEFAULT_REVERB_GAIN DEFAULT_REVERB_GAIN].
+// [options.bandwidth] Bandwidth (in octaves) for each frequency
+// band. Defaults to[ResoUtils.DEFAULT_REVERB_BANDWIDTH DEFAULT_REVERB_BANDWIDTH].
+// [options.tailonset] Length (in milliseconds) of impulse
+// response to apply a half-Hann window. Defaults to
+// [ResoUtils.DEFAULT_REVERB_TAIL_ONSET DEFAULT_REVERB_TAIL_ONSET].
   num _bandwidthCoeff;
   num _tailonsetSamples;
   AudioContext _context;
@@ -31,7 +25,6 @@ class LateReflections {
   DelayNode _predelay;
   ConvolverNode _convolver;
   GainNode output;
-
   LateReflections(AudioContext context, Map<String, dynamic> options) {
     // Use defaults for null arguments.
     if (options == null) {

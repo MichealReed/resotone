@@ -1,7 +1,20 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:typed_data';
 import 'dart:web_audio';
+import 'dart:html';
 
+
+/// Rendering mode ENUM.
+enum RenderingMode {
+  // Use ambisonic rendering.
+  AMBISONIC,
+  // Bypass. No ambisonic rendering.
+  BYPASS,
+  //Disable audio output.
+  OFF
+}
+
+/// Omnitone utility class for defaults and helper methods
 class OmniUtils {
 // Static temp storage for matrix inversion.
   static num a00;
@@ -39,7 +52,6 @@ class OmniUtils {
   /// [out]   The inverted result.
   /// [a]     The source matrix.
   /// out
-
   static invertMatrix4(out, a) {
     a00 = a[0];
     a01 = a[1];

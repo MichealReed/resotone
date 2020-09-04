@@ -1,10 +1,7 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:web_audio';
 
 /// FOAConvolver. A collection of 2 stereo convolvers for 4-channel FOA stream.
-/// [context] - AudioContext.
-/// [hrirBufferList] - An ordered-list of stereo
-/// AudioBuffers for convolution. (i.e. 2 stereo AudioBuffers for FOA)
 class FOAConvolver {
   AudioContext _context;
   bool _active;
@@ -22,6 +19,9 @@ class FOAConvolver {
   ChannelSplitterNode input;
   GainNode output;
 
+  // [context] - AudioContext.
+  // [hrirBufferList] - An ordered-list of stereo
+  // AudioBuffers for convolution. (i.e. 2 stereo AudioBuffers for FOA)
   FOAConvolver(AudioContext context, {List<AudioBuffer> hrirBufferList}) {
     _context = context;
 

@@ -1,25 +1,11 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:math';
 import 'dart:web_audio';
 
-// Internal dependencies
+// Internal Dependencies
 import 'reso_utils.dart';
 
 /// Ray-tracing-based early reflections model.
-/// [context]
-/// [options]
-/// [options.dimensions]
-/// Room dimensions (in meters). Defaults to
-/// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
-/// [options.coefficients]
-/// Frequency-independent reflection coeffs per wall. Defaults to
-/// [ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS]
-/// [options.speedOfSound]
-/// (in meters / second). Defaults to [ResoUtils.DEFAULT_SPEED_OF_SOUND]
-/// [options.listenerPosition]
-/// (in meters). Defaults to
-/// [ResoUtils.DEFAULT_POSITION].
-
 class EarlyReflections {
   num speedOfSound;
   GainNode input;
@@ -33,6 +19,19 @@ class EarlyReflections {
   Map<String, dynamic> halfDimensions;
   Map<String, dynamic> _coefficients;
 
+// [context]
+// [options]
+// [options.dimensions]
+// Room dimensions (in meters). Defaults to
+// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
+// [options.coefficients]
+// Frequency-independent reflection coeffs per wall. Defaults to
+// [ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS]
+// [options.speedOfSound]
+// (in meters / second). Defaults to [ResoUtils.DEFAULT_SPEED_OF_SOUND]
+// [options.listenerPosition]
+// (in meters). Defaults to
+// [ResoUtils.DEFAULT_POSITION].
   EarlyReflections(AudioContext context, Map<String, dynamic> options) {
     if (options == null) {
       options = {};

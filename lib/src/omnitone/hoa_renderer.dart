@@ -1,37 +1,20 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:web_audio';
 
-// Internal dependencies
+// Internal Dependencies
 import 'buffer_list.dart';
 import 'hoa_convolver.dart';
 import 'hoa_rotator.dart';
 import 'omni_utils.dart';
 
-// Resource dependencies
+// Resource Dependencies
 import 'resources/omnitone_toa_hrir_base64.dart';
 import 'resources/omnitone_soa_hrir_base64.dart';
-
-/// Rendering mode ENUM.
-enum RenderingMode {
-  // Use ambisonic rendering.
-  AMBISONIC,
-  // Bypass. No ambisonic rendering.
-  BYPASS,
-  //Disable audio output.
-  OFF
-}
 
 // Currently SOA and TOA are only supported.
 const SupportedAmbisonicOrder = [2, 3];
 
 /// Omnitone HOA renderer class. Uses the optimized convolution technique.
-/// [context] - Associated AudioContext.
-/// [config]
-/// [config.ambisonicOrder=3] - Ambisonic order.
-/// [config.hrirPathList] - A list of paths to HRIR files. It
-/// overrides the internal HRIR list if given.
-/// [config.renderingMode='ambisonic'] - Rendering mode.
-
 class HOARenderer {
   AudioContext _context;
   Map<String, dynamic> _config;
@@ -44,6 +27,12 @@ class HOARenderer {
   HOARotator hoaRotator;
   HOAConvolver _hoaConvolver;
 
+  // [context] - Associated AudioContext.
+  // [config]
+  // [config.ambisonicOrder=3] - Ambisonic order.
+  // [config.hrirPathList] - A list of paths to HRIR files. It
+  // overrides the internal HRIR list if given.
+  // [config.renderingMode='ambisonic'] - Rendering mode.
   HOARenderer(AudioContext context, Map<String, dynamic> config) {
     _context = OmniUtils.isAudioContext(context) ? context : null;
 

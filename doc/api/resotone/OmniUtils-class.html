@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the OmniUtils class from the resotone library, for the Dart programming language.">
+  <title>OmniUtils class - resotone library - Dart API</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static-assets/github.css">
+  <link rel="stylesheet" href="../static-assets/styles.css">
+  <link rel="icon" href="../static-assets/favicon.png">
+
+</head>
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">resotone</a></li>
+    <li><a href="../resotone/resotone-library.html">resotone</a></li>
+    <li class="self-crumb">OmniUtils class</li>
+  </ol>
+  <div class="self-name">OmniUtils</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="../index.html">resotone</a></li>
+      <li><a href="../resotone/resotone-library.html">resotone</a></li>
+      <li class="self-crumb">OmniUtils class</li>
+    </ol>
+    
+    <h5>resotone library</h5>
+    <ol>
+      <li class="section-title"><a href="../resotone/resotone-library.html#classes">Classes</a></li>
+      <li><a href="../resotone/Attenuation-class.html">Attenuation</a></li>
+      <li><a href="../resotone/BufferList-class.html">BufferList</a></li>
+      <li><a href="../resotone/Directivity-class.html">Directivity</a></li>
+      <li><a href="../resotone/EarlyReflections-class.html">EarlyReflections</a></li>
+      <li><a href="../resotone/Encoder-class.html">Encoder</a></li>
+      <li><a href="../resotone/FOAConvolver-class.html">FOAConvolver</a></li>
+      <li><a href="../resotone/FOARenderer-class.html">FOARenderer</a></li>
+      <li><a href="../resotone/FOARotator-class.html">FOARotator</a></li>
+      <li><a href="../resotone/FOARouter-class.html">FOARouter</a></li>
+      <li><a href="../resotone/HOAConvolver-class.html">HOAConvolver</a></li>
+      <li><a href="../resotone/HOARenderer-class.html">HOARenderer</a></li>
+      <li><a href="../resotone/HOARotator-class.html">HOARotator</a></li>
+      <li><a href="../resotone/LateReflections-class.html">LateReflections</a></li>
+      <li><a href="../resotone/Listener-class.html">Listener</a></li>
+      <li><a href="../resotone/Omnitone-class.html">Omnitone</a></li>
+      <li><a href="../resotone/OmniUtils-class.html">OmniUtils</a></li>
+      <li><a href="../resotone/ResonanceAudio-class.html">ResonanceAudio</a></li>
+      <li><a href="../resotone/ResoUtils-class.html">ResoUtils</a></li>
+      <li><a href="../resotone/Room-class.html">Room</a></li>
+      <li><a href="../resotone/Source-class.html">Source</a></li>
+    
+    
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#constants">Constants</a></li>
+      <li><a href="../resotone/SupportedAmbisonicOrder-constant.html">SupportedAmbisonicOrder</a></li>
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#properties">Properties</a></li>
+      <li><a href="../resotone/BufferDataType.html">BufferDataType</a></li>
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#functions">Functions</a></li>
+      <li><a href="../resotone/computeBandRotation.html">computeBandRotation</a></li>
+      <li><a href="../resotone/computeHOAMatrices.html">computeHOAMatrices</a></li>
+      <li><a href="../resotone/computeUVWCoeff.html">computeUVWCoeff</a></li>
+      <li><a href="../resotone/getCenteredElement.html">getCenteredElement</a></li>
+      <li><a href="../resotone/getKroneckerDelta.html">getKroneckerDelta</a></li>
+      <li><a href="../resotone/getP.html">getP</a></li>
+      <li><a href="../resotone/getU.html">getU</a></li>
+      <li><a href="../resotone/getV.html">getV</a></li>
+      <li><a href="../resotone/getW.html">getW</a></li>
+      <li><a href="../resotone/setCenteredElement.html">setCenteredElement</a></li>
+    
+      <li class="section-title"><a href="../resotone/resotone-library.html#enums">Enums</a></li>
+      <li><a href="../resotone/RenderingMode-class.html">RenderingMode</a></li>
+    
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">OmniUtils</span> class  </h1></div>
+
+    <section class="desc markdown">
+      <p>Omnitone utility class for defaults and helper methods</p>
+    </section>
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="OmniUtils" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/OmniUtils.html">OmniUtils</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+           
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Type-class.html">Type</a></span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object. 
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span><wbr>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object. 
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/bool-class.html">bool</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-properties">
+      <h2>Static Properties</h2>
+
+      <dl class="properties">
+        <dt id="a00" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a00.html">a00</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a01" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a01.html">a01</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a02" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a02.html">a02</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a03" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a03.html">a03</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a10" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a10.html">a10</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a11" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a11.html">a11</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a12" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a12.html">a12</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a13" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a13.html">a13</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a20" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a20.html">a20</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a21" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a21.html">a21</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a22" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a22.html">a22</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a23" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a23.html">a23</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a30" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a30.html">a30</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a31" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a31.html">a31</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a32" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a32.html">a32</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="a33" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/a33.html">a33</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b00" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b00.html">b00</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b01" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b01.html">b01</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b02" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b02.html">b02</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b03" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b03.html">b03</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b04" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b04.html">b04</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b05" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b05.html">b05</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b06" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b06.html">b06</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b07" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b07.html">b07</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b08" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b08.html">b08</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b09" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b09.html">b09</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b10" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b10.html">b10</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="b11" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/b11.html">b11</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="det" class="property">
+          <span class="name"><a href="../resotone/OmniUtils/det.html">det</a></span>
+          <span class="signature">&#8596; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>         
+        </dt>
+        <dd>
+           
+                  <div class="features">read / write</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="static-methods">
+      <h2>Static Methods</h2>
+      <dl class="callables">
+        <dt id="getArrayBufferFromBase64String" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/getArrayBufferFromBase64String.html">getArrayBufferFromBase64String</a></span><span class="signature">(<wbr><span class="parameter" id="getArrayBufferFromBase64String-param-base64String"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/String-class.html">String</a></span> <span class="parameter-name">base64String</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-typed_data/ByteBuffer-class.html">ByteBuffer</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Converts Base64-encoded string to <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-typed_data/ByteBuffer-class.html">ByteBuffer</a>.
+<code>base64String</code> - Base64-encoded string.
+returns a converted <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-typed_data/ByteBuffer-class.html">ByteBuffer</a> object. 
+                  
+</dd>
+        <dt id="invertMatrix4" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/invertMatrix4.html">invertMatrix4</a></span><span class="signature">(<wbr><span class="parameter" id="invertMatrix4-param-out"><span class="type-annotation">dynamic</span> <span class="parameter-name">out</span>, </span><wbr><span class="parameter" id="invertMatrix4-param-a"><span class="type-annotation">dynamic</span> <span class="parameter-name">a</span></span><wbr>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd>
+          A 4x4 matrix inversion utility. This does not handle the case when the
+arguments are not proper 4x4 matrices.
+<code>out</code>   The inverted result.
+<code>a</code>     The source matrix.
+out 
+                  
+</dd>
+        <dt id="isAudioBuffer" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/isAudioBuffer.html">isAudioBuffer</a></span><span class="signature">(<wbr><span class="parameter" id="isAudioBuffer-param-audioBuffer"><span class="type-annotation">dynamic</span> <span class="parameter-name">audioBuffer</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/bool-class.html">bool</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Check if the given object is a valid AudioBuffer.
+<code>audioBuffer</code> An AudioBuffer object to be checked. 
+                  
+</dd>
+        <dt id="isAudioContext" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/isAudioContext.html">isAudioContext</a></span><span class="signature">(<wbr><span class="parameter" id="isAudioContext-param-context"><span class="type-annotation">dynamic</span> <span class="parameter-name">context</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/bool-class.html">bool</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Check if the given object is an instance of BaseAudioContext.
+<code>context</code> - A context object to be checked. 
+                  
+</dd>
+        <dt id="isDefinedENUMEntry" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/isDefinedENUMEntry.html">isDefinedENUMEntry</a></span><span class="signature">(<wbr><span class="parameter" id="isDefinedENUMEntry-param-enumDictionary"><span class="type-annotation">dynamic</span> <span class="parameter-name">enumDictionary</span>, </span><wbr><span class="parameter" id="isDefinedENUMEntry-param-entryValue"><span class="type-annotation">dynamic</span> <span class="parameter-name">entryValue</span></span><wbr>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd>
+          Check if a value is defined in the ENUM dictionary.
+<code>enumDictionary</code> - ENUM dictionary.
+<code>entryValue</code> - a value to probe. 
+                  
+</dd>
+        <dt id="mergeBufferListByChannel" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/mergeBufferListByChannel.html">mergeBufferListByChannel</a></span><span class="signature">(<wbr><span class="parameter" id="mergeBufferListByChannel-param-context"><span class="type-annotation">dynamic</span> <span class="parameter-name">context</span>, </span><wbr><span class="parameter" id="mergeBufferListByChannel-param-bufferList"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/AudioBuffer-class.html">AudioBuffer</a></span>&gt;</span></span> <span class="parameter-name">bufferList</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/AudioBuffer-class.html">AudioBuffer</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Perform channel-wise merge on multiple AudioBuffers. The sample rate and
+the length of buffers to be merged must be identical.
+<code>context</code> - Associated BaseAudioContext.
+<code>bufferList</code> - An array of AudioBuffers to be merged
+channel-wise.
+returns a single merged AudioBuffer. 
+                  
+</dd>
+        <dt id="splitBufferbyChannel" class="callable">
+          <span class="name"><a href="../resotone/OmniUtils/splitBufferbyChannel.html">splitBufferbyChannel</a></span><span class="signature">(<wbr><span class="parameter" id="splitBufferbyChannel-param-context"><span class="type-annotation">dynamic</span> <span class="parameter-name">context</span>, </span><wbr><span class="parameter" id="splitBufferbyChannel-param-audioBuffer"><span class="type-annotation">dynamic</span> <span class="parameter-name">audioBuffer</span>, </span><wbr><span class="parameter" id="splitBufferbyChannel-param-splitBy"><span class="type-annotation">dynamic</span> <span class="parameter-name">splitBy</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/AudioBuffer-class.html">AudioBuffer</a></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Perform channel-wise split by the given channel count. For example,
+1 x AudioBuffer(8) -&gt; splitBuffer(context, buffer, 2) -&gt; 4 x AudioBuffer(2).
+<code>context</code> - Associated BaseAudioContext.
+<code>audioBuffer</code> - An AudioBuffer to be splitted.
+<code>splitBy</code> - Number of channels to be splitted.
+returns a list of splitted AudioBuffers. 
+                  
+</dd>
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+    
+      <li class="section-title"><a href="../resotone/OmniUtils-class.html#constructors">Constructors</a></li>
+      <li><a href="../resotone/OmniUtils/OmniUtils.html">OmniUtils</a></li>
+    
+      <li class="section-title inherited">
+        <a href="../resotone/OmniUtils-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="../resotone/OmniUtils-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="../resotone/OmniUtils-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+      <li class="section-title"><a href="../resotone/OmniUtils-class.html#static-properties">Static properties</a></li>
+      <li><a href="../resotone/OmniUtils/a00.html">a00</a></li>
+      <li><a href="../resotone/OmniUtils/a01.html">a01</a></li>
+      <li><a href="../resotone/OmniUtils/a02.html">a02</a></li>
+      <li><a href="../resotone/OmniUtils/a03.html">a03</a></li>
+      <li><a href="../resotone/OmniUtils/a10.html">a10</a></li>
+      <li><a href="../resotone/OmniUtils/a11.html">a11</a></li>
+      <li><a href="../resotone/OmniUtils/a12.html">a12</a></li>
+      <li><a href="../resotone/OmniUtils/a13.html">a13</a></li>
+      <li><a href="../resotone/OmniUtils/a20.html">a20</a></li>
+      <li><a href="../resotone/OmniUtils/a21.html">a21</a></li>
+      <li><a href="../resotone/OmniUtils/a22.html">a22</a></li>
+      <li><a href="../resotone/OmniUtils/a23.html">a23</a></li>
+      <li><a href="../resotone/OmniUtils/a30.html">a30</a></li>
+      <li><a href="../resotone/OmniUtils/a31.html">a31</a></li>
+      <li><a href="../resotone/OmniUtils/a32.html">a32</a></li>
+      <li><a href="../resotone/OmniUtils/a33.html">a33</a></li>
+      <li><a href="../resotone/OmniUtils/b00.html">b00</a></li>
+      <li><a href="../resotone/OmniUtils/b01.html">b01</a></li>
+      <li><a href="../resotone/OmniUtils/b02.html">b02</a></li>
+      <li><a href="../resotone/OmniUtils/b03.html">b03</a></li>
+      <li><a href="../resotone/OmniUtils/b04.html">b04</a></li>
+      <li><a href="../resotone/OmniUtils/b05.html">b05</a></li>
+      <li><a href="../resotone/OmniUtils/b06.html">b06</a></li>
+      <li><a href="../resotone/OmniUtils/b07.html">b07</a></li>
+      <li><a href="../resotone/OmniUtils/b08.html">b08</a></li>
+      <li><a href="../resotone/OmniUtils/b09.html">b09</a></li>
+      <li><a href="../resotone/OmniUtils/b10.html">b10</a></li>
+      <li><a href="../resotone/OmniUtils/b11.html">b11</a></li>
+      <li><a href="../resotone/OmniUtils/det.html">det</a></li>
+    
+      <li class="section-title"><a href="../resotone/OmniUtils-class.html#static-methods">Static methods</a></li>
+      <li><a href="../resotone/OmniUtils/getArrayBufferFromBase64String.html">getArrayBufferFromBase64String</a></li>
+      <li><a href="../resotone/OmniUtils/invertMatrix4.html">invertMatrix4</a></li>
+      <li><a href="../resotone/OmniUtils/isAudioBuffer.html">isAudioBuffer</a></li>
+      <li><a href="../resotone/OmniUtils/isAudioContext.html">isAudioContext</a></li>
+      <li><a href="../resotone/OmniUtils/isDefinedENUMEntry.html">isDefinedENUMEntry</a></li>
+      <li><a href="../resotone/OmniUtils/mergeBufferListByChannel.html">mergeBufferListByChannel</a></li>
+      <li><a href="../resotone/OmniUtils/splitBufferbyChannel.html">splitBufferbyChannel</a></li>
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    resotone
+      0.0.2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../static-assets/typeahead.bundle.min.js"></script>
+<script src="../static-assets/highlight.pack.js"></script>
+<script src="../static-assets/URI.js"></script>
+<script src="../static-assets/script.js"></script>
+
+
+</body>
+
+</html>

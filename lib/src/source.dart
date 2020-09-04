@@ -1,52 +1,39 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:math';
 import 'dart:web_audio';
 
-// Internal dependencies
+// Internal Dependencies
 import 'directivity.dart';
 import 'attenuation.dart';
 import 'encoder.dart';
 import 'reso_utils.dart';
 import 'resonance_audio.dart';
 
-/// Options for constructing a new Source.
-/// [position]
-/// The source's initial position (in meters), where origin is the center of
-/// the room. Defaults to [ResoUtils.DEFAULT_POSITION DEFAULT_POSITION].
-/// [forward]
-/// The source's initial forward vector. Defaults to
-/// [ResoUtils.DEFAULT_FORWARD DEFAULT_FORWARD]
-/// [up]
-/// The source's initial up vector. Defaults to
-/// [ResoUtils.DEFAULT_UP DEFAULT_UP].
-/// [minDistance]
-/// Min. distance (in meters). Defaults to
-/// [ResoUtils.DEFAULT_MIN_DISTANCE DEFAULT_MIN_DISTANCE].
-/// [maxDistance]
-/// Max. distance (in meters). Defaults to
-/// [ResoUtils.DEFAULT_MAX_DISTANCE DEFAULT_MAX_DISTANCE].
-/// [rolloff]
-/// Rolloff model to use, chosen from options in
-/// [ResoUtils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS]. Defaults to
-/// [ResoUtils.DEFAULT_ATTENUATION_ROLLOFF DEFAULT_ATTENUATION_ROLLOFF].
-/// [gain] Input gain (linear). Defaults to
-/// [ResoUtils.DEFAULT_SOURCE_GAIN DEFAULT_SOURCE_GAIN]}.
-/// [alpha] Directivity alpha. Defaults to
-/// [ResoUtils.DEFAULT_DIRECTIVITY_ALPHA DEFAULT_DIRECTIVITY_ALPHA].
-/// [sharpness] Directivity sharpness. Defaults to
-/// [ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS]
-/// [sourceWidth]
-/// Source width (in degrees). Where 0 degrees is a point source and 360 degrees
-/// is an omnidirectional source. Defaults to
-/// [ResoUtils.DEFAULT_SOURCE_WIDTH DEFAULT_SOURCE_WIDTH].
-
 /// Source model to spatialize an audio buffer.
-/// [scene] - Associated ResonanceAudio instance.
-/// [options] - Options for constructing a new Source.
-
 class Source {
   Source(ResonanceAudio scene, Map<String, dynamic> options) {
     // Use defaults for null arguments.
+    // Options for constructing a new Source.
+    // [position]
+    // The source's initial position (in meters), where origin is the center of
+    // the room.
+    // [forward]
+    // The source's initial forward vector.
+    // [up]
+    // The source's initial up vector.
+    // [minDistance]
+    // Min. distance (in meters).
+    // [maxDistance]
+    // Max. distance (in meters).
+    // [rolloff]
+    // Rolloff model to use, chosen from options in
+    // [ResoUtils.ATTENUATION_ROLLOFFS].
+    // [gain] Input gain (linear).
+    // [alpha] Directivity alpha.
+    // [sharpness] Directivity sharpness.
+    // [sourceWidth]
+    // Source width (in degrees). Where 0 degrees is a point source and 360 degrees
+    // is an omnidirectional source.
     if (options == null) {
       options = new Map<String, dynamic>();
     }
@@ -142,10 +129,9 @@ class Source {
 
   /// Set source's position (in meters), where origin is the center of
   /// the room.
-  ///  x
-  ///  y
-  ///  z
-
+  ///  [x]
+  ///  [y]
+  ///  [z]
   void setPosition(num x, num y, num z) {
     // Assign new position.
     _position[0] = x;
@@ -197,21 +183,18 @@ class Source {
 
   /// Set source's minimum distance (in meters).
   /// [minDistance]
-
   void setMinDistance(num minDistance) {
     _attenuation.minDistance = minDistance;
   }
 
   /// Set source's maximum distance (in meters).
   /// [maxDistance]
-
   void setMaxDistance(num maxDistance) {
     _attenuation.maxDistance = maxDistance;
   }
 
   /// Set source's gain (linear).
   /// [gain]
-
   void setGain(num gain) {
     input.gain.value = gain;
   }
@@ -223,7 +206,6 @@ class Source {
   ///  [upX]
   ///  [upY]
   ///  [upZ]
-
   void setOrientation(
       num forwardX, num forwardY, num forwardZ, num upX, num upY, num upZ) {
     _forward[0] = forwardX;
@@ -238,7 +220,6 @@ class Source {
   /// Set the source width (in degrees). Where 0 degrees is a point source and 360
   /// degrees is an omnidirectional source.
   /// [sourceWidth] (in degrees).
-
   void setSourceWidth(num sourceWidth) {
     _encoder.setSourceWidth(sourceWidth);
     setPosition(_position[0], _position[1], _position[2]);
@@ -251,7 +232,6 @@ class Source {
   /// Determines directivity pattern (0 to 1).
   /// [sharpness]
   /// Determines the sharpness of the directivity pattern (1 to Inf).
-
   void setDirectivityPattern(num alpha, num sharpness) {
     _directivity.setPattern(alpha, sharpness);
     setPosition(_position[0], _position[1], _position[2]);
@@ -261,7 +241,6 @@ class Source {
   /// to the reflections and reverb when the source is outside of the room.
   /// [distance] Distance in meters.
   /// return Gain (linear) of source.
-
   num _computeDistanceOutsideRoom(num distance) {
     // We apply a linear ramp from 1 to 0 as the source is up to 1m outside.
     num gain = 1;

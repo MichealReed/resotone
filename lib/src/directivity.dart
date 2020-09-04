@@ -1,22 +1,11 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:math';
 import 'dart:web_audio';
 
-// Internal dependencies.
+// Internal Dependencies.
 import 'reso_utils.dart';
 
 /// Directivity/occlusion filter.
-/// [context]
-/// [options]
-/// [options.alpha]
-/// Determines directivity pattern (0 to 1). See
-/// [setPattern] for more details. Defaults to
-/// [ResoUtils.DEFAULT_DIRECTIVITY_ALPHA ].
-/// [options.sharpness]
-/// Determines the sharpness of the directivity pattern (1 to Inf). See
-/// [setPattern] for more details. Defaults to
-/// [ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS]
-
 class Directivity {
   AudioContext _context;
   BiquadFilterNode _lowpass;
@@ -26,6 +15,17 @@ class Directivity {
   num _cosTheta;
   num _alpha;
   num _sharpness;
+
+// [context]
+// [options]
+// [options.alpha]
+// Determines directivity pattern (0 to 1). See
+// [setPattern] for more details. Defaults to
+// [ResoUtils.DEFAULT_DIRECTIVITY_ALPHA ].
+// [options.sharpness]
+// Determines the sharpness of the directivity pattern (1 to Inf). See
+// [setPattern] for more details. Defaults to
+// [ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS]
 
   Directivity(AudioContext context, Map<String, dynamic> options) {
     // Use defaults for null arguments.

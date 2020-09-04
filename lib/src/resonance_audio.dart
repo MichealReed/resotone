@@ -1,7 +1,7 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:web_audio';
 
-// Internal dependencies
+// Internal Dependencies
 import 'listener.dart';
 import 'source.dart';
 import 'room.dart';
@@ -9,11 +9,8 @@ import 'encoder.dart';
 import 'reso_utils.dart';
 
 
-/// Main class for managing sources, room and listener models.
-/// [context] - Audio Context[options]
-/// [options] provides Options for constructing a new ResonanceAudio scene.
+/// Main class for managing sources, room, and listener models.
 class ResonanceAudio {
-  
   num ambisonicOrder;
   List<Source> _sources;
   Room room;

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the setDurations method from the LateReflections class, for the Dart programming language.">
+  <title>setDurations method - LateReflections class - resotone library - Dart API</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../../static-assets/github.css">
+  <link rel="stylesheet" href="../../static-assets/styles.css">
+  <link rel="icon" href="../../static-assets/favicon.png">
+
+</head>
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">resotone</a></li>
+    <li><a href="../../resotone/resotone-library.html">resotone</a></li>
+    <li><a href="../../resotone/LateReflections-class.html">LateReflections</a></li>
+    <li class="self-crumb">setDurations method</li>
+  </ol>
+  <div class="self-name">setDurations</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="../../index.html">resotone</a></li>
+      <li><a href="../../resotone/resotone-library.html">resotone</a></li>
+      <li><a href="../../resotone/LateReflections-class.html">LateReflections</a></li>
+      <li class="self-crumb">setDurations method</li>
+    </ol>
+    
+    <h5>LateReflections class</h5>
+    <ol>
+    
+        <li class="section-title"><a href="../../resotone/LateReflections-class.html#constructors">Constructors</a></li>
+        <li><a href="../../resotone/LateReflections/LateReflections.html">LateReflections</a></li>
+    
+        <li class="section-title">
+            <a href="../../resotone/LateReflections-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/hashCode.html">hashCode</a></li>
+        <li><a href="../../resotone/LateReflections/input.html">input</a></li>
+        <li><a href="../../resotone/LateReflections/output.html">output</a></li>
+        <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    
+        <li class="section-title"><a href="../../resotone/LateReflections-class.html#instance-methods">Methods</a></li>
+        <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+        <li><a href="../../resotone/LateReflections/setDurations.html">setDurations</a></li>
+        <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="../../resotone/LateReflections-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">setDurations</span> method </h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">void</span>
+            <span class="name ">setDurations</span>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="setDurations-param-durations"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/num-class.html">num</a></span>&gt;</span></span> <span class="parameter-name">durations</span></span></li>
+</ol>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Re-compute a new impulse response by providing Multiband RT60 durations.
+durations
+Multiband RT60 durations (in seconds) for each frequency band, listed as
+ResoUtils.DEFAULT_REVERB_FREQUENCY_BANDS
+DEFAULT_REVERB_FREQUENCY_BANDS}.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">void setDurations(List&lt;num&gt; durations) {
+  if (durations.length != ResoUtils.NUMBER_REVERB_FREQUENCY_BANDS) {
+    print(&#39;Warning: invalid number of RT60 values provided to reverb.&#39;);
+    return;
+  }
+
+  &#47;&#47; Compute impulse response.
+  List&lt;num&gt; durationsSamples =
+      new List&lt;num&gt;(ResoUtils.NUMBER_REVERB_FREQUENCY_BANDS);
+  num sampleRate = _context.sampleRate;
+
+  for (num i = 0; i &lt; durations.length; i++) {
+    &#47;&#47; Clamp within suitable range.
+    durations[i] =
+        max(0, min(ResoUtils.DEFAULT_REVERB_MAX_DURATION, durations[i]));
+
+    &#47;&#47; Convert seconds to samples.
+    durationsSamples[i] = (durations[i] *
+            sampleRate *
+            ResoUtils.DEFAULT_REVERB_DURATION_MULTIPLIER)
+        .round();
+  }
+  ;
+
+  &#47;&#47; Determine max RT60 length in samples.
+  num durationsSamplesMax = 0;
+  for (num i = 0; i &lt; durationsSamples.length; i++) {
+    if (durationsSamples[i] &gt; durationsSamplesMax) {
+      durationsSamplesMax = durationsSamples[i];
+    }
+  }
+
+  &#47;&#47; Skip this step if there is no reverberation to compute.
+  if (durationsSamplesMax &lt; 1) {
+    durationsSamplesMax = 1;
+  }
+
+  &#47;&#47; Create impulse response buffer.
+  AudioBuffer buffer =
+      _context.createBuffer(1, durationsSamplesMax, sampleRate);
+  List&lt;num&gt; bufferData = buffer.getChannelData(0);
+
+  Random rand = new Random();
+  &#47;&#47; Create noise signal (computed once, referenced in each band&#39;s routine).
+  final noiseSignal = new List&lt;num&gt;(durationsSamplesMax);
+  for (num i = 0; i &lt; durationsSamplesMax; i++) {
+    noiseSignal[i] = rand.nextDouble() * 2 - 1;
+  }
+
+  &#47;&#47; Compute the decay rate per-band and filter the decaying noise signal.
+  for (num i = 0; i &lt; ResoUtils.NUMBER_REVERB_FREQUENCY_BANDS; i++) {
+    &#47;&#47; Compute decay rate.
+    num decayRate = -ResoUtils.LOG1000 &#47; durationsSamples[i];
+
+    &#47;&#47; Construct a standard one-zero, two-pole bandpass filter:
+    &#47;&#47; H(z) = (b0 &#47;&#47;&#47; z^0 + b1 &#47;&#47;&#47; z^-1 + b2 &#47;&#47;&#47; z^-2) &#47; (1 + a1 &#47;&#47;&#47; z^-1 + a2 &#47;&#47;&#47; z^-2)
+    num omega = ResoUtils.TWO_PI *
+        ResoUtils.DEFAULT_REVERB_FREQUENCY_BANDS[i] &#47;
+        sampleRate;
+    num sinOmega = sin(omega);
+    num alpha = sinOmega * ResoUtils.sinh(_bandwidthCoeff * omega &#47; sinOmega);
+    num a0CoeffReciprocal = 1 &#47; (1 + alpha);
+    num b0Coeff = alpha * a0CoeffReciprocal;
+    num a1Coeff = -2 * cos(omega) * a0CoeffReciprocal;
+    num a2Coeff = (1 - alpha) * a0CoeffReciprocal;
+
+    &#47;&#47; We optimize since b2 = -b0, b1 = 0.
+    &#47;&#47; Update equation for two-pole bandpass filter:
+    &#47;&#47;   u[n] = x[n] - a1 &#47;&#47;&#47; x[n-1] - a2 &#47;&#47;&#47; x[n-2]
+    &#47;&#47;   y[n] = b0 &#47;&#47;&#47; (u[n] - u[n-2])
+    num um1 = 0;
+    num um2 = 0;
+    for (num j = 0; j &lt; durationsSamples[i]; j++) {
+      &#47;&#47; Exponentially-decaying white noise.
+      num x = noiseSignal[j] * exp(decayRate * j);
+
+      &#47;&#47; Filter signal with bandpass filter and add to output.
+      num u = x - a1Coeff * um1 - a2Coeff * um2;
+      bufferData[j] += b0Coeff * (u - um2);
+
+      &#47;&#47; Update coefficients.
+      um2 = um1;
+      um1 = u;
+    }
+  }
+
+  &#47;&#47; Create and apply half of a Hann window to the beginning of the
+  &#47;&#47; impulse response.
+  num halfHannLength = (_tailonsetSamples).round();
+  for (num i = 0; i &lt; min(bufferData.length, halfHannLength); i++) {
+    num halfHann =
+        0.5 * (1 - cos(ResoUtils.TWO_PI * i &#47; (2 * halfHannLength - 1)));
+    bufferData[i] *= halfHann;
+  }
+  _convolver.buffer = buffer;
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    resotone
+      0.0.2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../static-assets/typeahead.bundle.min.js"></script>
+<script src="../../static-assets/highlight.pack.js"></script>
+<script src="../../static-assets/URI.js"></script>
+<script src="../../static-assets/script.js"></script>
+
+
+</body>
+
+</html>

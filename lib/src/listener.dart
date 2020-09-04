@@ -1,29 +1,25 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:web_audio';
 
-// Internal dependencies.
+// Internal Dependencies
 import 'omnitone/omnitone.dart';
 import 'encoder.dart';
 import 'reso_utils.dart';
 
 /// Listener model to spatialize sources in an environment.
-/// [context]
-/// [options]
-/// [options.ambisonicOrder]
-/// Desired ambisonic order. Defaults to
-/// [ResoUtils.DEFAULT_AMBISONIC_ORDER DEFAULT_AMBISONIC_ORDER].
-/// [options.position]
-/// Initial position (in meters), where origin is the center of
-/// the room. Defaults to
-/// [ResoUtils.DEFAULT_POSITION DEFAULT_POSITION].
-/// [options.forward]
-/// The listener's initial forward vector. Defaults to
-/// [ResoUtils.DEFAULT_FORWARD DEFAULT_FORWARD].
-/// [options.up]
-/// The listener's initial up vector. Defaults to
-/// [ResoUtils.DEFAULT_UP DEFAULT_UP].
-
 class Listener {
+// Desired ambisonic order. Defaults to
+// [ResoUtils.DEFAULT_AMBISONIC_ORDER DEFAULT_AMBISONIC_ORDER].
+// [options.position]
+// Initial position (in meters), where origin is the center of
+// the room. Defaults to
+// [ResoUtils.DEFAULT_POSITION DEFAULT_POSITION].
+// [options.forward]
+// The listener's initial forward vector. Defaults to
+// [ResoUtils.DEFAULT_FORWARD DEFAULT_FORWARD].
+// [options.up]
+// The listener's initial up vector. Defaults to
+// [ResoUtils.DEFAULT_UP DEFAULT_UP].
   AudioContext _context;
   num _ambisonicOrder;
   List<num> position;

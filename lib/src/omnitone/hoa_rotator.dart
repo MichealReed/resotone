@@ -1,4 +1,4 @@
-/// Core dependencies
+/// Core Dependencies
 import 'dart:math';
 import 'dart:web_audio';
 
@@ -218,8 +218,6 @@ void computeHOAMatrices(List<List<GainNode>> matrix) {
 ///      http://pubs.acs.org/doi/pdf/10.1021/jp953350u
 ///  2b - Corrections to initial publication:
 ///       http://pubs.acs.org/doi/pdf/10.1021/jp9833350
-///  [context] - Associated AudioContext.
-///  [ambisonicOrder] - Ambisonic order.
 class HOARotator {
   AudioContext _context;
   num _ambisonicOrder;
@@ -229,6 +227,8 @@ class HOARotator {
   ChannelMergerNode output;
   List<List<GainNode>> _gainNodeMatrix;
 
+  //  [context] - Associated AudioContext.
+  //  [ambisonicOrder] - Ambisonic order.
   HOARotator(AudioContext context, num ambisonicOrder) {
     _context = context;
     _ambisonicOrder = ambisonicOrder;

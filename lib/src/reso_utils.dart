@@ -1,7 +1,10 @@
 // Core Dependencies
 import 'dart:math';
 
+/// Resonance utility class for defaults and helper methods
 class ResoUtils {
+  ResoUtils();
+
   /// Default input gain (linear).
   static num DEFAULT_SOURCE_GAIN = 1;
 

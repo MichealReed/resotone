@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the FOARotator constructor from the Class FOARotator class from the resotone library, for the Dart programming language.">
+  <title>FOARotator constructor - FOARotator class - resotone library - Dart API</title>
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../../static-assets/github.css">
+  <link rel="stylesheet" href="../../static-assets/styles.css">
+  <link rel="icon" href="../../static-assets/favicon.png">
+
+</head>
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">resotone</a></li>
+    <li><a href="../../resotone/resotone-library.html">resotone</a></li>
+    <li><a href="../../resotone/FOARotator-class.html">FOARotator</a></li>
+    <li class="self-crumb">FOARotator constructor</li>
+  </ol>
+  <div class="self-name">FOARotator</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="../../index.html">resotone</a></li>
+      <li><a href="../../resotone/resotone-library.html">resotone</a></li>
+      <li><a href="../../resotone/FOARotator-class.html">FOARotator</a></li>
+      <li class="self-crumb">FOARotator constructor</li>
+    </ol>
+    
+    <h5>FOARotator class</h5>
+    <ol>
+    
+      <li class="section-title"><a href="../../resotone/FOARotator-class.html#constructors">Constructors</a></li>
+      <li><a href="../../resotone/FOARotator/FOARotator.html">FOARotator</a></li>
+    
+      <li class="section-title">
+        <a href="../../resotone/FOARotator-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/hashCode.html">hashCode</a></li>
+      <li><a href="../../resotone/FOARotator/input.html">input</a></li>
+      <li><a href="../../resotone/FOARotator/output.html">output</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="../../resotone/FOARotator-class.html#instance-methods">Methods</a></li>
+      <li><a href="../../resotone/FOARotator/getRotationMatrix3.html">getRotationMatrix3</a></li>
+      <li><a href="../../resotone/FOARotator/getRotationMatrix4.html">getRotationMatrix4</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+      <li><a href="../../resotone/FOARotator/setRotationMatrix3.html">setRotationMatrix3</a></li>
+      <li><a href="../../resotone/FOARotator/setRotationMatrix4.html">setRotationMatrix4</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="../../resotone/FOARotator-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">FOARotator</span> constructor </h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">FOARotator</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-context"><span class="type-annotation"><a href="https://api.dart.dev/dev/2.10.0-76.0.dev/dart-web_audio/AudioContext-class.html">AudioContext</a></span> <span class="parameter-name">context</span></span></li>
+</ol>)
+    </section>
+
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">FOARotator(AudioContext context) {
+  _context = context;
+  _splitter = _context.createChannelSplitter(4);
+  _inY = _context.createGain();
+  _inZ = _context.createGain();
+  _inX = _context.createGain();
+  _m0 = _context.createGain();
+  _m1 = _context.createGain();
+  _m2 = _context.createGain();
+  _m3 = _context.createGain();
+  _m4 = _context.createGain();
+  _m5 = _context.createGain();
+  _m6 = _context.createGain();
+  _m7 = _context.createGain();
+  _m8 = _context.createGain();
+  _outY = _context.createGain();
+  _outZ = _context.createGain();
+  _outX = _context.createGain();
+  _merger = _context.createChannelMerger(4);
+
+  &#47;&#47; ACN channel ordering: [1, 2, 3] =&gt; [-Y, Z, -X]
+  &#47;&#47; Y (from channel 1)
+  _splitter.connectNode(_inY, 1);
+  &#47;&#47; Z (from channel 2)
+  _splitter.connectNode(_inZ, 2);
+  &#47;&#47; X (from channel 3)
+  _splitter.connectNode(_inX, 3);
+  _inY.gain.value = -1;
+  _inX.gain.value = -1;
+
+  &#47;&#47; Apply the rotation in the world space.
+  &#47;&#47; |Y|   | m0  m3  m6 |   | Y &#47;&#47;&#47; m0 + Z &#47;&#47;&#47; m3 + X &#47;&#47;&#47; m6 |   | Yr |
+  &#47;&#47; |Z| &#47;&#47;&#47; | m1  m4  m7 | = | Y &#47;&#47;&#47; m1 + Z &#47;&#47;&#47; m4 + X &#47;&#47;&#47; m7 | = | Zr |
+  &#47;&#47; |X|   | m2  m5  m8 |   | Y &#47;&#47;&#47; m2 + Z &#47;&#47;&#47; m5 + X &#47;&#47;&#47; m8 |   | Xr |
+  _inY.connectNode(_m0);
+  _inY.connectNode(_m1);
+  _inY.connectNode(_m2);
+  _inZ.connectNode(_m3);
+  _inZ.connectNode(_m4);
+  _inZ.connectNode(_m5);
+  _inX.connectNode(_m6);
+  _inX.connectNode(_m7);
+  _inX.connectNode(_m8);
+  _m0.connectNode(_outY);
+  _m1.connectNode(_outZ);
+  _m2.connectNode(_outX);
+  _m3.connectNode(_outY);
+  _m4.connectNode(_outZ);
+  _m5.connectNode(_outX);
+  _m6.connectNode(_outY);
+  _m7.connectNode(_outZ);
+  _m8.connectNode(_outX);
+
+  &#47;&#47; Transform 3: world space to audio space.
+  &#47;&#47; W -&gt; W (to channel 0)
+  _splitter.connectNode(_merger, 0, 0);
+  &#47;&#47; Y (to channel 1)
+  _outY.connectNode(_merger, 0, 1);
+  &#47;&#47; Z (to channel 2)
+  _outZ.connectNode(_merger, 0, 2);
+  &#47;&#47; X (to channel 3)
+  _outX.connectNode(_merger, 0, 3);
+  _outY.gain.value = -1;
+  _outX.gain.value = -1;
+
+  setRotationMatrix3([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+
+  &#47;&#47; input&#47;output proxy.
+  input = _splitter;
+  output = _merger;
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    resotone
+      0.0.2
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../static-assets/typeahead.bundle.min.js"></script>
+<script src="../../static-assets/highlight.pack.js"></script>
+<script src="../../static-assets/URI.js"></script>
+<script src="../../static-assets/script.js"></script>
+
+
+</body>
+
+</html>

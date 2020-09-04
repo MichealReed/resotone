@@ -1,7 +1,6 @@
 import 'dart:web_audio';
 
 /// First-order-ambisonic decoder based on gain node network.
-/// [context] - Associated AudioContext.
 class FOARotator {
   AudioContext _context;
   ChannelSplitterNode _splitter;
@@ -23,7 +22,7 @@ class FOARotator {
   ChannelMergerNode _merger;
   ChannelSplitterNode input;
   ChannelMergerNode output;
-
+// [context] - Associated AudioContext.
   FOARotator(AudioContext context) {
     _context = context;
     _splitter = _context.createChannelSplitter(4);

@@ -8,24 +8,7 @@ import 'foa_router.dart';
 import 'omni_utils.dart';
 import 'resources/omnitone_foa_hrir_base64.dart';
 
-/// Rendering mode ENUM.
-enum RenderingMode {
-  // Use ambisonic rendering.
-  AMBISONIC,
-  // Bypass. No ambisonic rendering.
-  BYPASS,
-  // Disable audio output.
-  OFF
-}
-
 /// Omnitone FOA renderer class. Uses the optimized convolution technique.
-/// [context] - Associated AudioContext.
-/// [config]
-/// [config.channelMap] - Custom channel routing map. Useful for
-/// handling the inconsistency in browser's multichannel audio decoding.
-/// [config['hrirPathList']] - A list of paths to HRIR files. It
-/// overrides the internal HRIR list if given.
-/// [config['renderingMode']='ambisonic'] - Rendering mode.
 class FOARenderer {
   AudioContext _context;
   Map<String, dynamic> _config;
@@ -38,7 +21,13 @@ class FOARenderer {
   FOARouter _foaRouter;
   FOARotator foaRotator;
   FOAConvolver _foaConvolver;
-
+// [context] - Associated AudioContext.
+// [config]
+// [config.channelMap] - Custom channel routing map. Useful for
+// handling the inconsistency in browser's multichannel audio decoding.
+// [config['hrirPathList']] - A list of paths to HRIR files. It
+// overrides the internal HRIR list if given.
+// [config['renderingMode']='ambisonic'] - Rendering mode.
   FOARenderer(AudioContext context, Map<String, dynamic> config) {
     _context = OmniUtils.isAudioContext(context) ? context : null;
 

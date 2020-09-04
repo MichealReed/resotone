@@ -7,23 +7,22 @@ import "tables.dart" as Tables;
 import 'reso_utils.dart';
 
 /// Spatially encodes input using weighted spherical harmonics.
-/// [context]
-/// [options]
-/// [options.ambisonicOrder]
-/// Desired ambisonic order. Defaults to
-/// [ResoUtils.DEFAULT_AMBISONIC_ORDER DEFAULT_AMBISONIC_ORDER].
-/// [options.azimuth]
-/// Azimuth (in degrees). Defaults to
-/// [ResoUtils.DEFAULT_AZIMUTH DEFAULT_AZIMUTH].
-/// [options.elevation]
-/// Elevation (in degrees). Defaults to
-/// [ResoUtils.DEFAULT_ELEVATION DEFAULT_ELEVATION].
-/// [options.sourceWidth]
-/// Source width (in degrees). Where 0 degrees is a ponum source and 360 degrees
-/// is an omnidirectional source. Defaults to
-/// [ResoUtils.DEFAULT_SOURCE_WIDTH DEFAULT_SOURCE_WIDTH].
-
 class Encoder {
+// [context]
+// [options]
+// [options.ambisonicOrder]
+// Desired ambisonic order. Defaults to
+// [ResoUtils.DEFAULT_AMBISONIC_ORDER DEFAULT_AMBISONIC_ORDER].
+// [options.azimuth]
+// Azimuth (in degrees). Defaults to
+// [ResoUtils.DEFAULT_AZIMUTH DEFAULT_AZIMUTH].
+// [options.elevation]
+// Elevation (in degrees). Defaults to
+// [ResoUtils.DEFAULT_ELEVATION DEFAULT_ELEVATION].
+// [options.sourceWidth]
+// Source width (in degrees). Where 0 degrees is a ponum source and 360 degrees
+// is an omnidirectional source. Defaults to
+// [ResoUtils.DEFAULT_SOURCE_WIDTH DEFAULT_SOURCE_WIDTH].
   Encoder(AudioContext context, Map<String, dynamic> options) {
     // Use defaults for null arguments.
     if (options == null) {

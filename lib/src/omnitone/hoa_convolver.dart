@@ -1,11 +1,7 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:web_audio';
 
 /// A convolver network for N-channel HOA stream.
-/// [context] - Associated AudioContext.
-/// [ambisonicOrder] - Ambisonic order. (2 or 3)
-/// [hrirBufferList] - An ordered-list of stereo
-/// AudioBuffers for convolution. (SOA: 5 AudioBuffers, TOA: 8 AudioBuffers)
 class HOAConvolver {
   AudioContext _context;
   bool _active;
@@ -24,6 +20,10 @@ class HOAConvolver {
   ChannelSplitterNode input;
   GainNode output;
 
+  // [context] - Associated AudioContext.
+  // [ambisonicOrder] - Ambisonic order. (2 or 3)
+  // [hrirBufferList] - An ordered-list of stereo
+  // AudioBuffers for convolution. (SOA: 5 AudioBuffers, TOA: 8 AudioBuffers)
   HOAConvolver(AudioContext context, num ambisonicOrder,
       {List<AudioBuffer> hrirBufferList}) {
     _context = context;

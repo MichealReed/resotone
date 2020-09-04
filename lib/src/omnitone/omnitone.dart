@@ -1,7 +1,7 @@
-// Core dependencies
+// Core Dependencies
 import 'dart:web_audio';
 
-// Internal dependencies
+// Internal Dependencies
 import 'buffer_list.dart';
 import 'foa_router.dart';
 import 'foa_rotator.dart';
