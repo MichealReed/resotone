@@ -1,17 +1,10 @@
-/**
- * @file A collection of convolvers. Can be used for the optimized FOA binaural
- * rendering. (e.g. SH-MaxRe HRTFs)
- */
-
+// Core dependencies
 import 'dart:web_audio';
 
-/**
- * FOAConvolver. A collection of 2 stereo convolvers for 4-channel FOA stream.
- * @constructor
- * @param {BaseAudioContext} context The associated AudioContext.
- * @param {AudioBuffer[]} [hrirBufferList] - An ordered-list of stereo
- * AudioBuffers for convolution. (i.e. 2 stereo AudioBuffers for FOA)
- */
+/// FOAConvolver. A collection of 2 stereo convolvers for 4-channel FOA stream.
+/// [context] - AudioContext.
+/// [hrirBufferList] - An ordered-list of stereo
+/// AudioBuffers for convolution. (i.e. 2 stereo AudioBuffers for FOA)
 class FOAConvolver {
   AudioContext _context;
   bool _active;
@@ -44,11 +37,7 @@ class FOAConvolver {
     enable();
   }
 
-/**
- * Build the internal audio graph.
- *
- * @private
- */
+  /// Build the internal audio graph.
   void _buildAudioGraph() {
     _splitterWYZX = _context.createChannelSplitter(4);
     _mergerWY = _context.createChannelMerger(2);
@@ -96,15 +85,13 @@ class FOAConvolver {
     output = _summingBus;
   }
 
-/**
- * Assigns 2 HRIR AudioBuffers to 2 convolvers: Note that we use 2 stereo
- * convolutions for 4-channel direct convolution. Using mono convolver or
- * 4-channel convolver is not viable because mono convolution wastefully
- * produces the stereo outputs, and the 4-ch convolver does cross-channel
- * convolution. (See Web Audio API spec)
- * @param {AudioBuffer[]} hrirBufferList - An array of stereo AudioBuffers for
- * convolvers.
- */
+  /// Assigns 2 HRIR AudioBuffers to 2 convolvers: Note that we use 2 stereo
+  /// convolutions for 4-channel direct convolution. Using mono convolver or
+  /// 4-channel convolver is not viable because mono convolution wastefully
+  /// produces the stereo outputs, and the 4-ch convolver does cross-channel
+  /// convolution. (See Web Audio API spec)
+  /// [hrirBufferList] - An array of stereo AudioBuffers for
+  /// convolvers.
   void setHRIRBufferList(List<AudioBuffer> hrirBufferList) {
     // After these assignments, the channel data in the buffer is immutable in
     // FireFox. (i.e. neutered) So we should avoid re-assigning buffers, otherwise
@@ -118,19 +105,15 @@ class FOAConvolver {
     _isBufferLoaded = true;
   }
 
-/**
- * Enable FOAConvolver instance. The audio graph will be activated and pulled by
- * the WebAudio engine. (i.e. consume CPU cycle)
- */
+  /// Enable FOAConvolver instance. The audio graph will be activated and pulled by
+  /// the WebAudio engine. (i.e. consume CPU cycle)
   void enable() {
     _mergerBinaural.connectNode(_summingBus);
     _active = true;
   }
 
-/**
- * Disable FOAConvolver instance. The inner graph will be disconnectNodeed from the
- * audio destination, thus no CPU cycle will be consumed.
- */
+  /// Disable FOAConvolver instance. The inner graph will be disconnectNodeed from the
+  /// audio destination, thus no CPU cycle will be consumed.
   void disable() {
     _mergerBinaural.disconnect();
     _active = false;

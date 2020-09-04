@@ -1,7 +1,5 @@
-/**
- * @file Compnume room model with early and late reflections.
- * @author Andrew Allen <bitllama@google.com>
- */
+/// @file Compnume room model with early and late reflections.
+/// @author Andrew Allen <bitllama@google.com>
 
 // Internal dependencies.
 import 'dart:math';
@@ -11,21 +9,18 @@ import 'late_reflections.dart';
 import 'early_reflections.dart';
 import 'reso_utils.dart';
 
-/**
- * Generate absorption coefficients from material names.
- * @param {Object} materials
- * @return {Object}
- */
+/// Generate absorption coefficients from material names.
+/// [materials]
+
 Map<String, dynamic> _getCoefficientsFromMaterials(
     Map<String, dynamic> materials) {
-      print(materials);
+  print(materials);
   // Initialize coefficients to use defaults.
   Map<String, dynamic> coefficients = Map<String, dynamic>();
 
   ResoUtils.DEFAULT_ROOM_MATERIALS.forEach((property, value) {
     if (ResoUtils.DEFAULT_ROOM_MATERIALS.containsKey(property)) {
-      coefficients[property] = ResoUtils.ROOM_MATERIAL_COEFFICIENTS[
-          property];
+      coefficients[property] = ResoUtils.ROOM_MATERIAL_COEFFICIENTS[property];
     }
   });
 
@@ -36,7 +31,7 @@ Map<String, dynamic> _getCoefficientsFromMaterials(
 
   // Assign coefficients using provided materials.
   ResoUtils.DEFAULT_ROOM_MATERIALS.forEach((property, value) {
-    print("$property : $value" );
+    print("$property : $value");
     if (ResoUtils.DEFAULT_ROOM_MATERIALS.containsKey(property) &&
         materials.containsKey(property)) {
       if (!ResoUtils.ROOM_MATERIAL_COEFFICIENTS
@@ -59,11 +54,9 @@ Map<String, dynamic> _getCoefficientsFromMaterials(
   return coefficients;
 }
 
-/**
- * Sanitize coefficients.
- * @param {Object} coefficients
- * @return {Object}
- */
+/// Sanitize coefficients.
+/// [coefficients]
+
 Map<String, dynamic> _sanitizeCoefficients(Map<String, dynamic> coefficients) {
   if (coefficients == null) {
     coefficients = new Map<String, dynamic>();
@@ -79,11 +72,9 @@ Map<String, dynamic> _sanitizeCoefficients(Map<String, dynamic> coefficients) {
   return coefficients;
 }
 
-/**
- * Sanitize dimensions.
- * @param {ResoUtils~RoomDimensions} dimensions
- * @return {ResoUtils~RoomDimensions}
- */
+/// Sanitize dimensions.
+/// [dimensions]
+
 Map<String, dynamic> _sanitizeDimensions(Map<String, dynamic> dimensions) {
   if (dimensions == null) {
     dimensions = {};
@@ -97,13 +88,11 @@ Map<String, dynamic> _sanitizeDimensions(Map<String, dynamic> dimensions) {
   return dimensions;
 }
 
-/**
- * Compute frequency-dependent reverb durations.
- * @param {ResoUtils~RoomDimensions} dimensions
- * @param {Object} coefficients
- * @param {Number} speedOfSound
- * @return {Array}
- */
+/// Compute frequency-dependent reverb durations.
+/// [dimensions]
+/// [coefficients]
+/// [speedOfSound]
+
 List<num> _getDurationsFromProperties(Map<String, dynamic> dimensions,
     Map<String, dynamic> coefficients, num speedOfSound) {
   List<num> durations = new List<num>(ResoUtils.NUMBER_REVERB_FREQUENCY_BANDS);
@@ -151,14 +140,13 @@ List<num> _getDurationsFromProperties(Map<String, dynamic> dimensions,
   return durations;
 }
 
-/**
- * Compute reflection coefficients from absorption coefficients.
- * @param {Object} absorptionCoefficients
- * @return {Object}
- */
+/// Compute reflection coefficients from absorption coefficients.
+///   absorptionCoefficients
+/// @return
+
 Map<String, dynamic> _computeReflectionCoefficients(
     Map<String, dynamic> absorptionCoefficients) {
-      print(absorptionCoefficients);
+  print(absorptionCoefficients);
   Map<String, dynamic> reflectionCoefficients = new Map<String, dynamic>();
   ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.forEach((property, value) {
     if (ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.containsKey(property)) {
@@ -180,47 +168,23 @@ Map<String, dynamic> _computeReflectionCoefficients(
   return reflectionCoefficients;
 }
 
-/**
- * @class Room
- * @description Model that manages early and late reflections using acoustic
- * properties and listener position relative to a rectangular room.
- * @param {AudioContext} context
- * Associated {@link
-https://developer.mozilla.org/en-US/docs/Web/API/AudioContext AudioContext}.
- * @param {Object} options
- * @param {Float32Array} options.listenerPosition
- * The listener's initial position (in meters), where origin is the center of
- * the room. Defaults to {@linkcode ResoUtils.DEFAULT_POSITION DEFAULT_POSITION}.
- * @param {ResoUtils~RoomDimensions} options.dimensions Room dimensions (in meters). Defaults to
- * {@linkcode ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS}.
- * @param {ResoUtils~RoomMaterials} options.materials Named acoustic materials per wall.
- * Defaults to {@linkcode ResoUtils.DEFAULT_ROOM_MATERIALS DEFAULT_ROOM_MATERIALS}.
- * @param {Number} options.speedOfSound
- * (in meters/second). Defaults to
- * {@linkcode ResoUtils.DEFAULT_SPEED_OF_SOUND DEFAULT_SPEED_OF_SOUND}.
- */
-class Room {
-  // Public variables.
-  /**
-   * EarlyReflections {@link EarlyReflections EarlyReflections} submodule.
-   * @member {AudioNode} early
-   * @memberof Room
-   * @instance
-   */
-  /**
-   * LateReflections {@link LateReflections LateReflections} submodule.
-   * @member {AudioNode} late
-   * @memberof Room
-   * @instance
-   */
-  /**
-   * Ambisonic (multichannel) output {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} output
-   * @memberof Room
-   * @instance
-   */
+/// @class Room
+/// Model that manages early and late reflections using acoustic
+/// properties and listener position relative to a rectangular room.
+/// [context]
+/// [options]
+/// [options.listenerPosition]
+/// The listener's initial position (in meters), where origin is the center of
+/// the room. Defaults to [ResoUtils.DEFAULT_POSITION DEFAULT_POSITION].
+/// [options.dimensions] Room dimensions (in meters). Defaults to
+/// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
+/// [options.materials] Named acoustic materials per wall.
+/// Defaults to [ResoUtils.DEFAULT_ROOM_MATERIALS DEFAULT_ROOM_MATERIALS].
+/// [options.speedOfSound]
+/// (in meters/second). Defaults to
+/// [ResoUtils.DEFAULT_SPEED_OF_SOUND DEFAULT_SPEED_OF_SOUND].
 
+class Room {
   EarlyReflections earlyReflections;
   LateReflections lateReflections;
   num speedOfSound;
@@ -249,14 +213,14 @@ class Room {
     options['dimensions'] = _sanitizeDimensions(options['dimensions']);
     Map<String, dynamic> absorptionCoefficients =
         _getCoefficientsFromMaterials(options['materials']);
-        print("absorption complete");
+    print("absorption complete");
     Map<String, dynamic> reflectionCoefficients =
         _computeReflectionCoefficients(absorptionCoefficients);
-                print("reflections complete");
+    print("reflections complete");
 
     List<num> durations = _getDurationsFromProperties(
         options['dimensions'], absorptionCoefficients, options['speedOfSound']);
-        print("dimension complete");
+    print("dimension complete");
 
     // Construct submodules for early and late reflections.
     earlyReflections = new EarlyReflections(context, {
@@ -280,13 +244,12 @@ class Room {
     _merger.connectNode(output);
   }
 
-/**
- * Set the room's dimensions and wall materials.
- * @param {ResoUtils~RoomDimensions} dimensions Room dimensions (in meters). Defaults to
- * {@linkcode ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS}.
- * @param {ResoUtils~RoomMaterials} materials Named acoustic materials per wall. Defaults to
- * {@linkcode ResoUtils.DEFAULT_ROOM_MATERIALS DEFAULT_ROOM_MATERIALS}.
- */
+  /// Set the room's dimensions and wall materials.
+  /// [dimensions] Room dimensions (in meters). Defaults to
+  /// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
+  /// [materials] Named acoustic materials per wall. Defaults to
+  /// [ResoUtils.DEFAULT_ROOM_MATERIALS DEFAULT_ROOM_MATERIALS].
+
   void setProperties(
       Map<String, dynamic> dimensions, Map<String, dynamic> materials) {
     // Compute late response.
@@ -303,13 +266,12 @@ class Room {
     earlyReflections.setRoomProperties(dimensions, reflectionCoefficients);
   }
 
-/**
- * Set the listener's position (in meters), where origin is the center of
- * the room.
- * @param {Number} x
- * @param {Number} y
- * @param {Number} z
- */
+  /// Set the listener's position (in meters), where origin is the center of
+  /// the room.
+  ///  [x]
+  ///  [y]
+  ///  [z]
+
   void setListenerPosition(num x, num y, num z) {
     earlyReflections.speedOfSound = speedOfSound;
     earlyReflections.setListenerPosition(x, y, z);
@@ -326,14 +288,12 @@ class Room {
     output.gain.value = gain;
   }
 
-/**
- * Compute distance outside room of provided position (in meters).
- * @param {Number} x
- * @param {Number} y
- * @param {Number} z
- * @return {Number}
- * Distance outside room (in meters). Returns 0 if inside room.
- */
+  /// Compute distance outside room of provided position (in meters).
+  ///  [x]
+  ///  [y]
+  ///  [z]
+  /// return Distance outside room (in meters). Returns 0 if inside room.
+
   num getDistanceOutsideRoom(num x, num y, num z) {
     num dx = max(
         0,

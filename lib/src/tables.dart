@@ -1,15 +1,15 @@
-/**
- * Pre-computed Spherical Harmonics Coefficients.
- *
- * This function generates an efficient lookup table of SH coefficients. It
- * exploits the way SHs are generated (i.e. Ylm = Nlm * Plm * Em). Since Nlm
- * & Plm coefficients only depend on theta, and Em only depends on phi, we
- * can separate the equation along these lines. Em does not depend on
- * degree, so we only need to compute (2 * l) per azimuth Em total and
- * Nlm * Plm is symmetrical across indexes, so only positive indexes are
- * computed ((l + 1) * (l + 2) / 2 - 1) per elevation.
- * @type {Float32Array}
- */
+
+ /// Pre-computed Spherical Harmonics Coefficients.
+ ///
+ /// This function generates an efficient lookup table of SH coefficients. It
+ /// exploits the way SHs are generated (i.e. Ylm = Nlm * Plm * Em). Since Nlm
+ /// & Plm coefficients only depend on theta, and Em only depends on phi, we
+ /// can separate the equation along these lines. Em does not depend on
+ /// degree, so we only need to compute (2 * l) per azimuth Em total and
+ /// Nlm * Plm is symmetrical across indexes, so only positive indexes are
+ /// computed ((l + 1) * (l + 2) / 2 - 1) per elevation.
+ /// @type 
+ 
 List<List<List<num>>> SPHERICAL_HARMONICS =
 [
   [
@@ -741,28 +741,23 @@ List<List<List<num>>> SPHERICAL_HARMONICS =
 ];
 
 
-/** @type {Number} */
 num SPHERICAL_HARMONICS_AZIMUTH_RESOLUTION =
   SPHERICAL_HARMONICS[0].length;
 
 
-/** @type {Number} */
 num SPHERICAL_HARMONICS_ELEVATION_RESOLUTION =
   SPHERICAL_HARMONICS[1].length;
 
 
-/**
- * The maximum allowed ambisonic order.
- * @type {Number}
- */
+
+ /// The maximum allowed ambisonic order. 
 num SPHERICAL_HARMONICS_MAX_ORDER =
   SPHERICAL_HARMONICS[0][0].length / 2;
 
 
-/**
- * Pre-computed per-band weighting coefficients for producing energy-preserving
- * Max-Re sources.
- */
+
+ /// Pre-computed per-band weighting coefficients for producing energy-preserving
+ /// Max-Re sources.
 List<List<num>> MAX_RE_WEIGHTS =
 [
   [1.000000, 1.000000, 1.000000, 1.000000],
@@ -1127,6 +1122,4 @@ List<List<num>> MAX_RE_WEIGHTS =
   [2.397469, 0.000001, 0.000000, 0.000000],
 ];
 
-
-/** @type {Number} */
 num MAX_RE_WEIGHTS_RESOLUTION = MAX_RE_WEIGHTS.length;

@@ -2,36 +2,23 @@ import 'dart:html';
 import 'dart:web_audio';
 import 'omni_utils.dart';
 
-/**
- * @file Streamlined AudioBuffer loader.
- */
-
-/**
- * @typedef {string} BufferDataType
- */
-
-/**
- * Buffer data type for ENUM.
- * @enum {BufferDataType}
- */
+ 
+ /// Buffer data Map.
 Map<String, String> BufferDataType = {
-  /** @type {string} The data contains Base64-encoded string.. */
+   @type {string} The data contains Base64-encoded string.. 
   'BASE64': 'base64',
-  /** @type {string} The data is a URL for audio file. */
+   @type {string} The data is a URL for audio file. 
   'URL': 'url',
 };
 
-/**
- * BufferList object mananges the async loading/decoding of multiple
- * AudioBuffers from multiple URLs.
- * @constructor
- * @param {BaseAudioContext} context - Associated BaseAudioContext.
- * @param {string[]} bufferData - An ordered list of URLs.
- * @param {Object} options - Options
- * @param {string} [options.dataType='base64'] - BufferDataType specifier.
- * @param {Boolean} [options.verbose=false] - Log verbosity. |true| prints the
- * individual message from each URL and AudioBuffer.
- */
+
+ /// BufferList object mananges the async loading/decoding of multiple
+ /// AudioBuffers from multiple URLs.
+ /// [context] - Associated BaseAudioContext.
+ /// [bufferData] - An ordered list of URLs.
+ /// [options] - Options
+ /// [options.dataType='base64'] - BufferDataType specifier.
+ /// individual message from each URL and AudioBuffer.
 class BufferList {
   BaseAudioContext _context;
   Map<String, dynamic> _options;
@@ -70,21 +57,18 @@ class BufferList {
     _rejectHandler = () {};
   }
 
-/**
- * Starts AudioBuffer loading tasks.
- * @return {Promise<AudioBuffer[]>} The promise resolves with an array of
- * AudioBuffer.
- */
+
+ /// Starts AudioBuffer loading tasks.
+ /// The promise resolves with an array of
+ /// AudioBuffer.
   Future<List<AudioBuffer>> load({Function resolve, Function reject}) {
     return _promiseGenerator(resolve: resolve, reject: reject);
   }
 
-/**
- * Promise argument generator. numernally starts multiple async loading tasks.
- * @private
- * @param {function} resolve Promise resolver.
- * @param {function} reject Promise reject.
- */
+
+ /// Promise argument generator. numernally starts multiple async loading tasks.
+ ///  [resolve] Future resolver.
+ ///  [reject] Future reject.
   _promiseGenerator({Function resolve, Function reject}) {
     if (resolve is! Function) {
       print('BufferList: Invalid Promise resolver.');
@@ -103,16 +87,13 @@ class BufferList {
     }
   }
 
-/**
- * Run async loading task for Base64-encoded string.
- * @private
- * @param {Number} taskId Task ID number from the ordered list |bufferData|.
- */
+
+ /// Run async loading task for Base64-encoded string.
+ /// [taskId] Task ID number from the ordered list |bufferData|.
   void _launchAsyncLoadTask(num taskId) {
     _context.decodeAudioData(
         OmniUtils.getArrayBufferFromBase64String(_bufferData[taskId]),
         (audioBuffer) {
-          print(audioBuffer);
       _updateProgress(taskId, audioBuffer);
     }, (errorMessage) {
       _updateProgress(taskId, null);
@@ -126,11 +107,9 @@ class BufferList {
     });
   }
 
-/**
- * Run async loading task via XHR for audio file URLs.
- * @private
- * @param {Number} taskId Task ID number from the ordered list |bufferData|.
- */
+
+ /// Run async loading task via XHR for audio file URLs.
+ /// [taskId] Task ID number from the ordered list |bufferData|.
   void _launchAsyncLoadTaskXHR(num taskId) {
     final xhr = new HttpRequest();
     xhr.open('GET', _bufferData[taskId]);
@@ -174,19 +153,16 @@ class BufferList {
     xhr.send();
   }
 
-/**
- * Updates the overall progress on loading tasks.
- * @param {Number} taskId Task ID number.
- * @param {AudioBuffer} audioBuffer Decoded AudioBuffer object.
- */
-  _updateProgress(taskId, audioBuffer) {
-    print(_bufferList);
-    print(audioBuffer);
+
+ /// Updates the overall progress on loading tasks.
+ ///  [taskId] Task ID number.
+ ///  [audioBuffer] Decoded AudioBuffer object.
+  _updateProgress(num taskId, AudioBuffer audioBuffer) {
     _bufferList.add(audioBuffer);
 
     if (_options['verbose']) {
       final messageString = _options['dataType'] == BufferDataType['BASE64']
-          ? 'ArrayBuffer(' + taskId + ') from Base64-encoded HRIR'
+          ? 'ArrayBuffer(' + taskId.toString() + ') from Base64-encoded HRIR'
           : '"' + _bufferData[taskId] + '"';
       print('BufferList: ' + messageString + ' successfully loaded.');
     }

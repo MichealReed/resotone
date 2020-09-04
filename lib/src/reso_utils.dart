@@ -1,123 +1,70 @@
+// Core Dependencies
 import 'dart:math';
 
-/**
- * @class Utils
- * @description A set of defaults, constants and utility functions.
- */
 class ResoUtils {
-/**
- * Default input gain (linear).
- * @type {Number}
- */
+  /// Default input gain (linear).
   static num DEFAULT_SOURCE_GAIN = 1;
 
-/**
- * Maximum outside-the-room distance to attenuate far-field listener by.
- * @type {Number}
- */
+  /// Maximum outside-the-room distance to attenuate far-field listener by.
+
   static num LISTENER_MAX_OUTSIDE_ROOM_DISTANCE = 1;
 
-/**
- * Maximum outside-the-room distance to attenuate far-field sources by.
- * @type {Number}
- */
+  /// Maximum outside-the-room distance to attenuate far-field sources by.
+
   static num SOURCE_MAX_OUTSIDE_ROOM_DISTANCE = 1;
 
-/**
- * Default distance from listener when setting angle.
- * @type {Number}
- */
+  /// Default distance from listener when setting angle.
   static num DEFAULT_SOURCE_DISTANCE = 1;
 
-/** @type {Float32Array} */
   static List<num> DEFAULT_POSITION = [0, 0, 0];
 
-/** @type {Float32Array} */
   static List<num> DEFAULT_FORWARD = [0, 0, -1];
 
-/** @type {Float32Array} */
   static List<num> DEFAULT_UP = [0, 1, 0];
 
-/** @type {Float32Array} */
   static List<num> DEFAULT_RIGHT = [1, 0, 0];
 
-/**
- * @type {Number}
- */
   static num DEFAULT_SPEED_OF_SOUND = 343;
 
-/** Rolloff models (e.g. 'logarithmic', 'linear', or 'none').
- * @type {Array}
- */
+  /// Rolloff models (e.g. 'logarithmic', 'linear', or 'none').
+
   static List<String> ATTENUATION_ROLLOFFS = ['logarithmic', 'linear', 'none'];
 
-/** Default rolloff model ('logarithmic').
- * @type {string}
- */
+  /// Default rolloff model ('logarithmic').
   static String DEFAULT_ATTENUATION_ROLLOFF = 'logarithmic';
 
-/** @type {Number} */
   static num DEFAULT_MIN_DISTANCE = 1;
 
-/** @type {Number} */
   static num DEFAULT_MAX_DISTANCE = 1000;
 
-/**
- * The default alpha (i.e. microphone pattern).
- * @type {Number}
- */
+  /// The default alpha (i.e. microphone pattern).
   static num DEFAULT_DIRECTIVITY_ALPHA = 0;
 
-/**
- * The default pattern sharpness (i.e. pattern exponent).
- * @type {Number}
- */
+  /// The default pattern sharpness (i.e. pattern exponent).
   static num DEFAULT_DIRECTIVITY_SHARPNESS = 1;
 
-/**
- * Default azimuth (in degrees). Suitable range is 0 to 360.
- * @type {Number}
- */
+  /// Default azimuth (in degrees). Suitable range is 0 to 360.
   static num DEFAULT_AZIMUTH = 0;
 
-/**
- * Default elevation (in degres).
- * Suitable range is from -90 (below) to 90 (above).
- * @type {Number}
- */
+  /// Default elevation (in degres).
+  /// Suitable range is from -90 (below) to 90 (above).
   static num DEFAULT_ELEVATION = 0;
 
-/**
- * The default ambisonic order.
- * @type {Number}
- */
+  /// The default ambisonic order.
   static num DEFAULT_AMBISONIC_ORDER = 1;
 
-/**
- * The default source width.
- * @type {Number}
- */
+  /// The default source width.
   static num DEFAULT_SOURCE_WIDTH = 0;
 
-/**
- * The maximum delay (in seconds) of a single wall reflection.
- * @type {Number}
- */
+  /// The maximum delay (in seconds) of a single wall reflection.
   static num DEFAULT_REFLECTION_MAX_DURATION = 0.5;
 
-/**
- * The -12dB cutoff frequency (in Hertz) for the lowpass filter applied to
- * all reflections.
- * @type {Number}
- */
+  /// The -12dB cutoff frequency (in Hertz) for the lowpass filter applied to
+  /// all reflections.
   static num DEFAULT_REFLECTION_CUTOFF_FREQUENCY = 6400; // Uses -12dB cutoff.
 
-/**
- * The default reflection coefficients (where 0 = no reflection, 1 = perfect
- * reflection, -1 = mirrored reflection (180-degrees out of phase)).
- * @type {Object}
- */
-
+  /// The default reflection coefficients (where 0 = no reflection, 1 = perfect
+  /// reflection, -1 = mirrored reflection (180-degrees out of phase)).
   static Map<String, dynamic> DEFAULT_REFLECTION_COEFFICIENTS = {
     "left": 0,
     "right": 0,
@@ -127,68 +74,41 @@ class ResoUtils {
     "up": 0,
   };
 
-/**
- * The minimum distance we consider the listener to be to any given wall.
- * @type {Number}
- */
+  /// The minimum distance we consider the listener to be to any given wall.
   static num DEFAULT_REFLECTION_MIN_DISTANCE = 1;
 
-/**
- * Default room dimensions (in meters).
- * @type {Object}
- */
+  /// Default room dimensions (in meters).
   static Map<String, dynamic> DEFAULT_ROOM_DIMENSIONS = {
     "width": 0,
     "height": 0,
     "depth": 0,
   };
 
-/**
- * The multiplier to apply to distances from the listener to each wall.
- * @type {Number}
- */
+  /// The multiplier to apply to distances from the listener to each wall.
   static num DEFAULT_REFLECTION_MULTIPLIER = 1;
 
-/** The default bandwidth (in octaves) of the center frequencies.
- * @type {Number}
- */
+  /// The default bandwidth (in octaves) of the center frequencies.
   static num DEFAULT_REVERB_BANDWIDTH = 1;
 
-/** The default multiplier applied when computing tail lengths.
- * @type {Number}
- */
+  /// The default multiplier applied when computing tail lengths.
   static num DEFAULT_REVERB_DURATION_MULTIPLIER = 1;
 
-/**
- * The late reflections pre-delay (in milliseconds).
- * @type {Number}
- */
+  /// The late reflections pre-delay (in milliseconds).
   static num DEFAULT_REVERB_PREDELAY = 1.5;
 
-/**
- * The length of the beginning of the impulse response to apply a
- * half-Hann window to.
- * @type {Number}
- */
+  /// The length of the beginning of the impulse response to apply a
+  /// half-Hann window to.
   static num DEFAULT_REVERB_TAIL_ONSET = 3.8;
 
-/**
- * The default gain (linear).
- * @type {Number}
- */
+  /// The default gain (linear).
   static num DEFAULT_REVERB_GAIN = 0.01;
 
-/**
- * The maximum impulse response length (in seconds).
- * @type {Number}
- */
+  /// The maximum impulse response length (in seconds).
+
   static num DEFAULT_REVERB_MAX_DURATION = 3;
 
-/**
- * Center frequencies of the multiband late reflections.
- * Nine bands are computed by: 31.25 * 2^(0:8).
- * @type {Array}
- */
+  /// Center frequencies of the multiband late reflections.
+  /// Nine bands are computed by: 31.25 /// 2^(0:8).
   static List<num> DEFAULT_REVERB_FREQUENCY_BANDS = [
     31.25,
     62.5,
@@ -201,49 +121,41 @@ class ResoUtils {
     8000,
   ];
 
-/**
- * The number of frequency bands.
- */
+  /// The number of frequency bands.
   static num NUMBER_REVERB_FREQUENCY_BANDS =
       DEFAULT_REVERB_FREQUENCY_BANDS.length;
 
-/**
- * The default multiband RT60 durations (in seconds).
- * @type {Float32Array}
- */
+  /// The default multiband RT60 durations (in seconds).
   static List<num> DEFAULT_REVERB_DURATIONS =
       new List<num>(ResoUtils.NUMBER_REVERB_FREQUENCY_BANDS);
 
-/**
- * Pre-defined frequency-dependent absorption coefficients for listed materials.
- * Currently supported materials are:
- * <ul>
- * <li>'transparent'</li>
- * <li>'acoustic-ceiling-tiles'</li>
- * <li>'brick-bare'</li>
- * <li>'brick-panumed'</li>
- * <li>'concrete-block-coarse'</li>
- * <li>'concrete-block-panumed'</li>
- * <li>'curtain-heavy'</li>
- * <li>'fiber-glass-insulation'</li>
- * <li>'glass-thin'</li>
- * <li>'glass-thick'</li>
- * <li>'grass'</li>
- * <li>'linoleum-on-concrete'</li>
- * <li>'marble'</li>
- * <li>'metal'</li>
- * <li>'parquet-on-concrete'</li>
- * <li>'plaster-smooth'</li>
- * <li>'plywood-panel'</li>
- * <li>'polished-concrete-or-tile'</li>
- * <li>'sheetrock'</li>
- * <li>'water-or-ice-surface'</li>
- * <li>'wood-ceiling'</li>
- * <li>'wood-panel'</li>
- * <li>'uniform'</li>
- * </ul>
- * @type {Object}
- */
+  /// Pre-defined frequency-dependent absorption coefficients for listed materials.
+  /// Currently supported materials are:
+  /// <ul>
+  /// <li>'transparent'</li>
+  /// <li>'acoustic-ceiling-tiles'</li>
+  /// <li>'brick-bare'</li>
+  /// <li>'brick-panumed'</li>
+  /// <li>'concrete-block-coarse'</li>
+  /// <li>'concrete-block-panumed'</li>
+  /// <li>'curtain-heavy'</li>
+  /// <li>'fiber-glass-insulation'</li>
+  /// <li>'glass-thin'</li>
+  /// <li>'glass-thick'</li>
+  /// <li>'grass'</li>
+  /// <li>'linoleum-on-concrete'</li>
+  /// <li>'marble'</li>
+  /// <li>'metal'</li>
+  /// <li>'parquet-on-concrete'</li>
+  /// <li>'plaster-smooth'</li>
+  /// <li>'plywood-panel'</li>
+  /// <li>'polished-concrete-or-tile'</li>
+  /// <li>'sheetrock'</li>
+  /// <li>'water-or-ice-surface'</li>
+  /// <li>'wood-ceiling'</li>
+  /// <li>'wood-panel'</li>
+  /// <li>'uniform'</li>
+  /// </ul>
   static Map<String, List<num>> ROOM_MATERIAL_COEFFICIENTS = {
     'transparent': [
       1.000,
@@ -471,11 +383,8 @@ class ResoUtils {
     'uniform': [0.500, 0.500, 0.500, 0.500, 0.500, 0.500, 0.500, 0.500, 0.500],
   };
 
-/**
- * Default materials that use strings from
- * {@linkcode Utils.MATERIAL_COEFFICIENTS MATERIAL_COEFFICIENTS}
- * @type {Object}
- */
+  /// Default materials that use strings from
+  /// [ResoUtils.MATERIAL_COEFFICIENTS MATERIAL_COEFFICIENTS]
   static Map<String, String> DEFAULT_ROOM_MATERIALS = {
     'left': 'transparent',
     'right': 'transparent',
@@ -485,28 +394,17 @@ class ResoUtils {
     'up': 'transparent',
   };
 
-/**
- * The number of bands to average over when computing reflection coefficients.
- * @type {Number}
- */
+  /// The number of bands to average over when computing reflection coefficients.
   static num NUMBER_REFLECTION_AVERAGING_BANDS = 3;
 
-/**
- * The starting band to average over when computing reflection coefficients.
- * @type {Number}
- */
+  /// The starting band to average over when computing reflection coefficients.
   static num ROOM_STARTING_AVERAGING_BAND = 4;
 
-/**
- * The minimum threshold for room volume.
- * Room model is disabled if volume is below this value.
- * @type {Number} */
+  /// The minimum threshold for room volume.
+  /// Room model is disabled if volume is below this value.
   static num ROOM_MIN_VOLUME = 1e-4;
 
-/**
- * Air absorption coefficients per frequency band.
- * @type {Float32Array}
- */
+  /// Air absorption coefficients per frequency band.
   static List<num> ROOM_AIR_ABSORPTION_COEFFICIENTS = [
     0.0006,
     0.0006,
@@ -519,61 +417,27 @@ class ResoUtils {
     0.0207
   ];
 
-/**
- * A scalar correction value to ensure Sabine and Eyring produce the same RT60
- * value at the cross-over threshold.
- * @type {Number}
- */
+  /// A scalar correction value to ensure Sabine and Eyring produce the same RT60
+  /// value at the cross-over threshold.
   static num ROOM_EYRING_CORRECTION_COEFFICIENT = 1.38;
 
-/**
- * @type {Number}
- * @private
- */
   static num TWO_PI = 6.28318530717959;
 
-/**
- * @type {Number}
- * @private
- */
   static num TWENTY_FOUR_LOG10 = 55.2620422318571;
 
-/**
- * @type {Number}
- * @private
- */
   static num LOG1000 = 6.90775527898214;
 
-/**
- * @type {Number}
- * @private
- */
   static num LOG2_DIV2 = 0.346573590279973;
 
-/**
- * @type {Number}
- * @private
- */
   static num DEGREES_TO_RADIANS = 0.017453292519943;
 
-/**
- * @type {Number}
- * @private
- */
   static num RADIANS_TO_DEGREES = 57.295779513082323;
 
-/**
- * @type {Number}
- * @private
- */
   static num EPSILON_FLOAT = 1e-8;
 
-/**
- * Normalize a 3-d vector.
- * @param {Float32Array} v 3-element vector.
- * @return {Float32Array} 3-element vector.
- * @private
- */
+  /// Normalize a 3-d vector.
+  /// [v] 3-element vector.
+  /// return 3-element vector.
   static List<num> normalizeVector(List<num> v) {
     num n = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
     if (n > EPSILON_FLOAT) {
@@ -585,13 +449,10 @@ class ResoUtils {
     return v;
   }
 
-/**
- * Cross-product between two 3-d vectors.
- * @param {Float32Array} a 3-element vector.
- * @param {Float32Array} b 3-element vector.
- * @return {Float32Array}
- * @private
- */
+  /// Cross-product between two 3-d vectors.
+  ///   [a] 3-element vector.
+  ///   [b] 3-element vector.
+
   static List<num> crossProduct(List<num> a, List<num> b) {
     return [
       a[1] * b[2] - a[2] * b[1],

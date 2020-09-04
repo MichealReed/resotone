@@ -1,60 +1,26 @@
+// Core dependencies
 import 'dart:math';
 import 'dart:web_audio';
 
-/**
- * @file Ray-tracing-based early reflections model.
- * @author Andrew Allen <bitllama@google.com>
- */
-
-// Internal dependencies.
+// Internal dependencies
 import 'reso_utils.dart';
 
-/**
- * @class EarlyReflections
- * @description Ray-tracing-based early reflections model.
- * @param {AudioContext} context
- * Associated {@link
-https://developer.mozilla.org/en-US/docs/Web/API/AudioContext AudioContext}.
- * @param {Object} options
- * @param {ResoUtils~RoomDimensions} options.dimensions
- * Room dimensions (in meters). Defaults to
- * {@linkcode ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS}.
- * @param {Object} options.coefficients
- * Frequency-independent reflection coeffs per wall. Defaults to
- * {@linkcode ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS
- * DEFAULT_REFLECTION_COEFFICIENTS}.
- * @param {Number} options.speedOfSound
- * (in meters / second). Defaults to {@linkcode ResoUtils.DEFAULT_SPEED_OF_SOUND
- * DEFAULT_SPEED_OF_SOUND}.
- * @param {Float32Array} options.listenerPosition
- * (in meters). Defaults to
- * {@linkcode ResoUtils.DEFAULT_POSITION DEFAULT_POSITION}.
- */
+/// Ray-tracing-based early reflections model.
+/// [context]
+/// [options]
+/// [options.dimensions]
+/// Room dimensions (in meters). Defaults to
+/// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
+/// [options.coefficients]
+/// Frequency-independent reflection coeffs per wall. Defaults to
+/// [ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS]
+/// [options.speedOfSound]
+/// (in meters / second). Defaults to [ResoUtils.DEFAULT_SPEED_OF_SOUND]
+/// [options.listenerPosition]
+/// (in meters). Defaults to
+/// [ResoUtils.DEFAULT_POSITION].
+
 class EarlyReflections {
-  // Public variables.
-  /**
-   * The room's speed of sound (in meters/second).
-   * @member {Number} speedOfSound
-   * @memberof EarlyReflections
-   * @instance
-   */
-  /**
-   * Mono (1-channel) input {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} input
-   * @memberof EarlyReflections
-   * @instance
-   */
-  /**
-   * First-order ambisonic (4-channel) output {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} output
-   * @memberof EarlyReflections
-   * @instance
-   */
-
-  // Use defaults for null arguments.
-
   num speedOfSound;
   GainNode input;
   GainNode output;
@@ -163,13 +129,12 @@ class EarlyReflections {
     setRoomProperties(options['dimensions'], options['coefficients']);
   }
 
-/**
- * Set the listener's position (in meters),
- * where [0,0,0] is the center of the room.
- * @param {Number} x
- * @param {Number} y
- * @param {Number} z
- */
+  /// Set the listener's position (in meters),
+  /// where 0,0,0 is the center of the room.
+  /// [x]
+  /// [y]
+  /// [z]
+
   void setListenerPosition(num x, num y, num z) {
     // Assign listener position.
     _listenerPosition = [x, y, z];
@@ -197,7 +162,6 @@ class EarlyReflections {
     };
 
     // Assign delay & attenuation values using distances.
-
     ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.forEach((property, value) {
       if (ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.containsKey(property)) {
         // Compute and assign delay (in seconds).
@@ -211,17 +175,13 @@ class EarlyReflections {
     });
   }
 
-/**
- * Set the room's properties which determines the characteristics of
- * reflections.
- * @param {ResoUtils~RoomDimensions} dimensions
- * Room dimensions (in meters). Defaults to
- * {@linkcode ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS}.
- * @param {Object} coefficients
- * Frequency-independent reflection coeffs per wall. Defaults to
- * {@linkcode ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS
- * DEFAULT_REFLECTION_COEFFICIENTS}.
- */
+  /// Set the room's properties which determines the characteristics of
+  /// reflections.
+  /// Room [dimensions] (in meters). Defaults to
+  /// [ResoUtils.DEFAULT_ROOM_DIMENSIONS DEFAULT_ROOM_DIMENSIONS].
+  /// [coefficients]
+  /// Frequency-independent reflection coeffs per wall. Defaults to
+  /// [ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS]
   void setRoomProperties(
       Map<String, dynamic> dimensions, Map<String, dynamic> coefficients) {
     if (dimensions == null) {

@@ -1,10 +1,7 @@
 import 'dart:web_audio';
 
-/**
- * First-order-ambisonic decoder based on gain node network.
- * @constructor
- * @param {AudioContext} context - Associated AudioContext.
- */
+/// First-order-ambisonic decoder based on gain node network.
+/// [context] - Associated AudioContext.
 class FOARotator {
   AudioContext _context;
   ChannelSplitterNode _splitter;
@@ -58,9 +55,9 @@ class FOARotator {
     _inX.gain.value = -1;
 
     // Apply the rotation in the world space.
-    // |Y|   | m0  m3  m6 |   | Y * m0 + Z * m3 + X * m6 |   | Yr |
-    // |Z| * | m1  m4  m7 | = | Y * m1 + Z * m4 + X * m7 | = | Zr |
-    // |X|   | m2  m5  m8 |   | Y * m2 + Z * m5 + X * m8 |   | Xr |
+    // |Y|   | m0  m3  m6 |   | Y /// m0 + Z /// m3 + X /// m6 |   | Yr |
+    // |Z| /// | m1  m4  m7 | = | Y /// m1 + Z /// m4 + X /// m7 | = | Zr |
+    // |X|   | m2  m5  m8 |   | Y /// m2 + Z /// m5 + X /// m8 |   | Xr |
     _inY.connectNode(_m0);
     _inY.connectNode(_m1);
     _inY.connectNode(_m2);
@@ -99,10 +96,8 @@ class FOARotator {
     output = _merger;
   }
 
-/**
- * Updates the rotation matrix with 3x3 matrix.
- * @param {Number[]} rotationMatrix3 - A 3x3 rotation matrix. (column-major)
- */
+  /// Updates the rotation matrix with 3x3 matrix.
+  /// [rotationMatrix3] - A 3x3 rotation matrix. (column-major)
   void setRotationMatrix3(rotationMatrix3) {
     _m0.gain.value = rotationMatrix3[0];
     _m1.gain.value = rotationMatrix3[1];
@@ -115,10 +110,8 @@ class FOARotator {
     _m8.gain.value = rotationMatrix3[8];
   }
 
-/**
- * Updates the rotation matrix with 4x4 matrix.
- * @param {Number[]} rotationMatrix4 - A 4x4 rotation matrix. (column-major)
- */
+  /// Updates the rotation matrix with 4x4 matrix.
+  /// [rotationMatrix4] - A 4x4 rotation matrix. (column-major)
   void setRotationMatrix4(rotationMatrix4) {
     _m0.gain.value = rotationMatrix4[0];
     _m1.gain.value = rotationMatrix4[1];
@@ -131,10 +124,8 @@ class FOARotator {
     _m8.gain.value = rotationMatrix4[10];
   }
 
-/**
- * Returns the current 3x3 rotation matrix.
- * @return {Number[]} - A 3x3 rotation matrix. (column-major)
- */
+  /// Returns the current 3x3 rotation matrix.
+  /// return - A 3x3 rotation matrix. (column-major)
   List<num> getRotationMatrix3() {
     return [
       _m0.gain.value,
@@ -149,10 +140,8 @@ class FOARotator {
     ];
   }
 
-/**
- * Returns the current 4x4 rotation matrix.
- * @return {Number[]} - A 4x4 rotation matrix. (column-major)
- */
+  /// Returns the current 4x4 rotation matrix.
+  /// return - A 4x4 rotation matrix. (column-major)
   List<num> getRotationMatrix4() {
     final rotationMatrix4 = new List<double>(16);
     rotationMatrix4[0] = _m0.gain.value;

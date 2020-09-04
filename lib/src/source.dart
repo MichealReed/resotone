@@ -1,90 +1,50 @@
-/**
- * @license
- * Copyright 2017 Google Inc. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+// Core dependencies
 import 'dart:math';
 import 'dart:web_audio';
 
-/**
- * @file Source model to spatialize an audio buffer.
- * @author Andrew Allen <bitllama@google.com>
- */
-
-// Internal dependencies.
+// Internal dependencies
 import 'directivity.dart';
 import 'attenuation.dart';
 import 'encoder.dart';
 import 'reso_utils.dart';
 import 'resonance_audio.dart';
 
-/**
- * Options for constructing a new Source.
- * @typedef {Object} Source~SourceOptions
- * @property {List<num>} position
- * The source's initial position (in meters), where origin is the center of
- * the room. Defaults to {@linkcode ResoUtils.DEFAULT_POSITION DEFAULT_POSITION}.
- * @property {List<num>} forward
- * The source's initial forward vector. Defaults to
- * {@linkcode ResoUtils.DEFAULT_FORWARD DEFAULT_FORWARD}.
- * @property {List<num>} up
- * The source's initial up vector. Defaults to
- * {@linkcode ResoUtils.DEFAULT_UP DEFAULT_UP}.
- * @property {Number} minDistance
- * Min. distance (in meters). Defaults to
- * {@linkcode ResoUtils.DEFAULT_MIN_DISTANCE DEFAULT_MIN_DISTANCE}.
- * @property {Number} maxDistance
- * Max. distance (in meters). Defaults to
- * {@linkcode ResoUtils.DEFAULT_MAX_DISTANCE DEFAULT_MAX_DISTANCE}.
- * @property {string} rolloff
- * Rolloff model to use, chosen from options in
- * {@linkcode ResoUtils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS}. Defaults to
- * {@linkcode ResoUtils.DEFAULT_ATTENUATION_ROLLOFF DEFAULT_ATTENUATION_ROLLOFF}.
- * @property {Number} gain Input gain (linear). Defaults to
- * {@linkcode ResoUtils.DEFAULT_SOURCE_GAIN DEFAULT_SOURCE_GAIN}.
- * @property {Number} alpha Directivity alpha. Defaults to
- * {@linkcode ResoUtils.DEFAULT_DIRECTIVITY_ALPHA DEFAULT_DIRECTIVITY_ALPHA}.
- * @property {Number} sharpness Directivity sharpness. Defaults to
- * {@linkcode ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS
- * DEFAULT_DIRECTIVITY_SHARPNESS}.
- * @property {Number} sourceWidth
- * Source width (in degrees). Where 0 degrees is a point source and 360 degrees
- * is an omnidirectional source. Defaults to
- * {@linkcode ResoUtils.DEFAULT_SOURCE_WIDTH DEFAULT_SOURCE_WIDTH}.
- */
+/// Options for constructing a new Source.
+/// [position]
+/// The source's initial position (in meters), where origin is the center of
+/// the room. Defaults to [ResoUtils.DEFAULT_POSITION DEFAULT_POSITION].
+/// [forward]
+/// The source's initial forward vector. Defaults to
+/// [ResoUtils.DEFAULT_FORWARD DEFAULT_FORWARD]
+/// [up]
+/// The source's initial up vector. Defaults to
+/// [ResoUtils.DEFAULT_UP DEFAULT_UP].
+/// [minDistance]
+/// Min. distance (in meters). Defaults to
+/// [ResoUtils.DEFAULT_MIN_DISTANCE DEFAULT_MIN_DISTANCE].
+/// [maxDistance]
+/// Max. distance (in meters). Defaults to
+/// [ResoUtils.DEFAULT_MAX_DISTANCE DEFAULT_MAX_DISTANCE].
+/// [rolloff]
+/// Rolloff model to use, chosen from options in
+/// [ResoUtils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS]. Defaults to
+/// [ResoUtils.DEFAULT_ATTENUATION_ROLLOFF DEFAULT_ATTENUATION_ROLLOFF].
+/// [gain] Input gain (linear). Defaults to
+/// [ResoUtils.DEFAULT_SOURCE_GAIN DEFAULT_SOURCE_GAIN]}.
+/// [alpha] Directivity alpha. Defaults to
+/// [ResoUtils.DEFAULT_DIRECTIVITY_ALPHA DEFAULT_DIRECTIVITY_ALPHA].
+/// [sharpness] Directivity sharpness. Defaults to
+/// [ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS]
+/// [sourceWidth]
+/// Source width (in degrees). Where 0 degrees is a point source and 360 degrees
+/// is an omnidirectional source. Defaults to
+/// [ResoUtils.DEFAULT_SOURCE_WIDTH DEFAULT_SOURCE_WIDTH].
 
-/**
- * @class Source
- * @description Source model to spatialize an audio buffer.
- * @param {ResonanceAudio} scene Associated {@link ResonanceAudio
- * ResonanceAudio} instance.
- * @param {Source~SourceOptions} options
- * Options for constructing a new Source.
- */
+/// Source model to spatialize an audio buffer.
+/// [scene] - Associated ResonanceAudio instance.
+/// [options] - Options for constructing a new Source.
+
 class Source {
-  // Public variables.
-  /**
-   * Mono (1-channel) input {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} input
-   * @memberof Source
-   * @instance
-   */
-  /**
-   *
-   */
-
   Source(ResonanceAudio scene, Map<String, dynamic> options) {
     // Use defaults for null arguments.
     if (options == null) {
@@ -180,13 +140,12 @@ class Source {
   Attenuation _attenuation;
   Encoder _encoder;
 
-/**
- * Set source's position (in meters), where origin is the center of
- * the room.
- * @param {Number} x
- * @param {Number} y
- * @param {Number} z
- */
+  /// Set source's position (in meters), where origin is the center of
+  /// the room.
+  ///  x
+  ///  y
+  ///  z
+
   void setPosition(num x, num y, num z) {
     // Assign new position.
     _position[0] = x;
@@ -228,49 +187,43 @@ class Source {
     _encoder.setDirection(azimuth, elevation);
   }
 
-/**
- * Set source's rolloff.
- * @param {string} rolloff
- * Rolloff model to use, chosen from options in
- * {@linkcode ResoUtils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS}.
- */
+  /// Set source's [rolloff].
+  /// Rolloff model to use, chosen from options in
+  /// [ResoUtils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS].
+
   void setRolloff(String rolloff) {
     _attenuation.setRolloff(rolloff);
   }
 
-/**
- * Set source's minimum distance (in meters).
- * @param {Number} minDistance
- */
+  /// Set source's minimum distance (in meters).
+  /// [minDistance]
+
   void setMinDistance(num minDistance) {
     _attenuation.minDistance = minDistance;
   }
 
-/**
- * Set source's maximum distance (in meters).
- * @param {Number} maxDistance
- */
+  /// Set source's maximum distance (in meters).
+  /// [maxDistance]
+
   void setMaxDistance(num maxDistance) {
     _attenuation.maxDistance = maxDistance;
   }
 
-/**
- * Set source's gain (linear).
- * @param {Number} gain
- */
+  /// Set source's gain (linear).
+  /// [gain]
+
   void setGain(num gain) {
     input.gain.value = gain;
   }
 
-/**
- * Set the source's orientation using forward and up vectors.
- * @param {Number} forwardX
- * @param {Number} forwardY
- * @param {Number} forwardZ
- * @param {Number} upX
- * @param {Number} upY
- * @param {Number} upZ
- */
+  /// Set the source's orientation using forward and up vectors.
+  ///  [forwardX]
+  ///  [forwardY]
+  ///  [forwardZ]
+  ///  [upX]
+  ///  [upY]
+  ///  [upZ]
+
   void setOrientation(
       num forwardX, num forwardY, num forwardZ, num upX, num upY, num upZ) {
     _forward[0] = forwardX;
@@ -282,37 +235,33 @@ class Source {
     _right = ResoUtils.crossProduct(_forward, _up);
   }
 
-/**
- * Set the source width (in degrees). Where 0 degrees is a point source and 360
- * degrees is an omnidirectional source.
- * @param {Number} sourceWidth (in degrees).
- */
+  /// Set the source width (in degrees). Where 0 degrees is a point source and 360
+  /// degrees is an omnidirectional source.
+  /// [sourceWidth] (in degrees).
+
   void setSourceWidth(num sourceWidth) {
     _encoder.setSourceWidth(sourceWidth);
     setPosition(_position[0], _position[1], _position[2]);
   }
 
-/**
- * Set source's directivity pattern (defined by alpha), where 0 is an
- * omnidirectional pattern, 1 is a bidirectional pattern, 0.5 is a cardiod
- * pattern. The sharpness of the pattern is increased exponentially.
- * @param {Number} alpha
- * Determines directivity pattern (0 to 1).
- * @param {Number} sharpness
- * Determines the sharpness of the directivity pattern (1 to Inf).
- */
+  /// Set source's directivity pattern (defined by alpha), where 0 is an
+  /// omnidirectional pattern, 1 is a bidirectional pattern, 0.5 is a cardiod
+  /// pattern. The sharpness of the pattern is increased exponentially.
+  /// [alpha]
+  /// Determines directivity pattern (0 to 1).
+  /// [sharpness]
+  /// Determines the sharpness of the directivity pattern (1 to Inf).
+
   void setDirectivityPattern(num alpha, num sharpness) {
     _directivity.setPattern(alpha, sharpness);
     setPosition(_position[0], _position[1], _position[2]);
   }
 
-/**
- * Determine the distance a source is outside of a room. Attenuate gain going
- * to the reflections and reverb when the source is outside of the room.
- * @param {Number} distance Distance in meters.
- * @return {Number} Gain (linear) of source.
- * @private
- */
+  /// Determine the distance a source is outside of a room. Attenuate gain going
+  /// to the reflections and reverb when the source is outside of the room.
+  /// [distance] Distance in meters.
+  /// return Gain (linear) of source.
+
   num _computeDistanceOutsideRoom(num distance) {
     // We apply a linear ramp from 1 to 0 as the source is up to 1m outside.
     num gain = 1;

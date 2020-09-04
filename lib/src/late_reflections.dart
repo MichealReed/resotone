@@ -1,37 +1,28 @@
 import 'dart:math';
 import 'dart:web_audio';
 
-/**
- * @file Late reverberation filter for Ambisonic content.
- * @author Andrew Allen <bitllama@google.com>
- */
+/// @file Late reverberation filter for Ambisonic content.
+/// @author Andrew Allen <bitllama@google.com>
 
 // Internal dependencies.
 import 'reso_utils.dart';
 
-/**
- * @class LateReflections
- * @description Late-reflections reverberation filter for Ambisonic content.
- * @param {AudioContext} context
- * Associated {@link
-https://developer.mozilla.org/en-US/docs/Web/API/AudioContext AudioContext}.
- * @param {Object} options
- * @param {Array} options.durations
- * Multiband RT60 durations (in seconds) for each frequency band, listed as
- * {@linkcode ResoUtils.DEFAULT_REVERB_FREQUENCY_BANDS
- * FREQUDEFAULT_REVERB_FREQUENCY_BANDSENCY_BANDS}. Defaults to
- * {@linkcode ResoUtils.DEFAULT_REVERB_DURATIONS DEFAULT_REVERB_DURATIONS}.
- * @param {Number} options.predelay Pre-delay (in milliseconds). Defaults to
- * {@linkcode ResoUtils.DEFAULT_REVERB_PREDELAY DEFAULT_REVERB_PREDELAY}.
- * @param {Number} options.gain Output gain (linear). Defaults to
- * {@linkcode ResoUtils.DEFAULT_REVERB_GAIN DEFAULT_REVERB_GAIN}.
- * @param {Number} options.bandwidth Bandwidth (in octaves) for each frequency
- * band. Defaults to
- * {@linkcode ResoUtils.DEFAULT_REVERB_BANDWIDTH DEFAULT_REVERB_BANDWIDTH}.
- * @param {Number} options.tailonset Length (in milliseconds) of impulse
- * response to apply a half-Hann window. Defaults to
- * {@linkcode ResoUtils.DEFAULT_REVERB_TAIL_ONSET DEFAULT_REVERB_TAIL_ONSET}.
- */
+/// Late-reflections reverberation filter for Ambisonic content.
+/// [context]
+/// [options]
+/// [options.durations]
+/// Multiband RT60 durations (in seconds) for each frequency band, listed as
+/// Defaults to [ResoUtils.DEFAULT_REVERB_DURATIONS].
+/// [options.predelay] Pre-delay (in milliseconds). Defaults to
+/// [ResoUtils.DEFAULT_REVERB_PREDELAY DEFAULT_REVERB_PREDELAY].
+/// [options.gain] Output gain (linear). Defaults to
+/// [ResoUtils.DEFAULT_REVERB_GAIN DEFAULT_REVERB_GAIN].
+/// [options.bandwidth] Bandwidth (in octaves) for each frequency
+/// band. Defaults to[ResoUtils.DEFAULT_REVERB_BANDWIDTH DEFAULT_REVERB_BANDWIDTH].
+/// [options.tailonset] Length (in milliseconds) of impulse
+/// response to apply a half-Hann window. Defaults to
+/// [ResoUtils.DEFAULT_REVERB_TAIL_ONSET DEFAULT_REVERB_TAIL_ONSET].
+
 class LateReflections {
   num _bandwidthCoeff;
   num _tailonsetSamples;
@@ -42,22 +33,6 @@ class LateReflections {
   GainNode output;
 
   LateReflections(AudioContext context, Map<String, dynamic> options) {
-    // Public variables.
-    /**
-   * Mono (1-channel) input {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} input
-   * @memberof LateReflections
-   * @instance
-   */
-    /**
-   * Mono (1-channel) output {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} output
-   * @memberof LateReflections
-   * @instance
-   */
-
     // Use defaults for null arguments.
     if (options == null) {
       options = {};
@@ -105,13 +80,12 @@ class LateReflections {
     setDurations(options['durations']);
   }
 
-/**
- * Re-compute a new impulse response by providing Multiband RT60 durations.
- * @param {Array} durations
- * Multiband RT60 durations (in seconds) for each frequency band, listed as
- * {@linkcode ResoUtils.DEFAULT_REVERB_FREQUENCY_BANDS
- * DEFAULT_REVERB_FREQUENCY_BANDS}.
- */
+  /// Re-compute a new impulse response by providing Multiband RT60 durations.
+  ///  durations
+  /// Multiband RT60 durations (in seconds) for each frequency band, listed as
+  /// ResoUtils.DEFAULT_REVERB_FREQUENCY_BANDS
+  /// DEFAULT_REVERB_FREQUENCY_BANDS}.
+
   void setDurations(List<num> durations) {
     if (durations.length != ResoUtils.NUMBER_REVERB_FREQUENCY_BANDS) {
       print('Warning: invalid number of RT60 values provided to reverb.');
@@ -167,7 +141,7 @@ class LateReflections {
       num decayRate = -ResoUtils.LOG1000 / durationsSamples[i];
 
       // Construct a standard one-zero, two-pole bandpass filter:
-      // H(z) = (b0 * z^0 + b1 * z^-1 + b2 * z^-2) / (1 + a1 * z^-1 + a2 * z^-2)
+      // H(z) = (b0 /// z^0 + b1 /// z^-1 + b2 /// z^-2) / (1 + a1 /// z^-1 + a2 /// z^-2)
       num omega = ResoUtils.TWO_PI *
           ResoUtils.DEFAULT_REVERB_FREQUENCY_BANDS[i] /
           sampleRate;
@@ -180,8 +154,8 @@ class LateReflections {
 
       // We optimize since b2 = -b0, b1 = 0.
       // Update equation for two-pole bandpass filter:
-      //   u[n] = x[n] - a1 * x[n-1] - a2 * x[n-2]
-      //   y[n] = b0 * (u[n] - u[n-2])
+      //   u[n] = x[n] - a1 /// x[n-1] - a2 /// x[n-2]
+      //   y[n] = b0 /// (u[n] - u[n-2])
       num um1 = 0;
       num um2 = 0;
       for (num j = 0; j < durationsSamples[i]; j++) {

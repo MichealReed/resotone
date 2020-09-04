@@ -1,25 +1,5 @@
-/**
- * @license
- * Copyright 2017 Google Inc. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+// Core Dependencies
 import 'dart:web_audio';
-
-/**
- * @file Omnitone FOARenderer. This is user-facing API for the first-order
- * ambisonic decoder and the optimized binaural renderer.
- */
 
 import 'buffer_list.dart';
 import 'foa_convolver.dart';
@@ -28,34 +8,24 @@ import 'foa_router.dart';
 import 'omni_utils.dart';
 import 'resources/omnitone_foa_hrir_base64.dart';
 
-/**
- * @typedef {string} RenderingMode
- */
-
-/**
- * Rendering mode ENUM.
- * @enum {RenderingMode}
- */
+/// Rendering mode ENUM.
 enum RenderingMode {
-  /** @type {string} Use ambisonic rendering. */
+  // Use ambisonic rendering.
   AMBISONIC,
-  /** @type {string} Bypass. No ambisonic rendering. */
+  // Bypass. No ambisonic rendering.
   BYPASS,
-  /** @type {string} Disable audio output. */
+  // Disable audio output.
   OFF
 }
 
-/**
- * Omnitone FOA renderer class. Uses the optimized convolution technique.
- * @constructor
- * @param {AudioContext} context - Associated AudioContext.
- * @param {Object} config
- * @param {Array} [config.channelMap] - Custom channel routing map. Useful for
- * handling the inconsistency in browser's multichannel audio decoding.
- * @param {Array} [config['hrirPathList']] - A list of paths to HRIR files. It
- * overrides the internal HRIR list if given.
- * @param {RenderingMode} [config['renderingMode']='ambisonic'] - Rendering mode.
- */
+/// Omnitone FOA renderer class. Uses the optimized convolution technique.
+/// [context] - Associated AudioContext.
+/// [config]
+/// [config.channelMap] - Custom channel routing map. Useful for
+/// handling the inconsistency in browser's multichannel audio decoding.
+/// [config['hrirPathList']] - A list of paths to HRIR files. It
+/// overrides the internal HRIR list if given.
+/// [config['renderingMode']='ambisonic'] - Rendering mode.
 class FOARenderer {
   AudioContext _context;
   Map<String, dynamic> _config;
@@ -116,10 +86,7 @@ class FOARenderer {
     _isRendererReady = false;
   }
 
-/**
- * Builds the internal audio graph.
- * @private
- */
+  /// Builds the internal audio graph.
   void _buildAudioGraph() {
     input = _context.createGain();
     output = _context.createGain();
@@ -138,45 +105,37 @@ class FOARenderer {
     input.channelInterpretation = 'discrete';
   }
 
-/**
- * Internal callback handler for |initialize| method.
- * @private
- * @param {function} resolve - Resolution handler.
- * @param {function} reject - Rejection handler.
- */
+  /// Internal callback handler for |initialize| method.
+  /// [resolve] - Resolution handler.
+  /// [reject] - Rejection handler.
   Future<dynamic> _initializeCallback({Function resolve, Function reject}) {
     final bufferList = _config.containsKey('pathList')
         ? new BufferList(_context, _config['pathList'],
             options: {'dataType': 'url'})
         : new BufferList(_context, OmnitoneFOAHrirBase64);
-        print("bufferList done");
+    print("bufferList done");
     return bufferList.load(resolve: (hrirBufferList) {
-          _foaConvolver.setHRIRBufferList(hrirBufferList);
-          setRenderingMode(_config['renderingMode']);
-          _isRendererReady = true;
-          print('FOARenderer: HRIRs loaded successfully. Ready.');
-          return hrirBufferList;
-        }, reject: () {
+      _foaConvolver.setHRIRBufferList(hrirBufferList);
+      setRenderingMode(_config['renderingMode']);
+      _isRendererReady = true;
+      print('FOARenderer: HRIRs loaded successfully. Ready.');
+      return hrirBufferList;
+    }, reject: () {
       const errorMessage = 'FOARenderer: HRIR loading/decoding failed.';
       return reject(errorMessage);
     });
   }
 
-/**
- * Initializes and loads the resource for the renderer.
- * @return {Promise}
- */
-  Future initialize() async{
+  /// Initializes and loads the resource for the renderer.
+  Future initialize() async {
     print('FOARenderer: Initializing... (mode: ' +
         _config['renderingMode'].toString() +
         ')');
     return await _initializeCallback();
   }
 
-/**
- * Set the channel map.
- * @param {Number[]} channelMap - Custom channel routing for FOA stream.
- */
+  /// Set the channel map.
+  /// [channelMap] - Custom channel routing for FOA stream.
   void setChannelMap(channelMap) {
     if (!_isRendererReady) {
       return;
@@ -193,10 +152,8 @@ class FOARenderer {
     }
   }
 
-/**
- * Updates the rotation matrix with 3x3 matrix.
- * @param {Number[]} rotationMatrix3 - A 3x3 rotation matrix. (column-major)
- */
+  /// Updates the rotation matrix with 3x3 matrix.
+  /// [rotationMatrix3] - A 3x3 rotation matrix. (column-major)
   void setRotationMatrix3(List<num> rotationMatrix3) {
     if (!_isRendererReady) {
       return;
@@ -205,10 +162,8 @@ class FOARenderer {
     foaRotator.setRotationMatrix3(rotationMatrix3);
   }
 
-/**
- * Updates the rotation matrix with 4x4 matrix.
- * @param {Number[]} rotationMatrix4 - A 4x4 rotation matrix. (column-major)
- */
+  /// Updates the rotation matrix with 4x4 matrix.
+  /// [rotationMatrix4] - A 4x4 rotation matrix. (column-major)
   void setRotationMatrix4(List<num> rotationMatrix4) {
     if (!_isRendererReady) {
       return;
@@ -217,31 +172,12 @@ class FOARenderer {
     foaRotator.setRotationMatrix4(rotationMatrix4);
   }
 
-/**
- * Set the rotation matrix from a Three.js camera object. Depreated in V1, and
- * this exists only for the backward compatiblity. Instead, use
- * |setRotatationMatrix4()| with Three.js |camera.worldMatrix.elements|.
- * @deprecated
- * @param {Object} cameraMatrix - Matrix4 from Three.js |camera.matrix|.
- */
-  void setRotationMatrixFromCamera(cameraMatrix) {
-    if (!_isRendererReady) {
-      return;
-    }
-    // Extract the inner array elements and inverse. (The actual view rotation is
-    // the opposite of the camera movement.)
-    OmniUtils.invertMatrix4(_tempMatrix4, cameraMatrix.elements);
-    foaRotator.setRotationMatrix4(_tempMatrix4);
-  }
-
-/**
- * Set the rendering mode.
- * @param {RenderingMode} mode - Rendering mode.
- *  - 'ambisonic': activates the ambisonic decoding/binaurl rendering.
- *  - 'bypass': bypasses the input stream directly to the output. No ambisonic
- *    decoding or encoding.
- *  - 'off': all the processing off saving the CPU power.
- */
+  /// Set the rendering mode.
+  /// [mode] - Rendering mode.
+  ///  - 'ambisonic': activates the ambisonic decoding/binaurl rendering.
+  ///  - 'bypass': bypasses the input stream directly to the output. No ambisonic
+  ///    decoding or encoding.
+  ///  - 'off': all the processing off saving the CPU power.
   void setRenderingMode(RenderingMode mode) {
     if (mode == _config['renderingMode']) {
       return;

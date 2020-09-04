@@ -1,59 +1,21 @@
-import 'dart:web_audio';
+// Core Dependencies
 
-/**
- * @file Distance-based attenuation filter.
- * @author Andrew Allen <bitllama@google.com>
- */
+import 'dart:web_audio';
 
 // Internal dependencies.
 import 'reso_utils.dart';
 
-/**
- * @class Attenuation
- * @description Distance-based attenuation filter.
- * @param {AudioContext} context
- * Associated {@link
-https://developer.mozilla.org/en-US/docs/Web/API/AudioContext AudioContext}.
- * @param {Object} options
- * @param {Number} options.minDistance
- * Min. distance (in meters). Defaults to
- * {@linkcode Utils.DEFAULT_MIN_DISTANCE DEFAULT_MIN_DISTANCE}.
- * @param {Number} options.maxDistance
- * Max. distance (in meters). Defaults to
- * {@linkcode Utils.DEFAULT_MAX_DISTANCE DEFAULT_MAX_DISTANCE}.
- * @param {string} options.rolloff
- * Rolloff model to use, chosen from options in
- * {@linkcode Utils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS}. Defaults to
- * {@linkcode Utils.DEFAULT_ATTENUATION_ROLLOFF DEFAULT_ATTENUATION_ROLLOFF}.
- */
+/// Distance-based attenuation filter.
+/// AudioContext - [context]
+
+/// [options]
+/// [options.minDistance] - Min. distance (in meters). Defaults to
+/// [ResoUtils.DEFAULT_MIN_DISTANCE DEFAULT_MIN_DISTANCE]
+/// [options.maxDistance] - Max. distance (in meters). Defaults to
+/// [ResoUtils.DEFAULT_MAX_DISTANCE DEFAULT_MAX_DISTANCE]}.
+/// [options.rolloff] Rolloff model to use, chosen from options in
+///
 class Attenuation {
-  // Public variables.
-  /**
-   * Min. distance (in meters).
-   * @member {Number} minDistance
-   * @memberof Attenuation
-   * @instance
-   */
-  /**
-   * Max. distance (in meters).
-   * @member {Number} maxDistance
-   * @memberof Attenuation
-   * @instance
-   */
-  /**
-   * Mono (1-channel) input {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} input
-   * @memberof Attenuation
-   * @instance
-   */
-  /**
-   * Mono (1-channel) output {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} output
-   * @memberof Attenuation
-   * @instance
-   */
   num minDistance;
   num maxDistance;
   GainNode _gainNode;
@@ -91,10 +53,9 @@ class Attenuation {
     output = _gainNode;
   }
 
-/**
- * Set distance from the listener.
- * @param {Number} distance Distance (in meters).
- */
+  /// Set distance from the listener.
+  ///  distance Distance (in meters).
+
   void setDistance(num distance) {
     num gain = 1;
     if (_rolloff == 'logaritnumhmic') {
@@ -124,12 +85,11 @@ class Attenuation {
     _gainNode.gain.value = gain;
   }
 
-/**
- * Set rolloff.
- * @param {string} rolloff
- * Rolloff model to use, chosen from options in
- * {@linkcode Utils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS}.
- */
+  /// Set rolloff.
+  ///  {string} rolloff
+  /// Rolloff model to use, chosen from options in
+  /// Utils.ATTENUATION_ROLLOFFS ATTENUATION_ROLLOFFS}.
+
   void setRolloff(String rolloff) {
     bool isValidModel = ResoUtils.ATTENUATION_ROLLOFFS.contains(rolloff);
     if (rolloff == null || !isValidModel) {

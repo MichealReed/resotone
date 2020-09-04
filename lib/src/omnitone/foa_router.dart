@@ -1,25 +1,9 @@
-/**
- * @file An audio channel router to resolve different channel layouts between
- * browsers.
- */
-
-/**
- * @typedef {Number[]} ChannelMap
- */
-
+// Core Dependencies
 import 'dart:web_audio';
 
-/**
- * Channel map dictionary ENUM.
- * @enum {ChannelMap}
- */
-
-/**
- * Channel router for FOA stream.
- * @constructor
- * @param {AudioContext} context - Associated AudioContext.
- * @param {Number[]} channelMap - Routing destination array.
- */
+/// Channel router for FOA stream.
+/// [context] - Associated AudioContext.
+/// [channelMap] - Routing destination array.
 class FOARouter {
   AudioContext _context;
   ChannelSplitterNode _splitter;
@@ -29,11 +13,11 @@ class FOARouter {
   List<num> _channelMap;
 
   static final ChannelMap = {
-    /** @type {Number[]} - ACN channel map for Chrome and FireFox. (FFMPEG) */
+    // ACN channel map for Chrome and FireFox. (FFMPEG)
     'DEFAULT': [0, 1, 2, 3],
-    /** @type {Number[]} - Safari's 4-channel map for AAC codec. */
+    // Safari's 4-channel map for AAC codec.
     'SAFARI': [2, 0, 1, 3],
-    /** @type {Number[]} - ACN > FuMa conversion map. */
+    // ACN > FuMa conversion map.
     'FUMA': [0, 3, 1, 2],
   };
 
@@ -50,10 +34,8 @@ class FOARouter {
     this.setChannelMap(channelMap != null ? channelMap : ChannelMap['DEFAULT']);
   }
 
-/**
- * Sets channel map.
- * @param {Number[]} channelMap - A new channel map for FOA stream.
- */
+  /// Sets channel map.
+  /// [channelMap] - A new channel map for FOA stream.
   setChannelMap(List<num> channelMap) {
     if (channelMap is! List) {
       return;

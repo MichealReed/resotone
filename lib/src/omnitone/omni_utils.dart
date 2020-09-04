@@ -1,11 +1,7 @@
+// Core dependencies
 import 'dart:typed_data';
 import 'dart:web_audio';
-import 'dart:html';
 
-/**
- * Utility namespace.
- * @namespace
- */
 class OmniUtils {
 // Static temp storage for matrix inversion.
   static num a00;
@@ -38,13 +34,12 @@ class OmniUtils {
   static num b11;
   static num det;
 
-/**
- * A 4x4 matrix inversion utility. This does not handle the case when the
- * arguments are not proper 4x4 matrices.
- * @param {Float32Array} out   The inverted result.
- * @param {Float32Array} a     The source matrix.
- * @return {Float32Array} out
- */
+  /// A 4x4 matrix inversion utility. This does not handle the case when the
+  /// arguments are not proper 4x4 matrices.
+  /// [out]   The inverted result.
+  /// [a]     The source matrix.
+  /// out
+
   static invertMatrix4(out, a) {
     a00 = a[0];
     a01 = a[1];
@@ -101,12 +96,9 @@ class OmniUtils {
     return out;
   }
 
-/**
- * Check if a value is defined in the ENUM dictionary.
- * @param {Object} enumDictionary - ENUM dictionary.
- * @param {Number|String} entryValue - a value to probe.
- * @return {Boolean}
- */
+  /// Check if a value is defined in the ENUM dictionary.
+  /// [enumDictionary] - ENUM dictionary.
+  /// [entryValue] - a value to probe.
   static isDefinedENUMEntry(enumDictionary, entryValue) {
     for (var enumKey in enumDictionary) {
       if (entryValue == enumDictionary[enumKey]) {
@@ -116,35 +108,28 @@ class OmniUtils {
     return false;
   }
 
-/**
- * Check if the given object is an instance of BaseAudioContext.
- * @param {AudioContext} context - A context object to be checked.
- * @return {Boolean}
- */
+  /// Check if the given object is an instance of BaseAudioContext.
+  /// [context] - A context object to be checked.
   static bool isAudioContext(context) {
     // TODO(hoch): Update this when BaseAudioContext is available for all
     // browsers.
     return context is AudioContext || context is AudioBuffer ? true : false;
   }
 
-/**
- * Check if the given object is a valid AudioBuffer.
- * @param {Object} audioBuffer An AudioBuffer object to be checked.
- * @return {Boolean}
- */
+  /// Check if the given object is a valid AudioBuffer.
+  /// [audioBuffer] An AudioBuffer object to be checked.
   static bool isAudioBuffer(audioBuffer) {
     return audioBuffer is AudioBuffer ? true : false;
   }
 
-/**
- * Perform channel-wise merge on multiple AudioBuffers. The sample rate and
- * the length of buffers to be merged must be identical.
- * @param {BaseAudioContext} context - Associated BaseAudioContext.
- * @param {AudioBuffer[]} bufferList - An array of AudioBuffers to be merged
- * channel-wise.
- * @return {AudioBuffer} - A single merged AudioBuffer.
- */
-  static AudioBuffer mergeBufferListByChannel(context, List<AudioBuffer> bufferList) {
+  /// Perform channel-wise merge on multiple AudioBuffers. The sample rate and
+  /// the length of buffers to be merged must be identical.
+  /// [context] - Associated BaseAudioContext.
+  /// [bufferList] - An array of AudioBuffers to be merged
+  /// channel-wise.
+  /// returns a single merged AudioBuffer.
+  static AudioBuffer mergeBufferListByChannel(
+      context, List<AudioBuffer> bufferList) {
     num bufferLength = bufferList[0].length;
     num bufferSampleRate = bufferList[0].sampleRate;
     num bufferNumberOfChannel = 0;
@@ -189,14 +174,12 @@ class OmniUtils {
     return buffer;
   }
 
-/**
- * Perform channel-wise split by the given channel count. For example,
- * 1 x AudioBuffer(8) -> splitBuffer(context, buffer, 2) -> 4 x AudioBuffer(2).
- * @param {BaseAudioContext} context - Associated BaseAudioContext.
- * @param {AudioBuffer} audioBuffer - An AudioBuffer to be splitted.
- * @param {Number} splitBy - Number of channels to be splitted.
- * @return {AudioBuffer[]} - An array of splitted AudioBuffers.
- */
+  /// Perform channel-wise split by the given channel count. For example,
+  /// 1 x AudioBuffer(8) -> splitBuffer(context, buffer, 2) -> 4 x AudioBuffer(2).
+  /// [context] - Associated BaseAudioContext.
+  /// [audioBuffer] - An AudioBuffer to be splitted.
+  /// [splitBy] - Number of channels to be splitted.
+  /// returns a list of splitted AudioBuffers.
   static List<AudioBuffer> splitBufferbyChannel(context, audioBuffer, splitBy) {
     if (audioBuffer.numberOfChannels <= splitBy) {
       print('Utils.splitBuffer: Insufficient number of channels. (' +
@@ -226,17 +209,14 @@ class OmniUtils {
     return bufferList;
   }
 
-/**
- * Converts Base64-encoded string to ArrayBuffer.
- * @param {string} base64String - Base64-encdoed string.
- * @return {ArrayByuffer} Converted ArrayBuffer object.
- */
+  /// Converts Base64-encoded string to [ByteBuffer].
+  /// [base64String] - Base64-encoded string.
+  /// returns a converted [ByteBuffer] object.
   static ByteBuffer getArrayBufferFromBase64String(String base64String) {
     String binaryString = window.atob(base64String);
     Uint8List byteArray = new Uint8List(binaryString.length);
     num index = 0;
-    for(num i = 0; i < binaryString.length; i++)
-    {
+    for (num i = 0; i < binaryString.length; i++) {
       byteArray[index] = binaryString.codeUnitAt(index);
       index += 1;
     }

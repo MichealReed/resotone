@@ -1,65 +1,29 @@
+// Core dependencies
 import 'dart:web_audio';
-
-/**
- * @file Listener model to spatialize sources in an environment.
- * @author Andrew Allen <bitllama@google.com>
- */
 
 // Internal dependencies.
 import 'omnitone/omnitone.dart';
 import 'encoder.dart';
 import 'reso_utils.dart';
 
-/**
- * @class Listener
- * @description Listener model to spatialize sources in an environment.
- * @param {AudioContext} context
- * Associated {@link
-https://developer.mozilla.org/en-US/docs/Web/API/AudioContext AudioContext}.
- * @param {Object} options
- * @param {Number} options.ambisonicOrder
- * Desired ambisonic order. Defaults to
- * {@linkcode ResoUtils.DEFAULT_AMBISONIC_ORDER DEFAULT_AMBISONIC_ORDER}.
- * @param {Float32Array} options.position
- * Initial position (in meters), where origin is the center of
- * the room. Defaults to
- * {@linkcode ResoUtils.DEFAULT_POSITION DEFAULT_POSITION}.
- * @param {Float32Array} options.forward
- * The listener's initial forward vector. Defaults to
- * {@linkcode ResoUtils.DEFAULT_FORWARD DEFAULT_FORWARD}.
- * @param {Float32Array} options.up
- * The listener's initial up vector. Defaults to
- * {@linkcode ResoUtils.DEFAULT_UP DEFAULT_UP}.
- */
+/// Listener model to spatialize sources in an environment.
+/// [context]
+/// [options]
+/// [options.ambisonicOrder]
+/// Desired ambisonic order. Defaults to
+/// [ResoUtils.DEFAULT_AMBISONIC_ORDER DEFAULT_AMBISONIC_ORDER].
+/// [options.position]
+/// Initial position (in meters), where origin is the center of
+/// the room. Defaults to
+/// [ResoUtils.DEFAULT_POSITION DEFAULT_POSITION].
+/// [options.forward]
+/// The listener's initial forward vector. Defaults to
+/// [ResoUtils.DEFAULT_FORWARD DEFAULT_FORWARD].
+/// [options.up]
+/// The listener's initial up vector. Defaults to
+/// [ResoUtils.DEFAULT_UP DEFAULT_UP].
+
 class Listener {
-  // Public variables.
-  /**
-   * Position (in meters).
-   * @member {Float32Array} position
-   * @memberof Listener
-   * @instance
-   */
-  /**
-   * Ambisonic (multichannel) input {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} input
-   * @memberof Listener
-   * @instance
-   */
-  /**
-   * Binaurally-rendered stereo (2-channel) output {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} output
-   * @memberof Listener
-   * @instance
-   */
-  /**
-   * Ambisonic (multichannel) output {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} ambisonicOutput
-   * @memberof Listener
-   * @instance
-   */
   AudioContext _context;
   num _ambisonicOrder;
   List<num> position;
@@ -140,15 +104,14 @@ class Listener {
     return null;
   }
 
-/**
- * Set the source's orientation using forward and up vectors.
- * @param {Number} forwardX
- * @param {Number} forwardY
- * @param {Number} forwardZ
- * @param {Number} upX
- * @param {Number} upY
- * @param {Number} upZ
- */
+  /// Set the source's orientation using forward and up vectors.
+  ///  forwardX
+  ///  forwardY
+  ///  forwardZ
+  ///  upX
+  ///  upY
+  ///  upZ
+
   void setOrientation(num forwardX, num forwardY, num forwardZ, upX, upY, upZ) {
     var right =
         ResoUtils.crossProduct([forwardX, forwardY, forwardZ], [upX, upY, upZ]);

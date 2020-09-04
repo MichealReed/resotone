@@ -1,48 +1,23 @@
+// Core dependencies
 import 'dart:math';
 import 'dart:web_audio';
-
-/**
- * @file Directivity/occlusion filter.
- * @author Andrew Allen <bitllama@google.com>
- */
 
 // Internal dependencies.
 import 'reso_utils.dart';
 
-/**
- * @class Directivity
- * @description Directivity/occlusion filter.
- * @param {AudioContext} context
- * Associated {@link
-https://developer.mozilla.org/en-US/docs/Web/API/AudioContext AudioContext}.
- * @param {Object} options
- * @param {Number} options.alpha
- * Determines directivity pattern (0 to 1). See
- * {@link Directivity#setPattern setPattern} for more details. Defaults to
- * {@linkcode Utils.DEFAULT_DIRECTIVITY_ALPHA DEFAULT_DIRECTIVITY_ALPHA}.
- * @param {Number} options.sharpness
- * Determines the sharpness of the directivity pattern (1 to Inf). See
- * {@link Directivity#setPattern setPattern} for more details. Defaults to
- * {@linkcode Utils.DEFAULT_DIRECTIVITY_SHARPNESS
- * DEFAULT_DIRECTIVITY_SHARPNESS}.
- */
-class Directivity {
-  // Public variables.
-  /**
-   * Mono (1-channel) input {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} input
-   * @memberof Directivity
-   * @instance
-   */
-  /**
-   * Mono (1-channel) output {@link
-   * https://developer.mozilla.org/en-US/docs/Web/API/AudioNode AudioNode}.
-   * @member {AudioNode} output
-   * @memberof Directivity
-   * @instance
-   */
+/// Directivity/occlusion filter.
+/// [context]
+/// [options]
+/// [options.alpha]
+/// Determines directivity pattern (0 to 1). See
+/// [setPattern] for more details. Defaults to
+/// [ResoUtils.DEFAULT_DIRECTIVITY_ALPHA ].
+/// [options.sharpness]
+/// Determines the sharpness of the directivity pattern (1 to Inf). See
+/// [setPattern] for more details. Defaults to
+/// [ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS]
 
+class Directivity {
   AudioContext _context;
   BiquadFilterNode _lowpass;
   BiquadFilterNode input;
@@ -81,13 +56,11 @@ class Directivity {
     output = _lowpass;
   }
 
-/**
- * Compute the filter using the source's forward orientation and the listener's
- * position.
- * @param {Float32Array} forward The source's forward vector.
- * @param {Float32Array} direction The direction from the source to the
- * listener.
- */
+  /// Compute the filter using the source's forward orientation and the listener's
+  /// position.
+  /// [forward] The source's forward vector.
+  /// [direction] The direction from the source to the
+  /// listener.
   void computeAngle(List<num> forward, List<num> direction) {
     List<num> forwardNorm = ResoUtils.normalizeVector(forward);
     List<num> directionNorm = ResoUtils.normalizeVector(direction);
@@ -102,16 +75,15 @@ class Directivity {
     _lowpass.frequency.value = _context.sampleRate * 0.5 * coeff;
   }
 
-/**
- * Set source's directivity pattern (defined by alpha), where 0 is an
- * omnidirectional pattern, 1 is a bidirectional pattern, 0.5 is a cardiod
- * pattern. The sharpness of the pattern is increased exponenentially.
- * @param {Number} alpha
- * Determines directivity pattern (0 to 1).
- * @param {Number} sharpness
- * Determines the sharpness of the directivity pattern (1 to Inf).
- * DEFAULT_DIRECTIVITY_SHARPNESS}.
- */
+  /// Set source's directivity pattern (defined by alpha), where 0 is an
+  /// omnidirectional pattern, 1 is a bidirectional pattern, 0.5 is a cardiod
+  /// pattern. The sharpness of the pattern is increased exponenentially.
+  /// [alpha]
+  /// Determines directivity pattern (0 to 1).
+  /// [sharpness]
+  /// Determines the sharpness of the directivity pattern (1 to Inf).
+  /// [ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS].
+
   void setPattern(num alpha, num sharpness) {
     // Clamp and set values.
     _alpha = min(1, max(0, alpha));
