@@ -314,13 +314,13 @@
       "languageVersion": "2.4"
     },
     {
-      "name": "resotone_web",
+      "name": "resotone",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     }
   ],
-  "generated": "2020-08-31T18:50:18.992767Z",
+  "generated": "2020-09-04T17:39:22.872704Z",
   "generator": "pub",
-  "generatorVersion": "2.10.0-56.0.dev"
+  "generatorVersion": "2.10.0-76.0.dev"
 }
