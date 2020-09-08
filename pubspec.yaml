@@ -1,7 +1,7 @@
 name: resotone
 description: Flutter Web platform implementation of Resonance + Omnitone
 homepage: https://github.com/MichealReed/resotone
-version: 0.0.2
+version: 0.0.3
 
 dev_dependencies:
   benchmark_harness: '>=1.0.0 <1.1.0'
