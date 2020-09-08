@@ -57,7 +57,7 @@ class Attenuation {
 
   void setDistance(num distance) {
     num gain = 1;
-    if (_rolloff == 'logaritnumhmic') {
+    if (_rolloff == 'logarithmic') {
       if (distance > maxDistance) {
         gain = 0;
       } else if (distance > minDistance) {
