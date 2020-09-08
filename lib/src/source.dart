@@ -37,34 +37,34 @@ class Source {
     if (options == null) {
       options = new Map<String, dynamic>();
     }
-    if (options['position'] == null) {
+    if (!options.containsKey('position')) {
       options['position'] = ResoUtils.DEFAULT_POSITION;
     }
-    if (options['forward'] == null) {
+    if (!options.containsKey('forward')) {
       options['forward'] = ResoUtils.DEFAULT_FORWARD;
     }
-    if (options['up'] == null) {
+    if (!options.containsKey('up')) {
       options['up'] = ResoUtils.DEFAULT_UP;
     }
-    if (options['minDistance'] == null) {
+    if (!options.containsKey('minDistance')) {
       options['minDistance'] = ResoUtils.DEFAULT_MIN_DISTANCE;
     }
-    if (options['maxDistance'] == null) {
+    if (!options.containsKey('maxDistance')) {
       options['maxDistance'] = ResoUtils.DEFAULT_MAX_DISTANCE;
     }
-    if (options['rolloff'] == null) {
+    if (!options.containsKey('rolloff')) {
       options['rolloff'] = ResoUtils.DEFAULT_ATTENUATION_ROLLOFF;
     }
-    if (options['gain'] == null) {
+    if (!options.containsKey('gain')) {
       options['gain'] = ResoUtils.DEFAULT_SOURCE_GAIN;
     }
-    if (options['alpha'] == null) {
+    if (!options.containsKey('alpha')) {
       options['alpha'] = ResoUtils.DEFAULT_DIRECTIVITY_ALPHA;
     }
-    if (options['sharpness'] == null) {
+    if (!options.containsKey('sharpness')) {
       options['sharpness'] = ResoUtils.DEFAULT_DIRECTIVITY_SHARPNESS;
     }
-    if (options['sourceWidth'] == null) {
+    if (!options.containsKey('sourceWidth')) {
       options['sourceWidth'] = ResoUtils.DEFAULT_SOURCE_WIDTH;
     }
 
