@@ -14,7 +14,6 @@ import 'reso_utils.dart';
 
 Map<String, dynamic> _getCoefficientsFromMaterials(
     Map<String, dynamic> materials) {
-  print(materials);
   // Initialize coefficients to use defaults.
   Map<String, dynamic> coefficients = Map<String, dynamic>();
 
@@ -27,30 +26,32 @@ Map<String, dynamic> _getCoefficientsFromMaterials(
   // Sanitize materials.
   if (materials == null) {
     materials = ResoUtils.DEFAULT_ROOM_MATERIALS;
+  } else {
+    materials.forEach((property, value) {
+      print("$property : $value");
+      if (ResoUtils.DEFAULT_ROOM_MATERIALS.containsKey(property) &&
+          materials.containsKey(property)) {
+        if (!ResoUtils.ROOM_MATERIAL_COEFFICIENTS
+            .containsValue(materials[property])) {
+          coefficients[property] =
+              ResoUtils.ROOM_MATERIAL_COEFFICIENTS[materials[property]];
+        } else {
+          print('Material \"' +
+              materials[property] +
+              '\" on wall \"' +
+              property +
+              '\" not found. Using \"' +
+              ResoUtils.DEFAULT_ROOM_MATERIALS[property] +
+              '\".');
+        }
+      } else {
+        print('Wall \"' + property + '\" is not defined. Default used.');
+      }
+    });
   }
 
   // Assign coefficients using provided materials.
-  ResoUtils.DEFAULT_ROOM_MATERIALS.forEach((property, value) {
-    print("$property : $value");
-    if (ResoUtils.DEFAULT_ROOM_MATERIALS.containsKey(property) &&
-        materials.containsKey(property)) {
-      if (!ResoUtils.ROOM_MATERIAL_COEFFICIENTS
-          .containsValue(materials[property])) {
-        coefficients[property] =
-            ResoUtils.ROOM_MATERIAL_COEFFICIENTS[materials[property]];
-      } else {
-        print('Material \"' +
-            materials[property] +
-            '\" on wall \"' +
-            property +
-            '\" not found. Using \"' +
-            ResoUtils.DEFAULT_ROOM_MATERIALS[property] +
-            '\".');
-      }
-    } else {
-      print('Wall \"' + property + '\" is not defined. Default used.');
-    }
-  });
+
   return coefficients;
 }
 
