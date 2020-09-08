@@ -63,7 +63,7 @@ Map<String, dynamic> _sanitizeCoefficients(Map<String, dynamic> coefficients) {
     coefficients = new Map<String, dynamic>();
   }
 
-  ResoUtils.DEFAULT_ROOM_MATERIALS.forEach((property, value) {
+  coefficients.forEach((property, value) {
     if (!(coefficients.containsKey(property))) {
       // If element is not present, use default coefficients.
       coefficients[property] = ResoUtils.ROOM_MATERIAL_COEFFICIENTS[
@@ -78,7 +78,7 @@ Map<String, dynamic> _sanitizeCoefficients(Map<String, dynamic> coefficients) {
 
 Map<String, dynamic> _sanitizeDimensions(Map<String, dynamic> dimensions) {
   if (dimensions == null) {
-    dimensions = {};
+    dimensions = new Map<String, dynamic>();
   }
   ResoUtils.DEFAULT_ROOM_DIMENSIONS.forEach((property, value) {
     if (!(dimensions.containsKey(property))) {
@@ -149,8 +149,8 @@ Map<String, dynamic> _computeReflectionCoefficients(
     Map<String, dynamic> absorptionCoefficients) {
   print(absorptionCoefficients);
   Map<String, dynamic> reflectionCoefficients = new Map<String, dynamic>();
-  ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.forEach((property, value) {
-    if (ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.containsKey(property)) {
+  absorptionCoefficients.forEach((property, value) {
+    if (absorptionCoefficients.containsKey(property)) {
       // Compute average absorption coefficient (per wall).
       reflectionCoefficients[property] = 0;
       for (num j = 0; j < ResoUtils.NUMBER_REFLECTION_AVERAGING_BANDS; j++) {
