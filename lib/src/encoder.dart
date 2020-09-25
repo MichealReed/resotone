@@ -154,22 +154,25 @@ class Encoder {
   /// return Validated/adjusted ambisonic order.
   static num validateAmbisonicOrder(num ambisonicOrder) {
     if (ambisonicOrder == null) {
-      print('Error: Invalid ambisonic order' +
-          ambisonicOrder.toString() +
-          '\nUsing ambisonicOrder=1 instead.');
+      if (resoDebug)
+        print('Error: Invalid ambisonic order' +
+            ambisonicOrder.toString() +
+            '\nUsing ambisonicOrder=1 instead.');
       ambisonicOrder = 1;
     } else if (ambisonicOrder < 1) {
-      print('Error: Unable to render ambisonic order' +
-          ambisonicOrder.toString() +
-          '(Min order is 1)' +
-          '\nUsing min order instead.');
+      if (resoDebug)
+        print('Error: Unable to render ambisonic order' +
+            ambisonicOrder.toString() +
+            '(Min order is 1)' +
+            '\nUsing min order instead.');
       ambisonicOrder = 1;
     } else if (ambisonicOrder > Tables.SPHERICAL_HARMONICS_MAX_ORDER) {
-      print('Error: Unable to render ambisonic order' +
-          ambisonicOrder.toString() +
-          '(Max order is' +
-          Tables.SPHERICAL_HARMONICS_MAX_ORDER.toString() +
-          ')\nUsing max order instead.');
+      if (resoDebug)
+        print('Error: Unable to render ambisonic order' +
+            ambisonicOrder.toString() +
+            '(Max order is' +
+            Tables.SPHERICAL_HARMONICS_MAX_ORDER.toString() +
+            ')\nUsing max order instead.');
       ambisonicOrder = Tables.SPHERICAL_HARMONICS_MAX_ORDER;
     }
     return ambisonicOrder;

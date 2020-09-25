@@ -86,8 +86,6 @@ class _HTMLAudioPlayerWidgetState extends State<HTMLAudioPlayerWidget> {
       // Room ceiling
       'up': 'marble',
     };
-    print("create rso");
-
     resoScene = ResonanceAudio();
     await resoScene.init(audioCtx, options: {
       'ambisonicOrder': 1,
@@ -96,16 +94,13 @@ class _HTMLAudioPlayerWidgetState extends State<HTMLAudioPlayerWidget> {
     });
 
     resoScene.setRoomProperties(roomDimensions, roomMaterials);
-    print("create media element");
 
     resoScene.setListenerPosition(1, 0, 0);
-    print("create source");
     source = resoScene.createSource();
     source.setPosition(10000, 0, 0);
     source.setMaxDistance(10);
     source.setSourceWidth(10);
 
-    print("connect source");
     audioElementSource = audioCtx.createMediaElementSource(player);
     resoScene.output.connectNode(audioCtx.destination);
 

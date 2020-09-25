@@ -1,6 +1,8 @@
 // Core Dependencies
 import 'dart:math';
 
+bool resoDebug = false;
+
 /// Resonance utility class for defaults and helper methods
 class ResoUtils {
   ResoUtils();

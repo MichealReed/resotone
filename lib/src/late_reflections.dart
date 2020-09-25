@@ -81,7 +81,8 @@ class LateReflections {
 
   void setDurations(List<num> durations) {
     if (durations.length != ResoUtils.NUMBER_REVERB_FREQUENCY_BANDS) {
-      print('Warning: invalid number of RT60 values provided to reverb.');
+      if (resoDebug)
+        print('Warning: invalid number of RT60 values provided to reverb.');
       return;
     }
 

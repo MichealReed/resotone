@@ -92,7 +92,7 @@ class Attenuation {
   void setRolloff(String rolloff) {
     bool isValidModel = ResoUtils.ATTENUATION_ROLLOFFS.contains(rolloff);
     if (rolloff == null || !isValidModel) {
-      if (!isValidModel) {
+      if (!isValidModel && resoDebug) {
         print('Invalid rolloff model (\"' +
             rolloff +
             '\"). Using default: \"' +

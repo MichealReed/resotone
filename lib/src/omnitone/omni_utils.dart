@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:web_audio';
 import 'dart:html';
 
+bool omniDebug = false;
 
 /// Rendering mode ENUM.
 enum RenderingMode {
@@ -148,26 +149,29 @@ class OmniUtils {
 
     for (num i = 0; i < bufferList.length; ++i) {
       if (bufferNumberOfChannel > 32) {
-        print('Utils.mergeBuffer: Number of channels cannot exceed 32.' +
-            '(got ' +
-            bufferNumberOfChannel.toString() +
-            ')');
+        if (omniDebug)
+          print('Utils.mergeBuffer: Number of channels cannot exceed 32.' +
+              '(got ' +
+              bufferNumberOfChannel.toString() +
+              ')');
       }
       if (bufferLength != bufferList[i].length) {
-        print('Utils.mergeBuffer: AudioBuffer lengths are ' +
-            'inconsistent. (expected ' +
-            bufferLength.toString() +
-            ' but got ' +
-            bufferList[i].length.toString() +
-            ')');
+        if (omniDebug)
+          print('Utils.mergeBuffer: AudioBuffer lengths are ' +
+              'inconsistent. (expected ' +
+              bufferLength.toString() +
+              ' but got ' +
+              bufferList[i].length.toString() +
+              ')');
       }
       if (bufferSampleRate != bufferList[i].sampleRate) {
-        print('Utils.mergeBuffer: AudioBuffer sample rates are ' +
-            'inconsistent. (expected ' +
-            bufferSampleRate.toString() +
-            ' but got ' +
-            bufferList[i].sampleRate.toString() +
-            ')');
+        if (omniDebug)
+          print('Utils.mergeBuffer: AudioBuffer sample rates are ' +
+              'inconsistent. (expected ' +
+              bufferSampleRate.toString() +
+              ' but got ' +
+              bufferList[i].sampleRate.toString() +
+              ')');
       }
       bufferNumberOfChannel += bufferList[i].numberOfChannels;
     }
@@ -194,11 +198,12 @@ class OmniUtils {
   /// returns a list of splitted AudioBuffers.
   static List<AudioBuffer> splitBufferbyChannel(context, audioBuffer, splitBy) {
     if (audioBuffer.numberOfChannels <= splitBy) {
-      print('Utils.splitBuffer: Insufficient number of channels. (' +
-          audioBuffer.numberOfChannels +
-          ' splitted by ' +
-          splitBy +
-          ')');
+      if (omniDebug)
+        print('Utils.splitBuffer: Insufficient number of channels. (' +
+            audioBuffer.numberOfChannels +
+            ' splitted by ' +
+            splitBy +
+            ')');
     }
 
     List<AudioBuffer> bufferList = [];

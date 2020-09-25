@@ -54,14 +54,12 @@ class ResonanceAudio {
     // Create member submodules.
     ambisonicOrder = Encoder.validateAmbisonicOrder(options['ambisonicOrder']);
     _sources = new List<Source>();
-    print("create room");
     room = new Room(ctxt, {
       'listenerPosition': options['listenerPosition'],
       'dimensions': options['dimensions'],
       'materials': options['materials'],
       'speedOfSound': options['speedOfSound'],
     });
-    print('create Listener');
     listener = new Listener();
     await listener.init(ctxt, {
       'ambisonicOrder': options['ambisonicOrder'],

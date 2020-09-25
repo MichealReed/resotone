@@ -45,9 +45,10 @@ class HOARenderer {
       if (SupportedAmbisonicOrder.contains(config['ambisonicOrder'])) {
         _config['ambisonicOrder'] = config['ambisonicOrder'];
       } else {
-        print('HOARenderer: Invalid ambisonic order. (got ' +
-            config['ambisonicOrder'] +
-            ') Fallbacks to 3rd-order ambisonic.');
+        if (omniDebug)
+          print('HOARenderer: Invalid ambisonic order. (got ' +
+              config['ambisonicOrder'] +
+              ') Fallbacks to 3rd-order ambisonic.');
       }
     }
 
@@ -63,12 +64,13 @@ class HOARenderer {
           config['hrirPathList'].length == _config['numberOfStereoChannels']) {
         _config['pathList'] = config['hrirPathList'];
       } else {
-        print('HOARenderer: Invalid HRIR URLs. It must be an array with ' +
-            _config['numberOfStereoChannels'] +
-            ' URLs to HRIR files.' +
-            ' (got ' +
-            config['hrirPathList'] +
-            ')');
+        if (omniDebug)
+          print('HOARenderer: Invalid HRIR URLs. It must be an array with ' +
+              _config['numberOfStereoChannels'] +
+              ' URLs to HRIR files.' +
+              ' (got ' +
+              config['hrirPathList'] +
+              ')');
       }
     }
 
@@ -76,9 +78,10 @@ class HOARenderer {
       if ((RenderingMode.values).contains(config['renderingMode'])) {
         _config['renderingMode'] = config['renderingMode'];
       } else {
-        print('HOARenderer: Invalid rendering mode. (got ' +
-            config['renderingMode'] +
-            ') Fallbacks to "ambisonic".');
+        if (omniDebug)
+          print('HOARenderer: Invalid rendering mode. (got ' +
+              config['renderingMode'] +
+              ') Fallbacks to "ambisonic".');
       }
     }
 
@@ -123,7 +126,7 @@ class HOARenderer {
       _hoaConvolver.setHRIRBufferList(hrirBufferList);
       setRenderingMode(_config['renderingMode']);
       _isRendererReady = true;
-      print('FOARenderer: HRIRs loaded successfully. Ready.');
+      if (omniDebug) print('FOARenderer: HRIRs loaded successfully. Ready.');
     }, reject: () {
       const errorMessage = 'HOARenderer: HRIR loading/decoding failed.';
       print(errorMessage);
@@ -132,9 +135,10 @@ class HOARenderer {
 
   /// Initializes and loads the resource for the renderer.
   Future initialize() {
-    print('HOARenderer: Initializing... (mode: ' +
-        _config['renderingMode'].toString() +
-        ')');
+    if (omniDebug)
+      print('HOARenderer: Initializing... (mode: ' +
+          _config['renderingMode'].toString() +
+          ')');
 
     return new Future(_initializeCallback);
   }
@@ -183,14 +187,16 @@ class HOARenderer {
         _bypass.disconnect();
         break;
       default:
-        print('HOARenderer: Rendering mode "' +
-            mode.toString() +
-            '" is not ' +
-            'supported.');
+        if (omniDebug)
+          print('HOARenderer: Rendering mode "' +
+              mode.toString() +
+              '" is not ' +
+              'supported.');
         return;
     }
 
     _config['renderingMode'] = mode;
-    print('HOARenderer: Rendering mode changed. (' + mode.toString() + ')');
+    if (omniDebug)
+      print('HOARenderer: Rendering mode changed. (' + mode.toString() + ')');
   }
 }

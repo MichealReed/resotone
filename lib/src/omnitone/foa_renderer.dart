@@ -41,9 +41,10 @@ class FOARenderer {
         if (config['channelMap'] is List && config['channelMap'].length == 4) {
           _config['channelMap'] = config['channelMap'];
         } else {
-          print('FOARenderer: Invalid channel map. (got ' +
-              config['channelMap'] +
-              ')');
+          if (omniDebug)
+            print('FOARenderer: Invalid channel map. (got ' +
+                config['channelMap'] +
+                ')');
         }
       }
 
@@ -51,10 +52,11 @@ class FOARenderer {
         if (config['hrirPathList'] && config['hrirPathList'].length == 2) {
           _config['pathList'] = config['hrirPathList'];
         } else {
-          print('FOARenderer: Invalid HRIR URLs. It must be an array with ' +
-              '2 URLs to HRIR files. (got ' +
-              config['hrirPathList'] +
-              ')');
+          if (omniDebug)
+            print('FOARenderer: Invalid HRIR URLs. It must be an array with ' +
+                '2 URLs to HRIR files. (got ' +
+                config['hrirPathList'] +
+                ')');
         }
       }
 
@@ -62,9 +64,10 @@ class FOARenderer {
         if (RenderingMode.values.contains(config['renderingMode'])) {
           _config['renderingMode'] = config['renderingMode'];
         } else {
-          print('FOARenderer: Invalid rendering mode order. (got' +
-              config['renderingMode'] +
-              ') Fallbacks to the mode "ambisonic".');
+          if (omniDebug)
+            print('FOARenderer: Invalid rendering mode order. (got' +
+                config['renderingMode'] +
+                ') Fallbacks to the mode "ambisonic".');
         }
       }
     }
@@ -107,7 +110,7 @@ class FOARenderer {
       _foaConvolver.setHRIRBufferList(hrirBufferList);
       setRenderingMode(_config['renderingMode']);
       _isRendererReady = true;
-      print('FOARenderer: HRIRs loaded successfully. Ready.');
+      if (omniDebug) print('FOARenderer: HRIRs loaded successfully. Ready.');
       return hrirBufferList;
     }, reject: () {
       const errorMessage = 'FOARenderer: HRIR loading/decoding failed.';
@@ -117,9 +120,10 @@ class FOARenderer {
 
   /// Initializes and loads the resource for the renderer.
   Future initialize() async {
-    print('FOARenderer: Initializing... (mode: ' +
-        _config['renderingMode'].toString() +
-        ')');
+    if (omniDebug)
+      print('FOARenderer: Initializing... (mode: ' +
+          _config['renderingMode'].toString() +
+          ')');
     return await _initializeCallback();
   }
 
@@ -131,11 +135,12 @@ class FOARenderer {
     }
 
     if (channelMap.toString() != _config['channelMap'].toString()) {
-      print('Remapping channels ([' +
-          _config['channelMap'].toString() +
-          '] -> [' +
-          channelMap.toString() +
-          ']).');
+      if (omniDebug)
+        print('Remapping channels ([' +
+            _config['channelMap'].toString() +
+            '] -> [' +
+            channelMap.toString() +
+            ']).');
       _config['channelMap'] = channelMap.slice();
       _foaRouter.setChannelMap(_config['channelMap']);
     }
@@ -186,14 +191,16 @@ class FOARenderer {
         _bypass.disconnect();
         break;
       default:
-        print('FOARenderer: Rendering mode "' +
-            mode.toString() +
-            '" is not ' +
-            'supported.');
+        if (omniDebug)
+          print('FOARenderer: Rendering mode "' +
+              mode.toString() +
+              '" is not ' +
+              'supported.');
         return;
     }
 
     _config['renderingMode'] = mode;
-    print('FOARenderer: Rendering mode changed. (' + mode.toString() + ')');
+    if (omniDebug)
+      print('FOARenderer: Rendering mode changed. (' + mode.toString() + ')');
   }
 }

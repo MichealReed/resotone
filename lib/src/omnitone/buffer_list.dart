@@ -66,7 +66,7 @@ class BufferList {
   ///  [reject] Future reject.
   _promiseGenerator({Function resolve, Function reject}) {
     if (resolve is! Function) {
-      print('BufferList: Invalid Promise resolver.');
+      if (omniDebug) print('BufferList: Invalid Promise resolver.');
     } else {
       _resolveHandler = resolve;
     }
@@ -98,7 +98,7 @@ class BufferList {
           errorMessage.toString() +
           ')';
       _rejectHandler(message);
-      print(message);
+      if (omniDebug) print(message);
     });
   }
 
@@ -121,7 +121,7 @@ class BufferList {
               errorMessage.toString() +
               ')';
           _rejectHandler(message);
-          print(message);
+          if (omniDebug) print(message);
         });
       } else {
         final message = 'BufferList: XHR error while loading "' +
@@ -132,16 +132,17 @@ class BufferList {
             xhr.statusText +
             ')';
         _rejectHandler(message);
-        print(message);
+        if (omniDebug) print(message);
       }
     });
 
     xhr.onError.listen((event) {
       _updateProgress(taskId, null);
       _rejectHandler();
-      print('BufferList: XHR network failed on loading "' +
-          _bufferData[taskId] +
-          '".');
+      if (omniDebug)
+        print('BufferList: XHR network failed on loading "' +
+            _bufferData[taskId] +
+            '".');
     });
 
     xhr.send();
@@ -157,7 +158,8 @@ class BufferList {
       final messageString = _options['dataType'] == BufferDataType['BASE64']
           ? 'ArrayBuffer(' + taskId.toString() + ') from Base64-encoded HRIR'
           : '"' + _bufferData[taskId] + '"';
-      print('BufferList: ' + messageString + ' successfully loaded.');
+      if (omniDebug)
+        print('BufferList: ' + messageString + ' successfully loaded.');
     }
 
     if (--_numberOfTasks == 0) {
@@ -165,7 +167,8 @@ class BufferList {
           ? _bufferData.length.toString() +
               ' AudioBuffers from Base64-encoded HRIRs'
           : _bufferData.length.toString() + ' files via XHR';
-      print('BufferList: ' + messageString + ' loaded successfully.');
+      if (omniDebug)
+        print('BufferList: ' + messageString + ' loaded successfully.');
       _resolveHandler(_bufferList);
     }
   }
