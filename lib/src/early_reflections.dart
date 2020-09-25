@@ -165,7 +165,7 @@ class EarlyReflections {
       if (ResoUtils.DEFAULT_REFLECTION_COEFFICIENTS.containsKey(property)) {
         // Compute and assign delay (in seconds).
         num delayInSecs = distances[property] / speedOfSound;
-        _delays[property].delayTime.value = delayInSecs;
+        _delays[property].delayTime.value = delayInSecs.clamp(0, 0.5);
 
         // Compute and assign gain, uses logarithmic rolloff: "g = R / (d + 1)"
         num attenuation = _coefficients[property] / distances[property];
